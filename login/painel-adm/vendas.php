@@ -6,6 +6,25 @@ require_once('../conexao.php');
 require_once('verificar-permissao.php')
 
 ?>
+<style>
+	
+#example {
+    border-collapse: collapse;
+    /* Mescla as bordas das células */
+}
+
+#example th,
+#example td {
+    border-left: 1px solid #ccc;
+    /* Adiciona uma borda esquerda às células */
+    border-right: 1px solid #ccc;
+    /* Adiciona uma borda direita às células */
+    padding: 8px;
+    /* Adicione um espaçamento interno para melhor aparência */
+    border: 2px solid black;
+
+}
+</style>
 
 
 <div class="mt-4" style="margin-right:25px">
@@ -16,16 +35,16 @@ require_once('verificar-permissao.php')
 	if($total_reg > 0){ 
 		?>
 		<small>
-			<table id="example" class="table table-hover my-4" style="width:100%">
+       	 <table id="example" class="table table-hover my-4" style="width:100%">				
 				<thead>
-					<tr>
-						<th>Status</th>
-						<th>Valor</th>
-						<th>Data</th>
-						<th>Hora</th>
-						<th>Operador</th>
-						<th>Pagamento</th>						
-						<th>Ações</th>
+					<tr class="bg-success">
+						<th class="text-white text-center">Status</th>
+						<th class="text-white text-center">Valor</th>
+						<th class="text-white text-center">Data</th>
+						<th class="text-white text-center">Hora</th>
+						<th class="text-white text-center">Operador</th>
+						<th class="text-white text-center">Pagamento</th>						
+						<th class="text-white text-center">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -66,25 +85,25 @@ require_once('verificar-permissao.php')
 						?>
 
 						<tr>
-							<td>
-								<i class="bi bi-square-fill <?php echo $classe ?>"></i>
-								<?php echo $res[$i]['status'] ?></td>
-								<td>R$ <?php echo $total ?></td>
-								<td><?php echo $data2 ?></td>
-								<td><?php echo $res[$i]['hora'] ?></td>
-								<td><?php echo $nome_operador ?></td>
-								<td class="<?php echo $cor_texto  ?>"><?php echo $nome_pgto ?></td>
+							<td class="text-center"> <b>
+								<i class="bi bi-square-fill<?php echo $classe ?>"></i>
+								<?php echo $res[$i]['status'] ?></b></td>
+								<td  class="text-center"> <b>R$ <?php echo $total ?></b></td>
+								<td  class="text-center"> <b><?php echo $data2 ?></b></td>
+								<td  class="text-center"> <b><?php echo $res[$i]['hora'] ?></b></td>
+								<td  class="text-center"> <b><?php echo $nome_operador ?></b></td>
+								<td  class="text-center" class="<?php echo $cor_texto  ?>"><b><?php echo $nome_pgto ?></b></td>
 
 
-								<td>
+								<td class="text-center">
 									<a href="../rel/comprovante.php?id=<?php echo $res[$i]['id'] ?>&imp=Não" title="Gerar Comprovante" target="_blank" style="text-decoration: none">
-										<i class="bi bi-clipboard-check text-primary"></i>
+										<i class="bi bi-cart-check-fill text-success"></i>
 									</a>
 
 									<?php if($res[$i]['status'] == 'Concluída'){ ?>
 
 									<a href="index.php?pagina=<?php echo $pag ?>&funcao=deletar&id=<?php echo $res[$i]['id'] ?>" title="Cancelar Venda">
-										<i class="bi bi-archive text-danger mx-1"></i>
+										<i class="bi bi-trash-fill text-danger mx-1"></i>
 									</a>
 								<?php } ?>
 								</td>

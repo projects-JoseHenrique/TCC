@@ -8,7 +8,24 @@ require_once('verificar-permissao.php');
 $data_hoje = date('Y-m-d');
 
 ?>
+<style>
+#example {
+    border-collapse: collapse;
+    /* Mescla as bordas das células */
+}
 
+#example th,
+#example td {
+    border-left: 1px solid #ccc;
+    /* Adiciona uma borda esquerda às células */
+    border-right: 1px solid #ccc;
+    /* Adiciona uma borda direita às células */
+    padding: 8px;
+    /* Adicione um espaçamento interno para melhor aparência */
+    border: 2px solid black;
+
+}
+</style>
 <div class="mt-4" style="margin-right:25px">
 
 	
@@ -21,13 +38,13 @@ $data_hoje = date('Y-m-d');
 		<small>
 			<table id="example" class="table table-hover my-4" style="width:100%">
 				<thead>
-					<tr>
-						<th>Produto</th>
-						<th>Data Compra</th>
-						<th>Quantidade Comprada</th>
-						<th>Lote</th>
-						<th>Vencimento</th>						
-						<th>Excluir</th>
+					<tr class="bg-success">
+						<th class="text-white text-center">Produto</th>
+						<th class="text-white text-center">Data Compra</th>
+						<th class="text-white text-center">Quantidade Comprada</th>
+						<th class="text-white text-center">Lote</th>
+						<th class="text-white text-center">Vencimento</th>						
+						<th class="text-white text-center">Operações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -80,24 +97,24 @@ $data_hoje = date('Y-m-d');
 
 						<tr>
 						
-						<td>
+						<td class="text-center"><b> 
 							<i class="bi bi-square-fill <?php echo $classe ?>"></i>
-							<?php echo $nome_prod ?></td>
-						<td><?php echo implode('/', array_reverse(explode('-', $data))); ?></td>
+							<?php echo $nome_prod ?></b></td>
+						<td><b> <?php echo implode('/', array_reverse(explode('-', $data))); ?></b></td>
 							
-							<td><?php echo $quantidade ?></td>
+							<td class="text-center" ><b><?php echo $quantidade ?></b></td>
 
-							<td><?php echo $lote ?></td>						
-							<td class="<?php echo $classe_data ?>"><?php echo implode('/', array_reverse(explode('-', $res[$i]['data_vencimento']))); ?></td>
+							<td class="text-center"><b> <?php echo $lote ?></td>						
+							<b><td class="text-center" class="<?php echo $classe_data ?>"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['data_vencimento']))); ?></b></td>
 
-							<td>	
+							<td class="text-center">
 
 								<a href="#" onclick="obs('<?php echo $id_alerta ?>', '<?php echo $obs ?>', '<?php echo $status ?>')" title="Lançar Observações" style="text-decoration: none">
-									<i class="bi bi-exclamation-square text-warning mx-1"></i>
+									<i class="bi bi-lightbulb-fill text-warning mx-1"></i>
 								</a>						
 
 								<a href="index.php?pagina=<?php echo $pag ?>&funcao=deletar&id=<?php echo $res[$i]['id'] ?>" title="Excluir Registro" style="text-decoration: none">
-									<i class="bi bi-archive text-danger mx-1"></i>
+									<i class="bi bi-trash-fill text-danger mx-1"></i>
 								</a>
 						
 							</td>

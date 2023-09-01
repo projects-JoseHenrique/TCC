@@ -24,7 +24,7 @@ require_once('verificar-permissao.php')
 
 }
 </style>
-<a href="index.php?pagina=<?php echo $pag ?>&funcao=novo" type="button" class="btn btn-secondary mt-2">Nova
+<a href="index.php?pagina=<?php echo $pag ?>&funcao=novo" type="button" class="btn btn-success mt-2">Nova
     Categoria</a>
 
 <div class="mt-4" style="margin-right:25px">
