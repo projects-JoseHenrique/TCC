@@ -35,11 +35,7 @@ require_once('verificar-permissao.php')
 					for($i=0; $i < $total_reg; $i++){
 						foreach ($res[$i] as $key => $value){	}
 
-							$id_usu = $res[$i]['usuario'];
-						$query_p = $pdo->query("SELECT * from usuarios where id = '$id_usu'");
-						$res_p = $query_p->fetchAll(PDO::FETCH_ASSOC);
-						$nome_usu = $res_p[0]['nome'];
-
+						
 
 						if($res[$i]['pago'] == 'Sim'){
 							$classe = 'text-success';

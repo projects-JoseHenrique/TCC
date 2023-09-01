@@ -93,14 +93,15 @@
 
         <!-- slider section -->
         <section class="slider_section" id="#Inicio">
-            <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+            <div id="customCarousel1" class="carousel" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active slide" style="background-image: url('img/slider-bg.jpg');">
+                    <div class="container">
                         <div class="container ">
                             <div class="row">
                                 <div class="col-md-10 mx-auto">
                                     <div class="detail-box">
-                                        <h1 style="color: linear-gradient(to right, #008000, #FFFFFF);">
+                                        <h1 class="text-warning">
                                             DACOR <br>
                                             TINTAS <br>
                                             AUTOMOTIVAS
@@ -195,7 +196,7 @@
                     <div class="col-md-6 col-lg-3">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="images/s1.png" alt="">
+                                <img src="img/s1.png" alt="">
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -213,7 +214,7 @@
                     <div class="col-md-6 col-lg-3">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="images/s2.png" alt="">
+                                <img src="img/s2.png" alt="">
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -231,7 +232,7 @@
                     <div class="col-md-6 col-lg-3">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="images/s3.png" alt="">
+                                <img src="img/s3.png" alt="">
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -249,7 +250,7 @@
                     <div class="col-md-6 col-lg-3">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="images/s4.png" alt="">
+                                <img src="img/s4.png" alt="">
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -291,7 +292,7 @@
                 </div>
                 <div class="col-md-6 ">
                     <div class="img-box">
-                        <img src="images/about-img.jpg" alt="">
+                        <img src="img/about-img.jpg" alt="">
                     </div>
                 </div>
 
@@ -323,7 +324,7 @@
                     <div class="item painting">
                         <div class="box">
                             <div class="img-box">
-                                <img src="images/project1.jpg" alt="" />
+                                <img src="img/project1.jpg" alt="" />
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -338,7 +339,7 @@
                     <div class="item reconstruction">
                         <div class="box">
                             <div class="img-box">
-                                <img src="images/project2.jpg" alt="" />
+                                <img src="img/project2.jpg" alt="" />
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -353,7 +354,7 @@
                     <div class="item repair">
                         <div class="box">
                             <div class="img-box">
-                                <img src="images/project1.jpg" alt="" />
+                                <img src="img/project1.jpg" alt="" />
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -368,7 +369,7 @@
                     <div class="item residential">
                         <div class="box">
                             <div class="img-box">
-                                <img src="images/project1.jpg" alt="" />
+                                <img src="img/project1.jpg" alt="" />
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -383,7 +384,7 @@
                     <div class="item styling">
                         <div class="box">
                             <div class="img-box">
-                                <img src="images/project1.jpg" alt="" />
+                                <img src="img/project1.jpg" alt="" />
                             </div>
                             <div class="detail-box">
                                 <h5>
@@ -429,7 +430,7 @@
                             <div class="col-md-10 mx-auto">
                                 <div class="box">
                                     <div class="img-box">
-                                        <img src="images/client.jpg" alt="">
+                                        <img src="img/client.jpg" alt="">
                                     </div>
                                     <div class="detail-box">
                                         <div class="client_info">
@@ -483,7 +484,7 @@
             <div class="why_us_container">
                 <div class="box">
                     <div class="img-box">
-                        <img src="images/w1.png" alt="">
+                        <img src="img/w1.png" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -502,7 +503,7 @@
                 </div>
                 <div class="box">
                     <div class="img-box">
-                        <img src="images/w2.png" alt="">
+                        <img src="img/w2.png" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -521,7 +522,7 @@
                 </div>
                 <div class="box">
                     <div class="img-box">
-                        <img src="images/w3.png" alt="">
+                        <img src="img/w3.png" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -555,7 +556,7 @@
             <div class="col-lg-4 col-md-5 offset-md-1">
                 <div class="heading_container">
                     <h2 class="mt-3">
-                        Contanos
+                        Contate nos
                     </h2>
                 </div>
             </div>
@@ -643,7 +644,7 @@
                     <div class="col-md-2">
                         <div class="info_logo">
                             <a href="">
-                                <img src="images/logo2.png" alt="">
+                                <img src="img/logo-painel.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -675,8 +676,8 @@
     <footer class="footer_section">
         <div class="container">
             <p>
-                &copy; <span id="displayYear"></span> All Rights Reserved By
-                <a href="https://html.design/">Free Html Templates</a>
+                &copy; <span id="displayYear"></span> TCC
+                <a href="#">Trabalho de Conclusão de Curso</a>
             </p>
         </div>
     </footer>
