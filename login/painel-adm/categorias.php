@@ -6,63 +6,83 @@ require_once('../conexao.php');
 require_once('verificar-permissao.php')
 
 ?>
+<style>
+#example {
+    border-collapse: collapse;
+    /* Mescla as bordas das células */
+}
 
-<a href="index.php?pagina=<?php echo $pag ?>&funcao=novo" type="button" class="btn btn-secondary mt-2">Nova Categoria</a>
+#example th,
+#example td {
+    border-left: 1px solid #ccc;
+    /* Adiciona uma borda esquerda às células */
+    border-right: 1px solid #ccc;
+    /* Adiciona uma borda direita às células */
+    padding: 8px;
+    /* Adicione um espaçamento interno para melhor aparência */
+    border: 2px solid black;
+
+}
+</style>
+<a href="index.php?pagina=<?php echo $pag ?>&funcao=novo" type="button" class="btn btn-secondary mt-2">Nova
+    Categoria</a>
 
 <div class="mt-4" style="margin-right:25px">
-	<?php 
+    <?php 
 	$query = $pdo->query("SELECT * from categorias order by id desc");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	$total_reg = @count($res);
 	if($total_reg > 0){ 
 		?>
-		<small>
-			<table id="example" class="table table-hover my-4" style="width:100%">
-				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>Produtos</th>
-						<th>Foto</th>
-						<th>Ações</th>
-					</tr>
-				</thead>
-				<tbody>
+    <small>
+        <table id="example" class="table table-hover my-4" style="width:100%">
+            <thead>
+                <tr class="bg-success">
+                    <th class="text-white text-center">Nome</th>
+                    <th class="text-white text-center">Produtos</th>
+                    <th class="text-white text-center">Foto</th>
+                    <th class="text-white text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
 
-					<?php 
+                <?php 
 					for($i=0; $i < $total_reg; $i++){
 						foreach ($res[$i] as $key => $value){	}
 
 							$id_cat = $res[$i]['id'];
 							$query_p = $pdo->query("SELECT * from produtos where categoria = '$id_cat'");
-	$res_p = $query_p->fetchAll(PDO::FETCH_ASSOC);
-	$produtos = @count($res_p);
+							$res_p = $query_p->fetchAll(PDO::FETCH_ASSOC);
+							$produtos = @count($res_p);
 
 							?>
 
-						<tr>
-							<td><?php echo $res[$i]['nome'] ?></td>
+                <tr>
+                    <td class="text-center"><b><?php echo $res[$i]['nome'] ?></b></td>
 
-							<td><?php echo $produtos ?></td>
-							
-							<td><img src="../img/<?php echo $pag ?>/<?php echo $res[$i]['foto'] ?>" width="40"></td>
-							<td>
-								<a href="index.php?pagina=<?php echo $pag ?>&funcao=editar&id=<?php echo $res[$i]['id'] ?>" title="Editar Registro">
-									<i class="bi bi-pencil-square text-primary"></i>
-								</a>
+                    <td class="text-center"><b><?php echo $produtos ?></b></td>
 
-								<a href="index.php?pagina=<?php echo $pag ?>&funcao=deletar&id=<?php echo $res[$i]['id'] ?>" title="Excluir Registro">
-									<i class="bi bi-archive text-danger mx-1"></i>
-								</a>
-							</td>
-						</tr>
+                    <td class="text-center"><img src="../img/<?php echo $pag ?>/<?php echo $res[$i]['foto'] ?>" width="40"></td>
+                    <td class="text-center">
+                        <a href="index.php?pagina=<?php echo $pag ?>&funcao=editar&id=<?php echo $res[$i]['id'] ?>"
+                            title="Editar Registro">
+                            <i class="bi bi-pencil-fill text-primary"></i>
+                        </a>
 
-					<?php } ?>
+                        <a href="index.php?pagina=<?php echo $pag ?>&funcao=deletar&id=<?php echo $res[$i]['id'] ?>"
+                            title="Excluir Registro">
+                            <i class="bi bi-trash-fill text-danger mx-1"></i>
+                        </a>
+                    </td>
+                </tr>
 
-				</tbody>
+                <?php } ?>
 
-			</table>
-		</small>
-	<?php }else{
+            </tbody>
+
+        </table>
+    </small>
+    <?php }else{
 		echo '<p>Não existem dados para serem exibidos!!';
 	} ?>
 </div>
@@ -86,130 +106,138 @@ if(@$_GET['funcao'] == "editar"){
 
 
 <div class="modal fade" tabindex="-1" id="modalCadastrar" data-bs-backdrop="static">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title"><?php echo $titulo_modal ?></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<form method="POST" id="form">
-				<div class="modal-body">
-
-					
-					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">Nome</label>
-						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required="" value="<?php echo @$nome ?>">
-					</div> 
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><?php echo $titulo_modal ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" id="form">
+                <div class="modal-body">
 
 
-					
-						<div class="form-group">
-							<label >Foto</label>
-							<input type="file" value="<?php echo @$foto ?>"  class="form-control-file" id="imagem" name="imagem" onChange="carregarImg();">
-						</div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required=""
+                            value="<?php echo @$nome ?>">
+                    </div>
 
-						<div id="divImgConta" class="mt-4">
-							<?php if(@$foto != ""){ ?>
-								<img src="../img/<?php echo $pag ?>/<?php echo $foto ?>"  width="200px" id="target">
-							<?php  }else{ ?>
-								<img src="../img/<?php echo $pag ?>/sem-foto.jpg" width="200px" id="target">
-							<?php } ?>
-						</div>
-					
-					
-				
 
-				<small><div align="center" class="mt-1" id="mensagem">
 
-				</div> </small>
+                    <div class="form-group">
+                        <label>Foto</label>
+                        <input type="file" value="<?php echo @$foto ?>" class="form-control-file" id="imagem"
+                            name="imagem" onChange="carregarImg();">
+                    </div>
 
-			</div>
-			<div class="modal-footer">
-				<button type="button" id="btn-fechar" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-				<button name="btn-salvar" id="btn-salvar" type="submit" class="btn btn-primary">Salvar</button>
+                    <div id="divImgConta" class="mt-4">
+                        <?php if(@$foto != ""){ ?>
+                        <img src="../img/<?php echo $pag ?>/<?php echo $foto ?>" width="200px" id="target">
+                        <?php  }else{ ?>
+                        <img src="../img/<?php echo $pag ?>/sem-foto.jpg" width="200px" id="target">
+                        <?php } ?>
+                    </div>
 
-				<input name="id" type="hidden" value="<?php echo @$_GET['id'] ?>">
 
-				<input name="antigo" type="hidden" value="<?php echo @$nome ?>">
-				
 
-			</div>
-		</form>
-	</div>
+
+                    <small>
+                        <div align="center" class="mt-1" id="mensagem">
+
+                        </div>
+                    </small>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-fechar" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Fechar</button>
+                    <button name="btn-salvar" id="btn-salvar" type="submit" class="btn btn-primary">Salvar</button>
+
+                    <input name="id" type="hidden" value="<?php echo @$_GET['id'] ?>">
+
+                    <input name="antigo" type="hidden" value="<?php echo @$nome ?>">
+
+
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-</div>
 
 
 
 
 
 
-<div class="modal fade" tabindex="-1" id="modalDeletar" >
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Excluir Registro</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<form method="POST" id="form-excluir">
-				<div class="modal-body">
+<div class="modal fade" tabindex="-1" id="modalDeletar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Registro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" id="form-excluir">
+                <div class="modal-body">
 
-					<p>Deseja Realmente Excluir o Registro?</p>
+                    <p>Deseja Realmente Excluir o Registro?</p>
 
-					<small><div align="center" class="mt-1" id="mensagem-excluir">
-						
-					</div> </small>
+                    <small>
+                        <div align="center" class="mt-1" id="mensagem-excluir">
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" id="btn-fechar" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-					<button name="btn-excluir" id="btn-excluir" type="submit" class="btn btn-danger">Excluir</button>
+                        </div>
+                    </small>
 
-					<input name="id" type="hidden" value="<?php echo @$_GET['id'] ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-fechar" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Fechar</button>
+                    <button name="btn-excluir" id="btn-excluir" type="submit" class="btn btn-danger">Excluir</button>
 
-				</div>
-			</form>
-		</div>
-	</div>
+                    <input name="id" type="hidden" value="<?php echo @$_GET['id'] ?>">
+
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 
 
 <?php 
 if(@$_GET['funcao'] == "novo"){ ?>
-	<script type="text/javascript">
-		var myModal = new bootstrap.Modal(document.getElementById('modalCadastrar'), {
-			backdrop: 'static'
-		})
+<script type="text/javascript">
+var myModal = new bootstrap.Modal(document.getElementById('modalCadastrar'), {
+    backdrop: 'static'
+})
 
-		myModal.show();
-	</script>
+myModal.show();
+</script>
 <?php } ?>
 
 
 
 <?php 
 if(@$_GET['funcao'] == "editar"){ ?>
-	<script type="text/javascript">
-		var myModal = new bootstrap.Modal(document.getElementById('modalCadastrar'), {
-			backdrop: 'static'
-		})
+<script type="text/javascript">
+var myModal = new bootstrap.Modal(document.getElementById('modalCadastrar'), {
+    backdrop: 'static'
+})
 
-		myModal.show();
-	</script>
+myModal.show();
+</script>
 <?php } ?>
 
 
 
 <?php 
 if(@$_GET['funcao'] == "deletar"){ ?>
-	<script type="text/javascript">
-		var myModal = new bootstrap.Modal(document.getElementById('modalDeletar'), {
-			
-		})
+<script type="text/javascript">
+var myModal = new bootstrap.Modal(document.getElementById('modalDeletar'), {
 
-		myModal.show();
-	</script>
+})
+
+myModal.show();
+</script>
 <?php } ?>
 
 
@@ -217,50 +245,50 @@ if(@$_GET['funcao'] == "deletar"){ ?>
 
 <!--AJAX PARA INSERÇÃO E EDIÇÃO DOS DADOS COM IMAGEM -->
 <script type="text/javascript">
-	$("#form").submit(function () {
-		var pag = "<?=$pag?>";
-		event.preventDefault();
-		var formData = new FormData(this);
+$("#form").submit(function() {
+    var pag = "<?=$pag?>";
+    event.preventDefault();
+    var formData = new FormData(this);
 
-		$.ajax({
-			url: pag + "/inserir.php",
-			type: 'POST',
-			data: formData,
+    $.ajax({
+        url: pag + "/inserir.php",
+        type: 'POST',
+        data: formData,
 
-			success: function (mensagem) {
+        success: function(mensagem) {
 
-				$('#mensagem').removeClass()
+            $('#mensagem').removeClass()
 
-				if (mensagem.trim() == "Salvo com Sucesso!") {
+            if (mensagem.trim() == "Salvo com Sucesso!") {
 
-                    //$('#nome').val('');
-                    //$('#cpf').val('');
-                    $('#btn-fechar').click();
-                    window.location = "index.php?pagina="+pag;
+                //$('#nome').val('');
+                //$('#cpf').val('');
+                $('#btn-fechar').click();
+                window.location = "index.php?pagina=" + pag;
 
-                } else {
+            } else {
 
-                	$('#mensagem').addClass('text-danger')
-                }
-
-                $('#mensagem').text(mensagem)
-
-            },
-
-            cache: false,
-            contentType: false,
-            processData: false,
-            xhr: function () {  // Custom XMLHttpRequest
-            	var myXhr = $.ajaxSettings.xhr();
-                if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
-                	myXhr.upload.addEventListener('progress', function () {
-                		/* faz alguma coisa durante o progresso do upload */
-                	}, false);
-                }
-                return myXhr;
+                $('#mensagem').addClass('text-danger')
             }
-        });
-	});
+
+            $('#mensagem').text(mensagem)
+
+        },
+
+        cache: false,
+        contentType: false,
+        processData: false,
+        xhr: function() { // Custom XMLHttpRequest
+            var myXhr = $.ajaxSettings.xhr();
+            if (myXhr.upload) { // Avalia se tem suporte a propriedade upload
+                myXhr.upload.addEventListener('progress', function() {
+                    /* faz alguma coisa durante o progresso do upload */
+                }, false);
+            }
+            return myXhr;
+        }
+    });
+});
 </script>
 
 
@@ -268,52 +296,52 @@ if(@$_GET['funcao'] == "deletar"){ ?>
 
 <!--AJAX PARA EXCLUIR DADOS -->
 <script type="text/javascript">
-	$("#form-excluir").submit(function () {
-		var pag = "<?=$pag?>";
-		event.preventDefault();
-		var formData = new FormData(this);
+$("#form-excluir").submit(function() {
+    var pag = "<?=$pag?>";
+    event.preventDefault();
+    var formData = new FormData(this);
 
-		$.ajax({
-			url: pag + "/excluir.php",
-			type: 'POST',
-			data: formData,
+    $.ajax({
+        url: pag + "/excluir.php",
+        type: 'POST',
+        data: formData,
 
-			success: function (mensagem) {
+        success: function(mensagem) {
 
-				$('#mensagem').removeClass()
+            $('#mensagem').removeClass()
 
-				if (mensagem.trim() == "Excluído com Sucesso!") {
+            if (mensagem.trim() == "Excluído com Sucesso!") {
 
-					$('#mensagem-excluir').addClass('text-success')
+                $('#mensagem-excluir').addClass('text-success')
 
-					$('#btn-fechar').click();
-					window.location = "index.php?pagina="+pag;
+                $('#btn-fechar').click();
+                window.location = "index.php?pagina=" + pag;
 
-				} else {
+            } else {
 
-					$('#mensagem-excluir').addClass('text-danger')
-				}
+                $('#mensagem-excluir').addClass('text-danger')
+            }
 
-				$('#mensagem-excluir').text(mensagem)
+            $('#mensagem-excluir').text(mensagem)
 
-			},
+        },
 
-			cache: false,
-			contentType: false,
-			processData: false,
+        cache: false,
+        contentType: false,
+        processData: false,
 
-		});
-	});
+    });
+});
 </script>
 
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#example').DataTable({
-			"ordering": false
-		});
-	} );
+$(document).ready(function() {
+    $('#example').DataTable({
+        "ordering": false
+    });
+});
 </script>
 
 
@@ -323,24 +351,22 @@ if(@$_GET['funcao'] == "deletar"){ ?>
 
 <!--SCRIPT PARA CARREGAR IMAGEM -->
 <script type="text/javascript">
+function carregarImg() {
 
-    function carregarImg() {
+    var target = document.getElementById('target');
+    var file = document.querySelector("input[type=file]").files[0];
+    var reader = new FileReader();
 
-        var target = document.getElementById('target');
-        var file = document.querySelector("input[type=file]").files[0];
-        var reader = new FileReader();
+    reader.onloadend = function() {
+        target.src = reader.result;
+    };
 
-        reader.onloadend = function () {
-            target.src = reader.result;
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
+    if (file) {
+        reader.readAsDataURL(file);
 
 
-        } else {
-            target.src = "";
-        }
+    } else {
+        target.src = "";
     }
-
+}
 </script>

@@ -6,6 +6,24 @@ require_once('../conexao.php');
 require_once('verificar-permissao.php');
 
 ?>
+<style>
+#example {
+    border-collapse: collapse;
+    /* Mescla as bordas das células */
+}
+
+#example th,
+#example td {
+    border-left: 1px solid #ccc;
+    /* Adiciona uma borda esquerda às células */
+    border-right: 1px solid #ccc;
+    /* Adiciona uma borda direita às células */
+    padding: 8px;
+    /* Adicione um espaçamento interno para melhor aparência */
+    border: 2px solid black;
+
+}
+</style>
 
 <div class="mt-4" style="margin-right:25px">
 	<?php 
@@ -15,20 +33,20 @@ require_once('verificar-permissao.php');
 	if($total_reg > 0){ 
 		?>
 		<small>
-			<table id="example" class="table table-hover my-4" style="width:100%">
+        	<table id="example" class="table table-hover my-4" style="width:100%">
 				<thead>
-					<tr>
-						<th>Pago</th>
-						<th>Produto</th>
-						<th>Total</th>
-						<th>Data</th>
-						<th>Gerente</th>
-						<th>Fornecedor</th>
-						<th>Tel Fornecedor</th>
-						<th>Lote</th>
-						<th>Validade</th>
-						<th>Arquivo</th>
-						<th>Excluir</th>
+					<tr class="bg-success">
+						<th class="text-white text-center">Pago</th>
+						<th class="text-white text-center">Produto</th>
+						<th class="text-white text-center">Total</th>
+						<th class="text-white text-center">Data</th>
+						<th class="text-white text-center">Gerente</th>
+						<th class="text-white text-center">Fornecedor</th>
+						<th class="text-white text-center">Tel Fornecedor</th>
+						<th class="text-white text-center">Lote</th>
+						<th class="text-white text-center">Validade</th>
+						<th class="text-white text-center">Arquivo</th>
+						<th class="text-white text-center">Excluir</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -103,28 +121,28 @@ if($arquivo == ""){
 						?>
 
 						<tr>
-							<td>								<i class="bi bi-square-fill <?php echo $classe ?>"></i>
+							<td class="text-center"><i class="bi bi-square-fill <?php echo $classe ?>"></i>
 								</td>
 									<td><?php echo $nome_prod ?></td>
-							<td>R$ <?php echo number_format($res[$i]['total'], 2, ',', '.'); ?></td>
+							<td class="text-center"><b>R$ <?php echo number_format($res[$i]['total'], 2, ',', '.'); ?></b></td>
 
-							<td><?php echo implode('/', array_reverse(explode('-', $res[$i]['data']))); ?></td>
+							<td class="text-center"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['data']))); ?></td>
 
-							<td><?php echo $nome_usuario ?></td>
+							<td class="text-center"><b><?php echo $nome_usuario ?></td>
 
-							<td><?php echo $nome_forn ?></td>
+							<td class="text-center"><b><?php echo $nome_forn ?></td>
 							
-							<td><?php echo $tel_forn ?></td>
-							<td><?php echo $res[$i]['lote'] ?></td>
-							<td><?php echo implode('/', array_reverse(explode('-', $res[$i]['validade']))); ?></td>
+							<td class="text-center"><b><?php echo $tel_forn ?></td>
+							<td class="text-center"><b><?php echo $res[$i]['lote'] ?></td>
+							<td class="text-center"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['validade']))); ?></td>
 
-							<td><a target="_blank" href="../img/arquivos/<?php echo $arquivo ?>"><img src="../img/arquivos/<?php echo $tumb_arquivo ?>" width="40px"></a></td>
+							<td class="text-center"><a target="_blank" href="../img/arquivos/<?php echo $arquivo ?>"><img src="../img/arquivos/<?php echo $tumb_arquivo ?>" width="40px"></a></td>
 
-							<td>
+							<td class="text-center">
 								<?php if($res[$i]['pago'] != 'Sim'){ ?>
 
 								<a href="index.php?pagina=<?php echo $pag ?>&funcao=deletar&id=<?php echo $res[$i]['id'] ?>" title="Excluir Registro" style="text-decoration: none">
-									<i class="bi bi-archive text-danger mx-1"></i>
+									<i class="bi bi-trash-fill text-danger mx-1"></i>
 								</a>
 							<?php } ?>
 							</td>

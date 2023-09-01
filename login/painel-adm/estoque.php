@@ -7,7 +7,24 @@ require_once('verificar-permissao.php');
 
 ?>
 
+<style>
+#example {
+    border-collapse: collapse;
+    /* Mescla as bordas das células */
+}
 
+#example th,
+#example td {
+    border-left: 1px solid #ccc;
+    /* Adiciona uma borda esquerda às células */
+    border-right: 1px solid #ccc;
+    /* Adiciona uma borda direita às células */
+    padding: 8px;
+    /* Adicione um espaçamento interno para melhor aparência */
+    border: 2px solid black;
+
+}
+</style>
 <div class="mt-4" style="margin-right:25px">
 	<?php 
 	$query = $pdo->query("SELECT * from produtos where estoque < estoque_min");
@@ -18,15 +35,15 @@ require_once('verificar-permissao.php');
 		<small>
 			<table id="example" class="table table-hover my-4" style="width:100%">
 				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>Código</th>
-						<th>Estoque</th>
-						<th>Estoque Mínimo</th>
-						<th>Valor Compra</th>
-						<th>Fornecedor</th>
-						<th>Foto</th>
-						<th>Ações</th>
+					<tr class="bg-success">
+						<th class="text-white text-center">Nome</th>
+						<th class="text-white text-center">Código</th>
+						<th class="text-white text-center">Estoque</th>
+						<th class="text-white text-center">Estoque Mínimo</th>
+						<th class="text-white text-center">Valor Compra</th>
+						<th class="text-white text-center">Fornecedor</th>
+						<th class="text-white text-center">Foto</th>
+						<th class="text-white text-center">Ações</th>
 						
 					</tr>
 				</thead>
@@ -58,24 +75,24 @@ require_once('verificar-permissao.php');
 						?>
 
 						<tr>
-							<td><?php echo $res[$i]['nome'] ?></td>
-							<td><?php echo $res[$i]['codigo'] ?></td>
-							<td><?php echo $res[$i]['estoque'] ?></td>
-							<td><?php echo $res[$i]['estoque_min'] ?></td>
-							<td>R$ <?php echo number_format($res[$i]['valor_compra'], 2, ',', '.'); ?></td>
+							<td class="text-center"><b><?php echo $res[$i]['nome'] ?></b></td>
+							<td class="text-center"><b><?php echo $res[$i]['codigo'] ?></b></td>
+							<td class="text-center"><b><?php echo $res[$i]['estoque'] ?></b></td>
+							<td class="text-center"><b><?php echo $res[$i]['estoque_min'] ?></b></td>
+							<td class="text-center"><b>R$ <?php echo number_format($res[$i]['valor_compra'], 2, ',', '.'); ?></td>
 						
-							<td><?php echo $nome_forn ?></td>
+							<td class="text-center"><b><?php echo $nome_forn ?></td></b>
 							
-							<td><img src="../img/<?php echo $pag ?>/<?php echo $res[$i]['foto'] ?>" width="40"></td>
-							<td>
+							<td class="text-center"><img src="../img/<?php echo $pag ?>/<?php echo $res[$i]['foto'] ?>" width="40"></td>
+							<td class="text-center">
 								
 								<a href="#" onclick="mostrarDados('<?php echo $res[$i]['nome'] ?>', '<?php echo $res[$i]['descricao'] ?>', '<?php echo $res[$i]['foto'] ?>', '<?php echo $nome_cat ?>', '<?php echo $nome_forn ?>', '<?php echo $tel_forn ?>')" title="Ver Descriçao" style="text-decoration: none">
-									<i class="bi bi-card-text text-dark mx-1"></i>
+									<i class="bi bi-border-width  text-info mx-1"></i>
 								</a>
 
 
 								<a href="#" onclick="comprarProdutos('<?php echo $res[$i]['id'] ?>')" title="Comprar Produtos" style="text-decoration: none">
-									<i class="bi bi-bag text-success mx-1"></i>
+									<i class="bi bi-cart-check-fill text-success mx-1"></i>
 								</a>
 
 

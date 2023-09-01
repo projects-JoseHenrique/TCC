@@ -106,12 +106,12 @@ require_once('verificar-permissao.php');
 
 
 								<a target="_blank" title="Gerar Etiquetas" href="../rel/barras_class.php?codigo=<?php echo $res[$i]['codigo'] ?>" style="text-decoration: none">
-									<i class="bi bi-clipboard-check text-dark mx-1"></i>
+									<i class="bi bi-file-earmark-arrow-up-fill text-warning mx-1"></i>
 								</a>
 
 
 								<a target="_blank" title="Gerar Etiquetas com Valor" href="../rel/barras_valor_class.php?codigo=<?php echo $res[$i]['codigo'] ?>&valor=<?php echo $res[$i]['valor_venda'] ?>&nome=<?php echo $res[$i]['nome'] ?>" style="text-decoration: none">
-									<i class="bi bi-clipboard-check text-danger mx-1"></i>
+									<i class="bi bi-file-earmark-arrow-up-fill text-danger mx-1"></i>
 								</a>
 
 
