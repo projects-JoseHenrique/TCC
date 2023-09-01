@@ -1,7 +1,7 @@
 <?php 
 
 //VARIAVEIS GLOBAIS
-$nome_sistema = "PDV FREITAS";
+$nome_sistema = "Dacor Tintas Automotivas";
 $email_adm = 'admin@hotmail.com';
 
  //é preciso configurar essa url para gerar os relatorios, ela deve apontar para a raiz do seu dominio (https://www.google.com/) com a barra no final e o protocolo http ou https de acordo com seu dominio no inicio.
@@ -13,10 +13,10 @@ if($url[1] == 'localhost/'){
 
 
 
-$telefone_sistema = "(31) 97527-5084";
-$endereco_sistema = "Rua X Nº 200 Centro - BH - MG";
-$rodape_relatorios = "Sistema Desenvolvido por Hugo Vasconcelos do Portal Hugo Cursos!";
-$cnpj_sistema = '27.107.588/0001-28';
+$telefone_sistema = "(48) 3533-4956";
+$endereco_sistema = "Av. Pref. Francisco Lumertz Júnior, 649 - Januária, Sombrio - SC, 88960-000";
+$rodape_relatorios = "TCC (Trabalho de Conclusão de Curso)";
+$cnpj_sistema = '14.964.049/0001-79';
 $fonte_comprovante = '11';
 
 

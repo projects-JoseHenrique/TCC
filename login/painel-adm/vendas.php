@@ -64,10 +64,13 @@ require_once('verificar-permissao.php')
 						$dados = $res_2->fetchAll(PDO::FETCH_ASSOC);
 						$nome_pgto = $dados[0]['nome'];
 
-						$res_2 = $pdo->query("SELECT * from usuarios where id = '$id_operador' ");
+						$res_2 = $pdo->query("SELECT * from usuarios where id = '$id_operador'");
 						$dados = $res_2->fetchAll(PDO::FETCH_ASSOC);
-						$nome_operador = $dados[0]['nome'];
-
+						
+						if (!empty($dados)) {
+							$nome_operador = $dados[0]['nome'];
+						} 
+						
 
 						if($res[$i]['status'] == 'Concluída'){
 							$classe = 'text-success';

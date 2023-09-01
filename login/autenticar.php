@@ -30,7 +30,7 @@ $query_con = $pdo->prepare("SELECT * from usuarios WHERE (email = :usuario or no
 		}
 
 		if($nivel == 'Tesoureiro'){
-			echo "<script language='javascript'>window.location='painel-tesoureiro'</script>";
+			echo "<script language='javascript'>window.location='painel-financeiro'</script>";
 		}
 	}else{
 

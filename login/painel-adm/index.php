@@ -146,7 +146,7 @@ $id_usu = $res[0]['id'];
 
 
         <li class="nav-item">
-          <a class="nav-link" href="../painel-tesoureiro" target="_blank">Painel Tesouraria</a>
+          <a class="nav-link" href="../painel-financeiro/" target="_blank">Painel Financeiro</a>
         </li>
         
       </ul>

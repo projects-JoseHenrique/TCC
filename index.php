@@ -36,7 +36,7 @@
 
 </head>
 
-<body>
+<body class="bg-white">
 
     <div class="hero_area">
         <!-- header section strats -->
@@ -554,8 +554,8 @@
         <div class="container-fluid">
             <div class="col-lg-4 col-md-5 offset-md-1">
                 <div class="heading_container">
-                    <h2>
-                        Contact Us
+                    <h2 class="mt-3">
+                        Contanos
                     </h2>
                 </div>
             </div>
@@ -564,20 +564,20 @@
                     <div class="form_container">
                         <form action="">
                             <div>
-                                <input type="text" placeholder="Your Name" />
+                                <input type="text" placeholder="Seu Nome" />
                             </div>
                             <div>
-                                <input type="text" placeholder="Phone Number" />
+                                <input type="text" placeholder="Número de Telefone" />
                             </div>
                             <div>
-                                <input type="email" placeholder="Email" />
+                                <input type="email" placeholder="E-mail" />
                             </div>
                             <div>
-                                <input type="text" class="message-box" placeholder="Message" />
+                                <input type="text" class="message-box" placeholder="Mensagem" />
                             </div>
                             <div class="btn_box">
                                 <button>
-                                    SEND
+                                    ENVIAR
                                 </button>
                             </div>
                         </form>
@@ -624,57 +624,16 @@
                 <div class="row info_main_row">
                     <div class="col-sm-6 col-md-4 col-lg-3">
                         <div class="info_links">
-                            <h4>
-                                QUICK LINKS
+                            <h4 class="text-warning">
+                                LINKS IMPORTANTES
                             </h4>
                             <div class="info_links_menu">
-                                <a class="" href="index.html">Home <span class="sr-only">(current)</span></a>
-                                <a class="" href="service.html">Services</a>
-                                <a class="" href="about.html"> About</a>
-                                <a class="" href="project.html">Project</a>
-                                <a class="" href="testimonial.html">Testimonial</a>
-                                <a class="" href="contact.html">Contact Us</a>
+                                <a class="" href="index.html">INÍCIO <span class="sr-only">(current)</span></a>
+                                <a class="" href="service.html">SERVIÇOS</a>
+                                <a class="" href="about.html">SOBRE-NÓS</a>
+                                <a class="" href="project.html">CLIENTES</a>
+                                <a class="" href="testimonial.html">DEPOIMENTOS</a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 mx-auto">
-                        <div class="info_post">
-                            <h5>
-                                INSTAGRAM FEEDS
-                            </h5>
-                            <div class="post_box">
-                                <div class="img-box">
-                                    <img src="images/instagram.jpg" alt="">
-                                </div>
-                                <div class="img-box">
-                                    <img src="images/instagram.jpg" alt="">
-                                </div>
-                                <div class="img-box">
-                                    <img src="images/instagram.jpg" alt="">
-                                </div>
-                                <div class="img-box">
-                                    <img src="images/instagram.jpg" alt="">
-                                </div>
-                                <div class="img-box">
-                                    <img src="images/instagram.jpg" alt="">
-                                </div>
-                                <div class="img-box">
-                                    <img src="images/instagram.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="info_form">
-                            <h4>
-                                SIGN UP TO OUR NEWSLETTER
-                            </h4>
-                            <form action="">
-                                <input type="text" placeholder="Enter Your Email" />
-                                <button type="submit">
-                                    Subscribe
-                                </button>
-                            </form>
                         </div>
                     </div>
                 </div>
