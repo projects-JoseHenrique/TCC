@@ -104,9 +104,19 @@ $nome_operador = $dados[0]['nome'];
 
 	.qtdun{
 		position: absolute; 
-		left: 80px; 
+		left: 1px; 
 		margin-top: -10px;
 
+	}
+
+	.espaco {
+		position: absolute; 
+		left: 28px; 
+	}
+
+	.espaco2 {
+		position: absolute; 
+		left: 32px; 
 	}
 
 	.th2 { 
@@ -183,7 +193,7 @@ $nome_operador = $dados[0]['nome'];
 <div  class="th2">CUMPOM NÃO FISCAL</div>
 
 <div  class="info">
-	<b class="qtdun">QTD UN</b>
+	<b class="qtdun">QTD |</b>
 </div>
 
 <?php 
@@ -216,7 +226,7 @@ $res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id as
 
 	<div class="row itens">
 
-		<div align="left" class="col-9"> <?php echo $quantidade ?> - <?php echo $nome_produto ?>
+		<div align="left" class="col-9"> <?php echo $quantidade ?>  <span class="espaco"><b>|</b></span> <span class="espaco2"><?php echo $nome_produto ?></span>
 
 	</div>		
 
