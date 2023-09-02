@@ -49,154 +49,265 @@ $nome_operador = $dados[0]['nome'];
 
 <?php if(@$_GET['imp'] != 'Não'){ ?>
 <script type="text/javascript">
-	$(document).ready(function() {    		
-		window.print();
-		window.close(); 
-	} );
+$(document).ready(function() {
+    window.print();
+    window.close();
+});
 </script>
 <?php } ?>
 
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 <style type="text/css">
-	*{
-		margin:0px;
+* {
+    margin: 0px;
 
-		/*Espaçamento da margem da esquerda e da Direita*/
-		padding:0px;
-		background-color:#ffffff;
-
-
-	}
-	.text {
-		&-center { text-align: center; }
-	}
-	
-	.printer-ticket {
-		display: table !important;
-		width: 100%;
-
-		/*largura do Campos que vai os textos*/
-		max-width: 400px;
-		font-weight: light;
-		line-height: 1.3em;
-
-		/*Espaçamento da margem da esquerda e da Direita*/
-		padding: 0px;
-		font-family: TimesNewRoman, Geneva, sans-serif; 
-
-		/*tamanho da Fonte do Texto*/
-		font-size: <?php echo $fonte_comprovante ?>px; 
+    /*Espaçamento da margem da esquerda e da Direita*/
+    padding: 0px;
+    background-color: #ffffff;
 
 
+}
 
-	}
-	
-	.th { 
-		font-weight: inherit;
-		/*Espaçamento entre as uma linha para outra*/
-		padding:5px;
-		text-align: center;
-		/*largura dos tracinhos entre as linhas*/
-		border-bottom: 1px dashed #000000;
-	}
+.text {
+    &-center {
+        text-align: center;
+    }
+}
 
-	.qtdun{
-		position: absolute; 
-		left: 1px; 
-		margin-top: -10px;
+.printer-ticket {
+    display: table !important;
+    width: 100%;
 
-	}
+    /*largura do Campos que vai os textos*/
+    max-width: 400px;
+    font-weight: light;
+    line-height: 1.3em;
 
-	.espaco {
-		position: absolute; 
-		left: 28px; 
-	}
+    /*Espaçamento da margem da esquerda e da Direita*/
+    padding: 0px;
+    font-family: TimesNewRoman, Geneva, sans-serif;
 
-	.espaco2 {
-		position: absolute; 
-		left: 32px; 
-	}
-
-	.th2 { 
-		font-weight: inherit;
-		/*Espaçamento entre as uma linha para outra*/
-		padding:5px;
-		text-align: center;
-		/*largura dos tracinhos entre as linhas*/
-	}
-
-	.info { 
-		font-weight: inherit;
-		/*Espaçamento entre as uma linha para outra*/
-		padding:5px;
-		text-align: center;
-		/*largura dos tracinhos entre as linhas*/
-		border-bottom: 1px dashed #000000;
-	}
-
-	.itens { 
-		font-weight: inherit;
-		/*Espaçamento entre as uma linha para outra*/
-		padding:5px;
-		
-	}
-
-	.valores { 
-		font-weight: inherit;
-		/*Espaçamento entre as uma linha para outra*/
-		padding:2px 5px;
-		
-	}
+    /*tamanho da Fonte do Texto*/
+    font-size: <?php echo $fonte_comprovante ?>px;
 
 
-	.cor{
-		color:#000000;
-	}
-	
-	
-	.title { 
-		font-size: 12px;
-		text-transform: uppercase;
-		font-weight: bold;
-	}
 
-	/*margem Superior entre as Linhas*/
-	.margem-superior{
-		padding-top:5px;
-	}
-	
+}
+
+.th {
+    font-weight: inherit;
+    /*Espaçamento entre as uma linha para outra*/
+    padding: 5px;
+    text-align: center;
+    /*largura dos tracinhos entre as linhas*/
+    border-bottom: 1px dashed #000000;
+}
+
+.qtdun {
+    position: absolute;
+    left: 1px;
+    margin-top: -10px;
+}
+
+.qtd {
+    position: absolute;
+    left: 12px;
+
+}
+
+.parentese {
+    position: absolute;
+    left: 23px;
+
+}
+
+.codigo {
+    position: absolute;
+    left: 60px;
+
+}
+
+.cod {
+    position: absolute;
+    left: 50px;
+    margin-top: -16px;
+
+}
+
+
+.produto {
+    position: absolute;
+    left: 135px;
+    margin-top: -22px;
+
+}
+
+.valorqtd {
+    position: absolute;
+    left: 280px;
+    margin-top: -53px;
+
+}
+
+.valorun {
+    position: absolute;
+    left: 350px;
+    margin-top: -33px;
+
+}
+
+.x {
+    position: absolute;
+    left: 333px;
+    margin-top: -43px;
+
+}
+
+
+.espaco2 {
+    position: absolute;
+    left: 135px;
+}
+
+.espaco3 {
+    position: absolute;
+    left: 270px;
+}
+
+.espaco4 {
+    position: absolute;
+    left: 340px;
+}
+
+.th2 {
+    font-weight: inherit;
+    /*Espaçamento entre as uma linha para outra*/
+    padding: 5px;
+    text-align: center;
+    /*largura dos tracinhos entre as linhas*/
+}
+
+.info {
+    font-weight: inherit;
+    /*Espaçamento entre as uma linha para outra*/
+    padding: 5px;
+    /*largura dos tracinhos entre as linhas*/
+    border-bottom: 1px dashed #000000;
+}
+
+
+.info2 {
+    font-weight: inherit;
+    /*Espaçamento entre as uma linha para outra*/
+    padding: 5px;
+
+}
+
+.info3 {
+    font-weight: inherit;
+    /*Espaçamento entre as uma linha para outra*/
+    padding: 5px;
+
+}
+
+.info4 {
+    font-weight: inherit;
+    /*Espaçamento entre as uma linha para outra*/
+    padding: 5px;
+
+}
+
+.info5 {
+    font-weight: inherit;
+    /*Espaçamento entre as uma linha para outra*/
+    padding: 5px;
+
+}
+
+.itens {
+    font-weight: inherit;
+    /*Espaçamento entre as uma linha para outra*/
+    padding: 5px;
+
+}
+
+.valores {
+    font-weight: inherit;
+    /*Espaçamento entre as uma linha para outra*/
+    padding: 2px 5px;
+
+}
+
+
+.cor {
+    color: #000000;
+}
+
+
+.title {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/*margem Superior entre as Linhas*/
+.margem-superior {
+    padding-top: 5px;
+}
 </style>
 
 
 
-<div class="printer-ticket">		
-	<div  class="th title"><?php echo $nome_sistema ?></div>
+<div class="printer-ticket">
+    <div class="th title"><?php echo $nome_sistema ?></div>
 
-	<div  class="th">
-		<?php echo $endereco_sistema ?> <br />
-		<small><b>Contato:</b> <?php echo $telefone_sistema ?> 
-		<?php if($cnpj_sistema != ""){echo ' / <b>CNPJ </b>'. @$cnpj_sistema; } ?>
-	</small>  
-</div>
+    <div class="th">
+        <?php echo $endereco_sistema ?> <br />
+        <small><b>Contato:</b> <?php echo $telefone_sistema ?>
+            <?php if($cnpj_sistema != ""){echo ' / <b>CNPJ </b>'. @$cnpj_sistema; } ?>
+        </small>
+    </div>
 
 
 
-<div  class="th"><b>Cliente</b> <?php echo $nome_cliente ?> <?php if($cpf_cliente != ""){ ?><b>CPF:</b> <?php echo $cpf_cliente ?> <?php } ?>			
-<br>
-</b>  <b>Data:</b> <?php echo $data2 ?> Hora: <?php echo $hora ?>
-</div>
+    <div class="th"><b>Cliente</b> <?php echo $nome_cliente ?> <?php if($cpf_cliente != ""){ ?><b>CPF:</b>
+        <?php echo $cpf_cliente ?> <?php } ?>
+        <br>
+        </b> <b>Data:</b> <?php echo $data2 ?> <b>Hora:</b> <?php echo $hora ?>
+    </div>
 
-<div  class="th title" >Comprovante de Venda</div>
+    <div class="th title">Comprovante de Venda</div>
 
-<div  class="th2">CUMPOM NÃO FISCAL</div>
+    <div class="th2">CUMPOM NÃO FISCAL</div>
+    <div class="mt-2"></div>
 
-<div  class="info">
-	<b class="qtdun">QTD |</b>
-</div>
+    <div class="info">
+        <b class="qtdun">| QTD |</b>
+    </div>
 
-<?php 
+    <div class="info1">
+        <b class="cod">| COD |</b>
+    </div>
+
+    <div class="info2">
+        <b class="produto">| PRODUTO |</b>
+    </div>
+
+    <div class="info3">
+        <b class="valorun">| VL UN |</b>
+    </div>
+	
+    <div class="info4">
+        <b class="x"> x </b>
+    </div>
+
+    <div class="info5">
+        <b class="valorqtd">| VL QTD |</b>
+    </div>
+    <?php 
 $res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id asc");
 		$dados = $res->fetchAll(PDO::FETCH_ASSOC);
 		$linhas = count($dados);
@@ -211,6 +322,7 @@ $res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id as
 			$id_item= $dados[$i]['id'];
 			$valor = $dados[$i]['valor_unitario'];
 
+			$valorqtd = $quantidade * $valor;
 
 			$res_p = $pdo->query("SELECT * from produtos where id = '$id_produto' ");
 			$dados_p = $res_p->fetchAll(PDO::FETCH_ASSOC);
@@ -218,80 +330,90 @@ $res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id as
 			$codigo_produto = $dados_p[0]['codigo'];  
 			//$valor = $dados_p[0]['valor_venda'];
 			
-
-			$total_item = $valor * $quantidade;
 	
 
 			?>
+    <div class="row itens">
 
-	<div class="row itens">
+        <div align="left" class="col-9"> <b>(</b><span class="qtd"><?php echo $quantidade ?></span><span
+                class="codigo"><?php echo $codigo_produto ?></span><span class="espaco"><b class="parentese">)</b></span> <span
+                class="espaco2"><?php echo $nome_produto ?></span>
 
-		<div align="left" class="col-9"> <?php echo $quantidade ?>  <span class="espaco"><b>|</b></span> <span class="espaco2"><?php echo $nome_produto ?></span>
+        </div>
 
-	</div>		
+		<div class="espaco3">
+            R$ <?php
 
-	<div align="right" class="col-3">
-	R$ <?php
-
-				@$total_item;
-				@$sub_tot = @$sub_tot + @$total_item;
-				$sub_total = $sub_tot;
 				
+			@$valor;
+			@$sub_tot = @$sub_tot + @$total_item;
+			$sub_total = $sub_tot;
 
-				$sub_total = number_format( $sub_total , 2, ',', '.');
-				$total_item = number_format( $total_item , 2, ',', '.');
-				$total = number_format( $total_venda , 2, ',', '.');
-				
 
-				echo $total_item ;
+			$sub_total = number_format( $sub_total , 2, ',', '.');
+			$valor = number_format( $valor , 2, ',', '.');
+			$total = number_format( $total_venda , 2, ',', '.');
+
+
+			echo $valor ;
 		?>
-	</div>
+        </div>
 
-</div>
-
-<?php } ?>
-
-<div class="th" style="margin-bottom: 7px"></div>
+        <div class="espaco4">
+            R$ <?php
 
 
-	<div class="row valores">			
-		<div class="col-6">SubTotal</div>
-		<div class="col-6" align="right">R$ <?php echo @$sub_total ?></div>
-	</div>		
+				$valorqtd = number_format( $valorqtd , 2, ',', '.');
+				
 
-	<div class="row valores">			
-		<div class="col-6">Desconto</div>
-		<div class="col-6" align="right"> <?php echo @$desconto ?></div>
-	</div>	
+				echo $valorqtd;
+		?>
+        </div>
 
-	<div class="row valores">			
-		<div class="col-6">Total</div>
-		<div class="col-6" align="right"><b>R$ <?php echo @$total ?></b></div>
-	</div>	
+    </div>
 
-	<div class="row valores">			
-		<div class="col-6">Total Pago</div>
-		<div class="col-6" align="right">R$ <?php echo @$valor_recebido ?></div>
-	</div>	
+    <?php } ?>
 
-	<div class="row valores">			
-		<div class="col-6">Troco</div>
-		<div class="col-6" align="right">R$ <?php echo @$troco ?></div>
-	</div>		
+    <div class="th" style="margin-bottom: 7px"></div>
 
 
-<div class="th" style="margin-bottom: 10px"></div>
+    <div class="row valores">
+        <div class="col-6"><b>SubTotal</b></div>
+        <div class="col-6" align="right">R$ <?php echo @$sub_total ?></div>
+    </div>
 
-	<div class="row valores">			
-		<div class="col-6">Forma de Pagamento</div>
-		<div class="col-6" align="right"> <?php echo @$nome_pgto ?></div>
-	</div>	
+    <div class="row valores">
+        <div class="col-6"><b>Desconto</b></div>
+        <div class="col-6" align="right"> <?php echo @$desconto ?></div>
+    </div>
 
-		<div class="row valores">			
-		<div class="col-6">Operador</div>
-		<div class="col-6" align="right"> <?php echo @$nome_operador ?></div>
-	</div>	
+    <div class="row valores">
+        <div class="col-6"><b>Total</b></div>
+        <div class="col-6" align="right">R$ <?php echo @$total ?></div>
+    </div>
+
+    <div class="row valores">
+        <div class="col-6"><b>Total Pago</b></div>
+        <div class="col-6" align="right">R$ <?php echo @$valor_recebido ?></div>
+    </div>
+
+    <div class="row valores">
+        <div class="col-6"><b>Troco</b></div>
+        <div class="col-6" align="right">R$ <?php echo @$troco ?></div>
+    </div>
 
 
-<div class="th" style="margin-bottom: 10px"></div>
+    <div class="th" style="margin-bottom: 10px"></div>
 
+    <div class="row valores">
+        <div class="col-6">Forma de Pagamento</div>
+        <div class="col-6" align="right"> <?php echo @$nome_pgto ?></div>
+    </div>
+
+    <div class="row valores">
+        <div class="col-6">Operador</div>
+        <div class="col-6" align="right"> <?php echo @$nome_operador ?></div>
+    </div>
+
+
+    <div class="th" style="margin-bottom: 10px"></div>
