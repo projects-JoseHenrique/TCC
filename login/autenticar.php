@@ -6,9 +6,9 @@ $usuario = $_POST['usuario'];
 $senha = $_POST['senha'];
 $senha_crip = md5($senha);
 
-$query_con = $pdo->prepare("SELECT * from usuarios WHERE (email = :usuario or nome = :usuario) and senha = :senha");
+$query_con = $pdo->prepare("SELECT * from usuarios WHERE (nome = :usuario) and senha_crip = :senha");
 	$query_con->bindValue(":usuario", $usuario);
-	$query_con->bindValue(":senha", $senha);
+	$query_con->bindValue(":senha", $senha_crip);
 	$query_con->execute();
 	$res_con = $query_con->fetchAll(PDO::FETCH_ASSOC);
 
@@ -17,7 +17,6 @@ $query_con = $pdo->prepare("SELECT * from usuarios WHERE (email = :usuario or no
 
 		$_SESSION['nome_usuario'] = $res_con[0]['nome'];
 		$_SESSION['nivel_usuario'] = $res_con[0]['nivel'];
-		$_SESSION['cpf_usuario'] = $res_con[0]['cpf'];
 		$_SESSION['id_usuario'] = $res_con[0]['id'];
 
 
@@ -29,7 +28,7 @@ $query_con = $pdo->prepare("SELECT * from usuarios WHERE (email = :usuario or no
 			echo "<script language='javascript'>window.location='painel-operador'</script>";
 		}
 
-		if($nivel == 'Tesoureiro'){
+		if($nivel == 'Financeiro'){
 			echo "<script language='javascript'>window.location='painel-financeiro'</script>";
 		}
 	}else{

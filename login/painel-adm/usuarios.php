@@ -148,7 +148,7 @@ if(@$_GET['funcao'] == "editar"){
 
 							<option <?php if(@$nivel == 'Administrador'){ ?> selected <?php } ?>  value="Administrador">Administrador</option>
 							
-							<option <?php if(@$nivel == 'Financeiro'){ ?> selected <?php } ?>  value="Tesoureiro">Financeiro</option>
+							<option <?php if(@$nivel == 'Financeiro'){ ?> selected <?php } ?>  value="Financeiro">Financeiro</option>
 
 							
 						</select>

@@ -5,6 +5,7 @@ $nome = $_POST['nome'];
 $email = $_POST['email'];
 $cpf = $_POST['cpf'];
 $senha = $_POST['senha'];
+$senha_crip = md5($senha);
 $nivel = $_POST['nivel'];
 $id = $_POST['id'];
 
@@ -36,19 +37,21 @@ if($antigo != $cpf){
 }
 
 if($id == ""){
-	$res = $pdo->prepare("INSERT INTO usuarios SET nome = :nome, email = :email, cpf = :cpf, senha = :senha, nivel = :nivel");
+	$res = $pdo->prepare("INSERT INTO usuarios SET nome = :nome, email = :email, cpf = :cpf, senha = :senha, senha_crip = '$senha_crip', nivel = :nivel");
 	$res->bindValue(":nome", $nome);
 	$res->bindValue(":email", $email);
 	$res->bindValue(":cpf", $cpf);
 	$res->bindValue(":senha", $senha);
+	$res->bindValue(":nivel", $senha_crip);
 	$res->bindValue(":nivel", $nivel);
 	$res->execute();
 }else{
-	$res = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, cpf = :cpf, senha = :senha, nivel = :nivel WHERE id = :id");
+	$res = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, cpf = :cpf, senha = :senha,senha_crip = '$senha_crip', nivel = :nivel WHERE id = :id");
 	$res->bindValue(":nome", $nome);
 	$res->bindValue(":email", $email);
 	$res->bindValue(":cpf", $cpf);
 	$res->bindValue(":senha", $senha);
+	$res->bindValue(":nivel", $senha_crip);
 	$res->bindValue(":nivel", $nivel);
 	$res->bindValue(":id", $id);
 	$res->execute();

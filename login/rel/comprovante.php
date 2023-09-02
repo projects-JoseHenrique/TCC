@@ -102,6 +102,30 @@ $nome_operador = $dados[0]['nome'];
 		border-bottom: 1px dashed #000000;
 	}
 
+	.qtdun{
+		position: absolute; 
+		left: 80px; 
+		margin-top: -10px;
+
+	}
+
+	.th2 { 
+		font-weight: inherit;
+		/*Espaçamento entre as uma linha para outra*/
+		padding:5px;
+		text-align: center;
+		/*largura dos tracinhos entre as linhas*/
+	}
+
+	.info { 
+		font-weight: inherit;
+		/*Espaçamento entre as uma linha para outra*/
+		padding:5px;
+		text-align: center;
+		/*largura dos tracinhos entre as linhas*/
+		border-bottom: 1px dashed #000000;
+	}
+
 	.itens { 
 		font-weight: inherit;
 		/*Espaçamento entre as uma linha para outra*/
@@ -133,8 +157,6 @@ $nome_operador = $dados[0]['nome'];
 		padding-top:5px;
 	}
 	
-	
-}
 </style>
 
 
@@ -144,21 +166,25 @@ $nome_operador = $dados[0]['nome'];
 
 	<div  class="th">
 		<?php echo $endereco_sistema ?> <br />
-		<small>Contato: <?php echo $telefone_sistema ?> 
-		<?php if($cnpj_sistema != ""){echo ' / CNPJ '. @$cnpj_sistema; } ?>
+		<small><b>Contato:</b> <?php echo $telefone_sistema ?> 
+		<?php if($cnpj_sistema != ""){echo ' / <b>CNPJ </b>'. @$cnpj_sistema; } ?>
 	</small>  
 </div>
 
 
 
-<div  class="th">Cliente <?php echo $nome_cliente ?> <?php if($cpf_cliente != ""){ ?>CPF: <?php echo $cpf_cliente ?> <?php } ?>			
+<div  class="th"><b>Cliente</b> <?php echo $nome_cliente ?> <?php if($cpf_cliente != ""){ ?><b>CPF:</b> <?php echo $cpf_cliente ?> <?php } ?>			
 <br>
-Venda: <b><?php echo $id ?></b> - Data: <?php echo $data2 ?> Hora: <?php echo $hora ?>
+</b>  <b>Data:</b> <?php echo $data2 ?> Hora: <?php echo $hora ?>
 </div>
 
 <div  class="th title" >Comprovante de Venda</div>
 
-<div  class="th">CUMPOM NÃO FISCAL</div>
+<div  class="th2">CUMPOM NÃO FISCAL</div>
+
+<div  class="info">
+	<b class="qtdun">QTD UN</b>
+</div>
 
 <?php 
 $res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id asc");
@@ -179,6 +205,7 @@ $res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id as
 			$res_p = $pdo->query("SELECT * from produtos where id = '$id_produto' ");
 			$dados_p = $res_p->fetchAll(PDO::FETCH_ASSOC);
 			$nome_produto = $dados_p[0]['nome'];  
+			$codigo_produto = $dados_p[0]['codigo'];  
 			//$valor = $dados_p[0]['valor_venda'];
 			
 

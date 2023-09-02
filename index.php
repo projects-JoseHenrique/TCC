@@ -80,7 +80,7 @@
                                 </form>
                             </ul>
                             <div class="quote_btn-container">
-                                <a href="./login/" class="quote_btn">
+                                <a href="./login/index.php" class="quote_btn">
                                     Login
                                 </a>
                             </div>
