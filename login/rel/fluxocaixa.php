@@ -1,4 +1,5 @@
 <?php 
+
 require_once("../conexao.php"); 
 
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');

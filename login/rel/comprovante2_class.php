@@ -1,6 +1,9 @@
 <?php 
+@session_start();
 
 require_once('../config.php');
+include('../conexao.php');
+include('../painel-operador/verificar-permissao.php');
 
 $id = $_GET['id'];
 

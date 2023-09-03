@@ -1,6 +1,9 @@
 <?php 
-include('../conexao.php');
 
+@session_start();
+
+include('../conexao.php');
+include('../painel-operador/verificar-permissao.php');
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
@@ -300,9 +303,9 @@ $(document).ready(function() {
         </b> <b>Data:</b> <?php echo $data2 ?> <b>Hora:</b> <?php echo $hora ?>
     </div>
 
-    <div class="th title">Comprovante de Venda</div>
+    <div class="th2 title">Comprovante de Venda</div>
 
-    <div class="th2"><b>CUMPOM NÃO FISCAL</b></div>
+    <div class="th"><b>CUMPOM NÃO FISCAL</b></div>
     <div class="mt-3"></div>
 
     <div class="info">
@@ -440,9 +443,9 @@ $(document).ready(function() {
         <div class="col-6" align="right"><b>VENDEDOR:</b> <?php echo @$nome_operador ?></div>
     </div>
     <div class="row valores">
-        <div class="text-center" style="font-size: 8px;"><b>TROCA SOMENTE COM CUPOM FISCAL</b></div>
+        <div class="text-center" style="font-size: 8px;"><b>TROCA SOMENTE COM ESTE CUPOM </b></div>
     </div>
-	<div class="meu-espacamento2"></div>
+<div class="meu-espacamento2"></div>
     <div class="th" style="margin-bottom: 10px"></div>
 
 
