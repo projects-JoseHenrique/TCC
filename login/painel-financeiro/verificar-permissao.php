@@ -2,7 +2,7 @@
 @session_start();
 
 //VERIFICAR PERMISSÃO DO USUÁRIO
-if(@$_SESSION['nivel_usuario'] != 'Tesoureiro' and @$_SESSION['nivel_usuario'] != 'Administrador'){
+if(@$_SESSION['nivel_usuario'] != 'Financeiro'){
 	echo "<script language='javascript'>window.location='../index.php'</script>";
 }
 

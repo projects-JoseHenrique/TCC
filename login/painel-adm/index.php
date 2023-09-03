@@ -143,11 +143,6 @@ $id_usu = $res[0]['id'];
            
           </ul>
         </li>
-
-
-        <li class="nav-item">
-          <a class="nav-link" href="../painel-financeiro/" target="_blank">Painel Financeiro</a>
-        </li>
         
       </ul>
       <div class="d-flex mx-3">

@@ -500,6 +500,7 @@ if($desconto_porcentagem == 'Sim'){
 
 
 
+
         if(array.length == 2){
            var ms1 = array[0];
            var ms2 = array[1];

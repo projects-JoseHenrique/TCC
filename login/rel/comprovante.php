@@ -163,8 +163,8 @@ $(document).ready(function() {
 
 .x {
     position: absolute;
-    left: 337px;
-    margin-top: -47px;
+    left: 335px;
+    margin-top: -46px;
 
 }
 
@@ -188,6 +188,18 @@ $(document).ready(function() {
     position: absolute;
 	margin-top: 20px;
     left: -7px;
+}
+
+.pagamento {
+    position: absolute;
+    left: 15px;
+    margin-top: 14px;
+}
+
+.operador {
+    position: absolute;
+    left: 300px;
+    margin-top: 14px;
 }
 
 .th2 {
@@ -432,22 +444,24 @@ $(document).ready(function() {
 
     <div class="row valores">
         <div class="col-6"><b>TOTAL COMPRA</b></div>
-        <div class="col-6" align="right">R$ <?php echo @$total ?></div>
+        <div class="col-6" align="right" style="font-size:15px;"><b>R$ <?php echo @$total ?></b></div>
     </div>
 
     <div class="th" style="margin-bottom: 10px"></div>
 
     <div class="row valores">
-        <div class="col-6"><b>FORMA DE PAGAMENTO:</b> <?php echo @$nome_pgto ?></div>
+        <div class="col-6"><b>| FORMA DE PAGAMENTO |</b></div>
+        <div class="pagamento " style="font-size:12px;"> <?php echo @$nome_pgto ?></div>
   
-        <div class="col-6" align="right"><b>VENDEDOR:</b> <?php echo @$nome_operador ?></div>
+        <div class="col-6" align="right"><b>| VENDEDOR |</b></div>
+        <div class="operador" style="font-size:12px;"> <?php echo @$nome_operador ?></div>
     </div>
+    <div class="mt-3"></div>
     <div class="row valores">
-        <div class="text-center" style="font-size: 8px;"><b>TROCA SOMENTE COM ESTE CUPOM </b></div>
+        <div class="text-center" style="font-size: 10px;"><b>TROCA SOMENTE COM ESTE CUPOM </b></div>
     </div>
 <div class="meu-espacamento2"></div>
     <div class="th" style="margin-bottom: 10px"></div>
-
 
     <div class="row valores">
         <div class="text-center"><b>DACOR TINTAS AUTOMOTIVAS AGRADECE A PREFERÊNCIA</b></div>
