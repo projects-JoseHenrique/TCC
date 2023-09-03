@@ -212,10 +212,11 @@ $(document).ready(function() {
 }
 
 .meu-espacamento {
-    margin-top: -25px;
-    /* Altere o valor conforme necessário */
+    margin-top: -38px;
 }
-
+.meu-espacamento2 {
+    margin-top: -10px;
+}
 
 
 .info2 {
@@ -358,8 +359,7 @@ $(document).ready(function() {
 
 			?>
 
-    <div class="row itens">
-
+    <div class="row itens meu-espacamento2">
         <div align="left" class="col-9"> <b>(</b><span class="qtd"><?php echo $quantidade ?></span><span
                 class="codigo"><?php echo $codigo_produto ?></span><span class="espaco"><b
                     class="parentese">)</b></span> <span class="espaco2"><?php echo $nome_produto ?></span>
@@ -435,17 +435,14 @@ $(document).ready(function() {
     <div class="th" style="margin-bottom: 10px"></div>
 
     <div class="row valores">
-        <div class="col-6"><b>FORMA DE PAGAMENTO</b></div>
-        <div class="col-6" align="right"> <?php echo @$nome_pgto ?></div>
-    </div>
-
-    <div class="row valores">
-        <div class="col-6"><b>VENDEDOR</b></div>
-        <div class="col-6" align="right"> <?php echo @$nome_operador ?></div>
+        <div class="col-6"><b>FORMA DE PAGAMENTO:</b> <?php echo @$nome_pgto ?></div>
+  
+        <div class="col-6" align="right"><b>VENDEDOR:</b> <?php echo @$nome_operador ?></div>
     </div>
     <div class="row valores">
         <div class="text-center" style="font-size: 8px;"><b>TROCA SOMENTE COM CUPOM FISCAL</b></div>
     </div>
+	<div class="meu-espacamento2"></div>
     <div class="th" style="margin-bottom: 10px"></div>
 
 
