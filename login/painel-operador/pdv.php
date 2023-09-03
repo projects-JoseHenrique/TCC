@@ -662,6 +662,7 @@ if($desconto_porcentagem == 'Sim'){
     
 
     var myModal = new bootstrap.Modal(document.getElementById('modalDeletar'), {
+      backdrop: 'static'
 
     })
 
@@ -691,6 +692,7 @@ if($desconto_porcentagem == 'Sim'){
 
     if(e.keyCode === 113){
       var myModal = new bootstrap.Modal(document.getElementById('modalVenda'), {
+        backdrop: 'static'
     })
     myModal.show();
     }
@@ -698,6 +700,7 @@ if($desconto_porcentagem == 'Sim'){
 
     if(e.keyCode === 18){
       var myModal = new bootstrap.Modal(document.getElementById('modalBuscarProduto'), {
+        backdrop: 'static'
     })
     myModal.show();
     }
