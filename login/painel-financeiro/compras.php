@@ -6,6 +6,25 @@ require_once('verificar-permissao.php');
 
 ?>
 
+<style>
+#example {
+    border-collapse: collapse;
+    /* Mescla as bordas das células */
+}
+
+#example th,
+#example td {
+    border-left: 1px solid #ccc;
+    /* Adiciona uma borda esquerda às células */
+    border-right: 1px solid #ccc;
+    /* Adiciona uma borda direita às células */
+    padding: 8px;
+    /* Adicione um espaçamento interno para melhor aparência */
+    border: 2px solid black;
+
+}
+</style>
+
 <div class="mt-4" style="margin-right:25px">
 	<?php 
 	$query = $pdo->query("SELECT * from compras order by id desc");
@@ -16,17 +35,17 @@ require_once('verificar-permissao.php');
 		<small>
 			<table id="example" class="table table-hover my-4" style="width:100%">
 				<thead>
-					<tr>
-						<th>Pago</th>
-						<th>Produto</th>
-						<th>Total</th>
-						<th>Data</th>
-						<th>Gerente</th>
-						<th>Fornecedor</th>
-						<th>Tel Fornecedor</th>
-						<th>Lote</th>
-						<th>Validade</th>
-						<th>Arquivo</th>
+					<tr class="bg-success">
+						<th class="text-white text-center">Pago</th>
+						<th class="text-white text-center">Produto</th>
+						<th class="text-white text-center">Total</th>
+						<th class="text-white text-center">Data</th>
+						<th class="text-white text-center">Gerente</th>
+						<th class="text-white text-center">Fornecedor</th>
+						<th class="text-white text-center">Tel Fornecedor</th>
+						<th class="text-white text-center">Lote</th>
+						<th class="text-white text-center">Validade</th>
+						<th class="text-white text-center">Arquivo</th>
 						
 					</tr>
 				</thead>
@@ -79,46 +98,46 @@ require_once('verificar-permissao.php');
 						}
 
 
-							//extensão do arquivo
-$ext = pathinfo($arquivo, PATHINFO_EXTENSION);
-if($ext == 'pdf'){
-	$tumb_arquivo = 'pdf.png';
-}else if($ext == 'rar' || $ext == 'zip'){
-	$tumb_arquivo = 'rar.png';
-}else if($ext == 'doc' || $ext == 'docx' || $ext == 'txt'){
-	$tumb_arquivo = 'word.png';
-}else if($ext == 'xlsx' || $ext == 'xlsm' || $ext == 'xls'){
-	$tumb_arquivo = 'excel.png';
-}else if($ext == 'xml'){
-	$tumb_arquivo = 'xml.png';
-}else{
-	$tumb_arquivo = $arquivo;
-}
+													//extensão do arquivo
+						$ext = pathinfo($arquivo, PATHINFO_EXTENSION);
+						if($ext == 'pdf'){
+							$tumb_arquivo = 'pdf.png';
+						}else if($ext == 'rar' || $ext == 'zip'){
+							$tumb_arquivo = 'rar.png';
+						}else if($ext == 'doc' || $ext == 'docx' || $ext == 'txt'){
+							$tumb_arquivo = 'word.png';
+						}else if($ext == 'xlsx' || $ext == 'xlsm' || $ext == 'xls'){
+							$tumb_arquivo = 'excel.png';
+						}else if($ext == 'xml'){
+							$tumb_arquivo = 'xml.png';
+						}else{
+							$tumb_arquivo = $arquivo;
+						}
 
-if($arquivo == ""){
-	$tumb_arquivo = 'sem-foto.jpg';
-}
+						if($arquivo == ""){
+							$tumb_arquivo = 'sem-foto.jpg';
+						}
 
 						?>
 
 						<tr>
-							<td>								<i class="bi bi-square-fill <?php echo $classe ?>"></i>
+							<td class="text-center">								<i class="bi bi-square-fill <?php echo $classe ?>"></i>
 								</td>
-									<td><?php echo $nome_prod ?></td>
-							<td>R$ <?php echo number_format($res[$i]['total'], 2, ',', '.'); ?></td>
+									<td class="text-center"><b><?php echo $nome_prod ?></b></td>
+							<td class="text-center"><b>R$ <?php echo number_format($res[$i]['total'], 2, ',', '.'); ?></b></td>
 
-							<td><?php echo implode('/', array_reverse(explode('-', $res[$i]['data']))); ?></td>
+							<td class="text-center"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['data']))); ?></b></td>
 
-							<td><?php echo $nome_usuario ?></td>
+							<td class="text-center"><b><?php echo $nome_usuario ?></b></td>
 
-							<td><?php echo $nome_forn ?></td>
+							<td class="text-center"><b><?php echo $nome_forn ?></b></td>
 							
-							<td><?php echo $tel_forn ?></td>
-							<td><?php echo $res[$i]['lote'] ?></td>
-							<td><?php echo implode('/', array_reverse(explode('-', $res[$i]['validade']))); ?></td>
+							<td class="text-center"><b><?php echo $tel_forn ?></b></td>
+							<td class="text-center"><b><?php echo $res[$i]['lote'] ?></b></td>
+							<td class="text-center"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['validade']))); ?></b></td>
 
 
-							<td><a target="_blank" href="../img/arquivos/<?php echo $arquivo ?>"><img src="../img/arquivos/<?php echo $tumb_arquivo ?>" width="40px"></a></td>
+							<td class="text-center"><a target="_blank" href="../img/arquivos/<?php echo $arquivo ?>"><img src="../img/arquivos/<?php echo $tumb_arquivo ?>" width="40px"></a></td>
 							
 							
 						</tr>
