@@ -13,10 +13,28 @@ $id_usuario = $_SESSION['id_usuario'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+
+   body {
+        overflow: hidden;
+    }
+
+    /* Desativar rolagem horizontal */
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+
+    /* Desativar rolagem vertical */
+    html, body {
+        overflow-y: hidden;
+    }
         
     .estilo {
         text-align: center;
-        margin-top: -40pc;
+        margin-top: 11pc;
+        position: absolute;
+        width: 100%;
     }
 
     .teste {
@@ -102,6 +120,15 @@ $id_usuario = $_SESSION['id_usuario'];
 </head>
 
 <body>
+
+<div class="estilo">
+        <h1 class="h1">IR PARA</h1>
+        <a href="pdv.php" class="btn btn-outline-success btn-lg teste" role="button" aria-pressed="true">SISTEMA PDV</a>
+        <div class="mt-5"></div>
+        <h1 class="h11">OU</h1>
+        <a href="../logout.php" class="btn btn-outline-danger btn-lg teste" role="button" aria-pressed="true">VOLTAR</a>
+
+    </div>
    
     <svg version="1.1" id="home-anim" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
    viewBox="0 0 1820 1080" style="enable-background:new 0 0 1820 1080;" xml:space="preserve">
@@ -214,14 +241,7 @@ $id_usuario = $_SESSION['id_usuario'];
   </g>
 </g>
 </svg>
-<div class="estilo">
-        <h1 class="h1">IR PARA</h1>
-        <a href="pdv.php" class="btn btn-outline-success btn-lg teste" role="button" aria-pressed="true">SISTEMA PDV</a>
-        <div class="mt-5"></div>
-        <h1 class="h11">OU</h1>
-        <a href="../logout.php" class="btn btn-outline-danger btn-lg teste" role="button" aria-pressed="true">VOLTAR</a>
 
-    </div>
 </body>
 
 </html>
