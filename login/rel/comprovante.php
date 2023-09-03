@@ -109,7 +109,7 @@ $(document).ready(function() {
 .qtdun {
     position: absolute;
     left: 1px;
-    margin-top: -10px;
+    margin-top: -16px;
 }
 
 .qtd {
@@ -126,50 +126,49 @@ $(document).ready(function() {
 
 .codigo {
     position: absolute;
-    left: 60px;
+    left: 50px;
 
 }
 
 .cod {
     position: absolute;
     left: 50px;
-    margin-top: -16px;
+    margin-top: -22px;
 
 }
 
 
 .produto {
     position: absolute;
-    left: 135px;
-    margin-top: -22px;
+    left: 145px;
+    margin-top: -29px;
 
 }
 
 .valorqtd {
-    position: absolute;
-    left: 280px;
-    margin-top: -53px;
+	position: absolute;
+    left: 350px;
+    margin-top: -36px;
 
 }
 
-.valorun {
+.valorun { 
     position: absolute;
-    left: 350px;
-    margin-top: -33px;
-
+    left: 280px;
+    margin-top: -56px;
 }
 
 .x {
     position: absolute;
-    left: 333px;
-    margin-top: -43px;
+    left: 337px;
+    margin-top: -47px;
 
 }
 
 
 .espaco2 {
     position: absolute;
-    left: 135px;
+    left: 140px;
 }
 
 .espaco3 {
@@ -182,6 +181,12 @@ $(document).ready(function() {
     left: 340px;
 }
 
+.espaco5 {
+    position: absolute;
+	margin-top: 20px;
+    left: -7px;
+}
+
 .th2 {
     font-weight: inherit;
     /*Espaçamento entre as uma linha para outra*/
@@ -190,6 +195,14 @@ $(document).ready(function() {
     /*largura dos tracinhos entre as linhas*/
 }
 
+.th3 {
+    font-weight: inherit;
+    /*Espaçamento entre as uma linha para outra*/
+    padding: 5px;
+    text-align: center;
+    /*largura dos tracinhos entre as linhas*/
+	border-bottom: 1px dashed #000000;
+}
 .info {
     font-weight: inherit;
     /*Espaçamento entre as uma linha para outra*/
@@ -197,6 +210,12 @@ $(document).ready(function() {
     /*largura dos tracinhos entre as linhas*/
     border-bottom: 1px dashed #000000;
 }
+
+.meu-espacamento {
+    margin-top: -25px;
+    /* Altere o valor conforme necessário */
+}
+
 
 
 .info2 {
@@ -233,6 +252,7 @@ $(document).ready(function() {
     padding: 5px;
 
 }
+
 
 .valores {
     font-weight: inherit;
@@ -281,8 +301,8 @@ $(document).ready(function() {
 
     <div class="th title">Comprovante de Venda</div>
 
-    <div class="th2">CUMPOM NÃO FISCAL</div>
-    <div class="mt-2"></div>
+    <div class="th2"><b>CUMPOM NÃO FISCAL</b></div>
+    <div class="mt-3"></div>
 
     <div class="info">
         <b class="qtdun">| QTD |</b>
@@ -297,18 +317,21 @@ $(document).ready(function() {
     </div>
 
     <div class="info3">
-        <b class="valorun">| VL UN |</b>
+        <b class="valorqtd">| VL QTD |</b>
     </div>
-	
+
     <div class="info4">
         <b class="x"> x </b>
     </div>
 
     <div class="info5">
-        <b class="valorqtd">| VL QTD |</b>
+        <b class="valorun">| VL UN |</b>
     </div>
+
+    <div class="meu-espacamento"></div>
+
     <?php 
-$res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id asc");
+	$res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id asc");
 		$dados = $res->fetchAll(PDO::FETCH_ASSOC);
 		$linhas = count($dados);
 
@@ -327,27 +350,30 @@ $res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id as
 			$res_p = $pdo->query("SELECT * from produtos where id = '$id_produto' ");
 			$dados_p = $res_p->fetchAll(PDO::FETCH_ASSOC);
 			$nome_produto = $dados_p[0]['nome'];  
-			$codigo_produto = $dados_p[0]['codigo'];  
+			$codigo_produto = $dados_p[0]['codigo']; 
+			$descricao = $dados_p[0]['descricao'];
 			//$valor = $dados_p[0]['valor_venda'];
 			
 	
 
 			?>
+
     <div class="row itens">
 
         <div align="left" class="col-9"> <b>(</b><span class="qtd"><?php echo $quantidade ?></span><span
-                class="codigo"><?php echo $codigo_produto ?></span><span class="espaco"><b class="parentese">)</b></span> <span
-                class="espaco2"><?php echo $nome_produto ?></span>
+                class="codigo"><?php echo $codigo_produto ?></span><span class="espaco"><b
+                    class="parentese">)</b></span> <span class="espaco2"><?php echo $nome_produto ?></span>
 
         </div>
 
-		<div class="espaco3">
+        <div class="espaco3">
             R$ <?php
 
 				
 			@$valor;
-			@$sub_tot = @$sub_tot + @$total_item;
+			@$sub_tot = @$sub_tot + @$valorqtd;
 			$sub_total = $sub_tot;
+				
 
 
 			$sub_total = number_format( $sub_total , 2, ',', '.');
@@ -355,7 +381,7 @@ $res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id as
 			$total = number_format( $total_venda , 2, ',', '.');
 
 
-			echo $valor ;
+			echo $valor;
 		?>
         </div>
 
@@ -369,51 +395,62 @@ $res = $pdo->query("SELECT * from itens_venda where venda = '$id' order by id as
 				echo $valorqtd;
 		?>
         </div>
-
+		<div class="espaco5">
+            <b>DESCRIÇÃO:</b> <?php echo $descricao ?>
+        </div>
+		<div class="mt-3 th3"></div>
     </div>
-
+	<div class="mt-2"></div>
     <?php } ?>
 
-    <div class="th" style="margin-bottom: 7px"></div>
-
-
-    <div class="row valores">
-        <div class="col-6"><b>SubTotal</b></div>
-        <div class="col-6" align="right">R$ <?php echo @$sub_total ?></div>
+	<div class="row valores">
+        <div class="col-6"><b>SUBTOTAL</b></div>
+        <div class="col-6" align="right">R$ <?php echo @$sub_total?></div>
     </div>
 
+
     <div class="row valores">
-        <div class="col-6"><b>Desconto</b></div>
+        <div class="col-6"><b>DESCONTO</b></div>
         <div class="col-6" align="right"> <?php echo @$desconto ?></div>
     </div>
 
-    <div class="row valores">
-        <div class="col-6"><b>Total</b></div>
-        <div class="col-6" align="right">R$ <?php echo @$total ?></div>
-    </div>
+
 
     <div class="row valores">
-        <div class="col-6"><b>Total Pago</b></div>
+        <div class="col-6"><b>TOTAL PAGO</b></div>
         <div class="col-6" align="right">R$ <?php echo @$valor_recebido ?></div>
     </div>
 
     <div class="row valores">
-        <div class="col-6"><b>Troco</b></div>
+        <div class="col-6"><b>TROCO</b></div>
         <div class="col-6" align="right">R$ <?php echo @$troco ?></div>
     </div>
 
 
+    <div class="row valores">
+        <div class="col-6"><b>TOTAL COMPRA</b></div>
+        <div class="col-6" align="right">R$ <?php echo @$total ?></div>
+    </div>
+
     <div class="th" style="margin-bottom: 10px"></div>
 
     <div class="row valores">
-        <div class="col-6">Forma de Pagamento</div>
+        <div class="col-6"><b>FORMA DE PAGAMENTO</b></div>
         <div class="col-6" align="right"> <?php echo @$nome_pgto ?></div>
     </div>
 
     <div class="row valores">
-        <div class="col-6">Operador</div>
+        <div class="col-6"><b>VENDEDOR</b></div>
         <div class="col-6" align="right"> <?php echo @$nome_operador ?></div>
     </div>
+    <div class="row valores">
+        <div class="text-center" style="font-size: 8px;"><b>TROCA SOMENTE COM CUPOM FISCAL</b></div>
+    </div>
+    <div class="th" style="margin-bottom: 10px"></div>
 
+
+    <div class="row valores">
+        <div class="text-center"><b>DACOR TINTAS AUTOMOTIVAS AGRADECE A PREFERÊNCIA</b></div>
+    </div>
 
     <div class="th" style="margin-bottom: 10px"></div>
