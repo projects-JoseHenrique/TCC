@@ -6,7 +6,24 @@ require_once('../conexao.php');
 require_once('verificar-permissao.php')
 
 ?>
+<style>
+#example {
+    border-collapse: collapse;
+    /* Mescla as bordas das células */
+}
 
+#example th,
+#example td {
+    border-left: 1px solid #ccc;
+    /* Adiciona uma borda esquerda às células */
+    border-right: 1px solid #ccc;
+    /* Adiciona uma borda direita às células */
+    padding: 8px;
+    /* Adicione um espaçamento interno para melhor aparência */
+    border: 2px solid black;
+
+}
+</style>
 
 <div class="mt-4" style="margin-right:25px">
 	<?php 
@@ -18,14 +35,14 @@ require_once('verificar-permissao.php')
 		<small>
 			<table id="example" class="table table-hover my-4" style="width:100%">
 				<thead>
-					<tr>
-						<th>Pago</th>
-						<th>Descrição</th>
-						<th>Valor</th>
-						<th>Usuário</th>
-						<th>Vencimento</th>						
-						<th>Arquivo</th>
-						<th>Baixar</th>
+					<tr class="bg-success">
+						<th class="text-white text-center">Pago</th>
+						<th class="text-white text-center">Descrição</th>
+						<th class="text-white text-center">Valor</th>
+						<th class="text-white text-center">Usuário</th>
+						<th class="text-white text-center">Vencimento</th>						
+						<th class="text-white text-center">Arquivo</th>
+						<th class="text-white text-center">Baixar</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,10 +56,7 @@ require_once('verificar-permissao.php')
 						$res_p = $query_p->fetchAll(PDO::FETCH_ASSOC);
 						if (!empty($res_p)) {
 							$nome_usu = $res_p[0]['nome'];
-						} else {
-							// Trate o caso em que $res_p está vazio (ou seja, não encontrou nenhum usuário com o ID especificado)
-							$nome_usu = "Usuário não encontrado";
-						}
+						} 
 
 
 						if($res[$i]['pago'] == 'Sim'){
@@ -62,22 +76,22 @@ require_once('verificar-permissao.php')
 						?>
 
 						<tr>
-							<td>								<i class="bi bi-square-fill <?php echo $classe ?>"></i>
+							<td  class="text-center">								<i class="bi bi-square-fill <?php echo $classe ?>"></i>
 							</td>
 
-							<td><?php echo $res[$i]['descricao'] ?></td>
+							<td  class="text-center"><b><?php echo $res[$i]['descricao'] ?></b></td>
 
-							<td>R$ <?php echo number_format($res[$i]['valor'], 2, ',', '.'); ?></td>
+							<td  class="text-center"><b>R$ <?php echo number_format($res[$i]['valor'], 2, ',', '.'); ?></b></td>
 
-							<td><?php echo $nome_usu ?></td>
+							<td  class="text-center"><b><?php echo $nome_usu ?></b></td>
 
-							<td><?php echo implode('/', array_reverse(explode('-', $res[$i]['vencimento']))); ?></td>
+							<td  class="text-center"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['vencimento']))); ?></b></td>
 							
-							<td><a href="../img/<?php echo $pag ?>/<?php echo $res[$i]['arquivo'] ?>" title="Ver Arquivo" style="text-decoration: none" target="_blank">
+							<td  class="text-center"><b><a href="../img/<?php echo $pag ?>/<?php echo $res[$i]['arquivo'] ?>" title="Ver Arquivo" style="text-decoration: none" target="_blank">
 								<img src="../img/<?php echo $pag ?>/<?php echo $arquivo_pasta ?>" width="40">
 							</a>
 						</td>
-						<td>
+						<td  class="text-center">
 							
 								<a href="index.php?pagina=contas_pagar_vencidas&funcao=baixar&id=<?php echo $res[$i]['id'] ?>" title="Baixar Registro" style="text-decoration: none">
 									<i class="bi bi-check-square-fill text-success mx-1"></i>

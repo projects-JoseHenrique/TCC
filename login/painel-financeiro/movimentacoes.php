@@ -6,6 +6,24 @@ require_once('../conexao.php');
 require_once('verificar-permissao.php');
 
 ?>
+<style>
+#example {
+    border-collapse: collapse;
+    /* Mescla as bordas das células */
+}
+
+#example th,
+#example td {
+    border-left: 1px solid #ccc;
+    /* Adiciona uma borda esquerda às células */
+    border-right: 1px solid #ccc;
+    /* Adiciona uma borda direita às células */
+    padding: 8px;
+    /* Adicione um espaçamento interno para melhor aparência */
+    border: 2px solid black;
+
+}
+</style>
 
 <div class="mt-4" style="margin-right:25px">
 	<?php 
@@ -17,12 +35,12 @@ require_once('verificar-permissao.php');
 		<small>
 			<table id="example" class="table table-hover my-4" style="width:100%">
 				<thead>
-					<tr>
-						<th>Tipo</th>
-						<th>Descrição</th>
-						<th>Valor</th>
-						<th>Usuário</th>
-						<th>Data</th>
+					<tr class="bg-success">
+						<th class="text-white text-center">Tipo</th>
+						<th class="text-white text-center">Descrição</th>
+						<th class="text-white text-center">Valor</th>
+						<th class="text-white text-center">Usuário</th>
+						<th class="text-white text-center">Data</th>
 						
 					</tr>
 				</thead>
@@ -57,18 +75,18 @@ require_once('verificar-permissao.php');
 						?>
 
 						<tr>
-							<td>								<i class="bi bi-square-fill <?php echo $classe ?>"></i> 
-								<span class="d-none"><?php echo $res[$i]['tipo'] ?></span>
+							<td  class="text-center">								<i class="bi bi-square-fill <?php echo $classe ?>"></i> 
+								<span class="d-none"><b><?php echo $res[$i]['tipo'] ?></b></span>
 							</td>
 
-							<td><?php echo $res[$i]['descricao'] ?></td>
-							<td>R$ <?php echo number_format($res[$i]['valor'], 2, ',', '.'); ?></td>
+							<td  class="text-center"><b><?php echo $res[$i]['descricao'] ?></b></td>
+							<td  class="text-center"><b>R$ <?php echo number_format($res[$i]['valor'], 2, ',', '.'); ?></b></td>
 
-							<td><?php echo $nome_usuario ?></td>
+							<td  class="text-center"><b><?php echo $nome_usuario ?></b></td>
 
 							
 
-							<td><?php echo implode('/', array_reverse(explode('-', $res[$i]['data']))); ?></td>
+							<td  class="text-center"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['data']))); ?></td>
 
 							
 

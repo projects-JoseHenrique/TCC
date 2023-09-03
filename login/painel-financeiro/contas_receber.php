@@ -61,10 +61,7 @@ require_once('verificar-permissao.php')
 						$res_p = $query_p->fetchAll(PDO::FETCH_ASSOC);
 						if (!empty($res_p)) {
 							$nome_usu = $res_p[0]['nome'];
-						} else {
-							// Trate o caso em que $res_p está vazio (ou seja, não encontrou nenhum usuário com o ID especificado)
-							$nome_usu = "Usuário não encontrado";
-						}
+						} 
 
 						if($res[$i]['pago'] == 'Sim'){
 							$classe = 'text-success';

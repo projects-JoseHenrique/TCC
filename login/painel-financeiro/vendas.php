@@ -49,6 +49,7 @@ require_once('verificar-permissao.php')
 						$nome_operador = $dados[0]['nome'];
 
 
+
 						if($res[$i]['status'] == 'Concluída'){
 							$classe = 'text-success';
 						}else{
