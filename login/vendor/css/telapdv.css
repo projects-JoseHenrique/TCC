@@ -9,8 +9,18 @@ html {
 
 body {
 
-  background-color: #858585;
+  background-color: #ffffff;
   
+}
+
+.lista {
+  position: absolute;
+  margin-top: 90px;
+}
+
+.custom-title {
+  margin-right: -100px; /* Ajuste a margem conforme necessário */
+  display: inline-block; /* Isso faz com que o título e o input fiquem na mesma linha */
 }
 
 
@@ -99,7 +109,7 @@ Checkout
 .order {
   width: 100%;
   height: 100%;
-  padding: 0 15px;
+  padding:  15px;
   
   background-color: #f4f5f9;
   
