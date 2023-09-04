@@ -39,13 +39,13 @@ require_once('verificar-permissao.php')
 
             <thead>
                 <tr class="bg-success">
-					<th class="text-white text-center">Foto</th>
+                    <th class="text-white text-center">Foto</th>
                     <th class="text-white text-center">Nome</th>
-                    <th class="text-white text-center">CPF</th>
                     <th class="text-white text-center">Email</th>
                     <th class="text-white text-center">Senha</th>
+                    <th class="text-white text-center">CPF</th>
+                    <th class="text-white text-center">Endereço</th>
                     <th class="text-white text-center">Nível</th>
-					<th class="text-white text-center">Endereço</th>
                     <th class="text-white text-center">Ações</th>
                 </tr>
             </thead>
@@ -58,13 +58,14 @@ require_once('verificar-permissao.php')
 							?>
 
 <tr>
+    <td class="text-center"><img src="../img/usuarios<?php echo $pag ?>/<?php echo $res[$i]['foto'] ?>" width="40"></td>
     <td class="text-center"><b><?php echo $res[$i]['nome'] ?></b></td>
-    <td class="text-center"><b><?php echo $res[$i]['cpf'] ?></b></td>
     <td class="text-center"><b><?php echo $res[$i]['email'] ?></b></td>
     <td class="text-center"><b><?php echo $res[$i]['senha'] ?></b></td>
+    <td class="text-center"><b><?php echo $res[$i]['cpf'] ?></b></td>
+    <td class="text-center"><b><?php echo $res[$i]['endereco'] ?></b></td>
     <td class="text-center"><b><?php echo $res[$i]['nivel'] ?></b></td>
-	<td class="text-center"><b><?php echo $res[$i]['endereco'] ?></b></td>
-	<td class="text-center"><img src="../img<?php echo $pag ?>/<?php echo $res[$i]['foto'] ?>" width="40"></td>
+
     <td class="text-center">
         <a href="index.php?pagina=<?php echo $pag ?>&funcao=editar&id=<?php echo $res[$i]['id'] ?>"
             title="Editar Registro">
@@ -75,6 +76,8 @@ require_once('verificar-permissao.php')
             title="Excluir Registro">
             <i class="bi bi-trash-fill text-danger mx-1"></i>
         </a>
+
+        
     </td>
 </tr>
 
@@ -182,63 +185,64 @@ if(@$_GET['funcao'] == "editar"){
                     </div>
                     <div class="row">
 
-						<div class="col-md-9">
-							<div class="form-group">
-								<label for="exampleFormControlInput1" class="form-label">Foto</label>
-								<input type="file" value="<?php echo @$arquivo ?>"  class="form-control" id="arquivo" name="arquivo" onChange="carregarArquivo();">
-							</div>
-
-							
-
-						</div>
-
-						<div class="col-md-3">
-							<div id="divImgConta" class="mt-4">
-								<?php if(@$arquivo != ""){ ?>
-									<img src="../img/arquivos/<?php echo $arquivo ?>"  width="60px" id="target_arquivos">
-								<?php  }else{ ?>
-									<img src="../img/arquivos/sem-foto.jpg" width="60px" id="target_arquivos">
-								<?php } ?>
-							</div>
-						</div>	
-						
-					</div>
-
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nível</label>
-                            <select class="form-select mt-1" aria-label="Default select example" name="nivel">
-
-                                <option <?php if(@$nivel == 'Operador'){ ?> selected <?php } ?> value="Operador">
-                                    Operador</option>
-
-                                <option <?php if(@$nivel == 'Administrador'){ ?> selected <?php } ?>
-                                    value="Administrador">Administrador</option>
-
-                                <option <?php if(@$nivel == 'Financeiro'){ ?> selected <?php } ?> value="Financeiro">
-                                    Financeiro</option>
-
-
-                            </select>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <div class="form-group">
+                                    <label>Foto</label>
+                                    <input type="file" value="<?php echo @$foto ?>" class="form-control-file"
+                                        id="imagem" name="imagem" onChange="carregarImg();">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+								<div id="divImgConta">
+								<?php if(@$foto != ""){ ?>
+									<img src="../img/<?php echo $pag ?>/<?php echo $foto ?>" width="40px" id="target">
+									<?php  }else{ ?>
+									<img src="../img/<?php echo $pag ?>/sem-foto.jpg" width="40px" id="target">
+									<?php } ?>
+                                </div>
+                            </div>
                         </div>
 
-                        <small>
-                            <div align="center" class="mt-1" id="mensagem">
-
-                            </div>
-                        </small>
-
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btn-fechar" class="btn btn-secondary"
-                            data-bs-dismiss="modal">Fechar</button>
-                        <button name="btn-salvar" id="btn-salvar" type="submit" class="btn btn-primary">Salvar</button>
 
-                        <input name="id" type="hidden" value="<?php echo @$_GET['id'] ?>">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nível</label>
+                        <select class="form-select mt-1" aria-label="Default select example" name="nivel">
 
-                        <input name="antigo" type="hidden" value="<?php echo @$cpf ?>">
-                        <input name="antigo2" type="hidden" value="<?php echo @$email ?>">
+                            <option <?php if(@$nivel == 'Operador'){ ?> selected <?php } ?> value="Operador">
+                                Operador</option>
 
+                            <option <?php if(@$nivel == 'Administrador'){ ?> selected <?php } ?> value="Administrador">
+                                Administrador</option>
+
+                            <option <?php if(@$nivel == 'Financeiro'){ ?> selected <?php } ?> value="Financeiro">
+                                Financeiro</option>
+
+
+                        </select>
                     </div>
+
+                    <small>
+                        <div align="center" class="mt-1" id="mensagem">
+
+                        </div>
+                    </small>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-fechar" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Fechar</button>
+                    <button name="btn-salvar" id="btn-salvar" type="submit" class="btn btn-primary">Salvar</button>
+
+                    <input name="id" type="hidden" value="<?php echo @$_GET['id'] ?>">
+
+                    <input name="antigo" type="hidden" value="<?php echo @$cpf ?>">
+                    <input name="antigo2" type="hidden" value="<?php echo @$email ?>">
+
+                </div>
             </form>
         </div>
     </div>
@@ -247,6 +251,60 @@ if(@$_GET['funcao'] == "editar"){
 
 
 
+<div class="modal fade" tabindex="-1" id="modalDados" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title"><span id="nome"></span></h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			
+			<div class="modal-body mb-4">
+
+				<b>Nome: </b>
+				<span id="nome"></span>
+				<hr>
+				
+				<div id="div-forn">
+					<span class="mr-4">
+						<b>E-mail: </b>
+						<span id="email"></span>
+					</span>
+					
+					<span class="mr-4">
+						<b>CPF: </b>
+						<span id="cpf"></span>
+					</span>
+
+                    <span class="mr-4">
+						<b>Seha: </b>
+						<span id="senha"></span>
+					</span>
+
+                    <span class="mr-4">
+						<b>Nivel: </b>
+						<span id="nivel"></span>
+					</span>
+
+                    <span class="mr-4">
+						<b>Endereço: </b>
+						<span id="endereco"></span>
+					</span>
+
+					<hr>
+				</div>
+
+
+				
+				<b>Usuário: </b>
+				<span id="foto"></span>
+				<hr>
+				<img id="foto" src="" class="mt-4" width="200">
+			</div> 
+
+		</div>
+	</div>
+</div>
 
 
 <div class="modal fade" tabindex="-1" id="modalDeletar">
@@ -373,29 +431,53 @@ $("#form").submit(function() {
 
 <!--SCRIPT PARA CARREGAR IMAGEM -->
 <script type="text/javascript">
+function carregarImg() {
 
-	function carregarImg() {
+    var target = document.getElementById('target');
+    var file = document.querySelector("input[type=file]").files[0];
+    var reader = new FileReader();
 
-		var target = document.getElementById('target');
-		var file = document.querySelector("input[type=file]").files[0];
-		var reader = new FileReader();
+    reader.onloadend = function() {
+        target.src = reader.result;
+    };
 
-		reader.onloadend = function () {
-			target.src = reader.result;
-		};
-
-		if (file) {
-			reader.readAsDataURL(file);
+    if (file) {
+        reader.readAsDataURL(file);
 
 
-		} else {
-			target.src = "";
-		}
-	}
-
+    } else {
+        target.src = "";
+    }
+}
 </script>
 
+<script type="text/javascript">
+	function mostrarDados(foto, nome, email, cpf, senha, nivel, endereco){
+		event.preventDefault();
 
+		if(nome_forn.trim() === ""){
+			document.getElementById("div-forn").style.display = 'none';
+		}else{
+			document.getElementById("div-forn").style.display = 'block';
+		}
+
+		$('#nome').text(nome);
+		$('#email').text(email);
+		$('#cpf').text(cpf);
+		$('#senha').text(senha);
+		$('#nivel').text(nivel);
+		$('#endereco').text(endereco);
+		
+		$('#foto').attr('src', '../img/usuarios' + foto);
+
+
+		var myModal = new bootstrap.Modal(document.getElementById('modalDados'), {
+			
+		})
+
+		myModal.show();
+	}
+</script>
 
 
 <!--AJAX PARA EXCLUIR DADOS -->

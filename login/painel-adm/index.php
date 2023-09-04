@@ -46,12 +46,10 @@ $id_usu = $res[0]['id'];
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
 	<link rel="shortcut icon" href="../img/favicon.ico" alt="Img Painel"/>
-	
-
 </head>
 <body>
-
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+<nav class="navbar navbar-expand-lg navbar-light" style="background: linear-gradient(to right,#008080, #FFFFFF);">
   <div class="container-fluid">
     <a class="navbar-brand" href="index.php">
     	<img src="../img/logo-painel.png" width="100">
@@ -62,16 +60,16 @@ $id_usu = $res[0]['id'];
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php?pagina=<?php echo $menu1 ?>">Home</a>
+          <a class="nav-link active text-light" aria-current="page" href="index.php?pagina=<?php echo $menu1 ?>"><b>HOME</b></a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Cadastros
+          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <b>CADASTROS</b>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-             <li><a class="dropdown-item" href="index.php?pagina=<?php echo $menu2 ?>">Usuários</a></li>
+             <li><a class="dropdown-item " href="index.php?pagina=<?php echo $menu2 ?>">Usuários</a></li>
 
             <li><a class="dropdown-item" href="index.php?pagina=<?php echo $menu3 ?>">Fornecedores</a></li>
 
@@ -89,8 +87,8 @@ $id_usu = $res[0]['id'];
         
         
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Produtos
+          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <b>PRODUTOS</b>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="index.php?pagina=<?php echo $menu5 ?>">Cadastro de Produtos</a></li>
@@ -104,8 +102,8 @@ $id_usu = $res[0]['id'];
 
 
          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Vendas
+          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <b>VENDAS</b>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
            <li><a class="dropdown-item" href="index.php?pagina=<?php echo $menu9 ?>">Vendas</a></li>
@@ -117,8 +115,8 @@ $id_usu = $res[0]['id'];
 
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Relatórios
+          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <b>EMISSÃO DE RELATÓRIOS</b>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="../rel/relProdutos_class.php" target="_blank">Relatório de Produtos</a></li>
@@ -146,7 +144,7 @@ $id_usu = $res[0]['id'];
         
       </ul>
       <div class="d-flex mx-3">
-        <img src="../img/icone-user.png" width="40px" height="40px">
+        <img src="../img/usuarios/icone-user.png" width="40px" height="40px">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -169,8 +167,6 @@ $id_usu = $res[0]['id'];
     </div>
   </div>
 </nav>
-
-<div class="container-fluid mt-2 mx-3">
 <?php 
 
 if(@$_GET['pagina'] == $menu1){
@@ -766,4 +762,4 @@ else{
       color:#666666 !important;
 
     }
-  </style>  
+  </styl>  
