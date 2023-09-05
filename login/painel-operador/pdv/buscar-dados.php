@@ -174,12 +174,7 @@ if(@count($res) > 0){
 }
 
 
-$query_con = $pdo->query("SELECT * FROM usuarios WHERE id = '$operador'");
-$res = $query_con->fetchAll(PDO::FETCH_ASSOC);
-if(@count($res) > 0){
-	$nome_operador = $res[0]['nome'];
 
-}
 
 
 

@@ -63,4 +63,6 @@ echo '<div class="row"><div class="col-md-9"><h1>R$ <span id="sub_total">'.@$tot
 
 
 
+
+
  ?>

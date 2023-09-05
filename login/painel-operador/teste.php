@@ -88,7 +88,8 @@ if($desconto_porcentagem == 'Sim'){
                         <div class="card shadow col-md-6">
                             <div class="card-header py-1"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="fonte1 m-0 font-weight-bold text-white " style="text-align: center;">QUANTIDADE
+                                <h7 class="fonte1 m-0 font-weight-bold text-white " style="text-align: center;">
+                                    QUANTIDADE
                                 </h7>
                             </div>
                             <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
@@ -97,7 +98,8 @@ if($desconto_porcentagem == 'Sim'){
                         <div class="card shadow col-md-6 lado2">
                             <div class="card-header py-1"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="fonte1 m-0 font-weight-bold text-white " style="text-align: center;">ESTOQUE ATUAL
+                                <h7 class="fonte1 m-0 font-weight-bold text-white " style="text-align: center;">ESTOQUE
+                                    ATUAL
                                 </h7>
                             </div>
                             <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
@@ -124,7 +126,7 @@ if($desconto_porcentagem == 'Sim'){
 
                     <div class="container lista">
                         <div class="row justify-content-center">
-                            <div class="col-5">
+                            <div class="col-5" >
                                 <div class="card shadow">
                                     <div class="card-header py-2"
                                         style="background: linear-gradient(to right, #004480, #6a6a6a);">
@@ -216,6 +218,31 @@ if($desconto_porcentagem == 'Sim'){
 
 
 
+                        </div>
+
+                    </div>
+                    <?php 
+                    setlocale(LC_ALL, 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+                    $data_hoje = strftime('%d/%m/%Y', strtotime('today'));
+                                  
+                    $operador = $id_usuario;
+                    $query_con = $pdo->query("SELECT * FROM usuarios WHERE id = '$operador'");
+                    $res = $query_con->fetchAll(PDO::FETCH_ASSOC);
+                    if(@count($res) > 0){
+                        $nome_operador = $res[0]['nome'];
+                    
+                    }
+                    ?>
+                    <div class="col-12 rodape">
+                        <div class="card shadow">
+                            <div class="card-header py-2"
+                                style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="text-white" style="font-size: 20px; margin-top:13px;"><b>OPERADOR:</b><?php echo $nome_operador ?></p>
+                                    <p class="text-danger lista5"><b>DATA:</b> <?php echo($data_hoje); ?></p>
+                                    <span class="lista6">HORAS<p id="hora"></p></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -523,7 +550,39 @@ if($desconto_porcentagem == 'Sim'){
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
+<script>
+setInterval(function() {
 
+    let novaHora = new Date();
+    // getHours trará a hora
+    // geMinutes trará os minutos
+    // getSeconds trará os segundos
+    let hora = novaHora.getHours();
+    let minuto = novaHora.getMinutes();
+    let segundo = novaHora.getSeconds();
+
+    // Chamamos a função zero para que ela retorne a concatenação
+    // com os minutos e segundos
+    minuto = zero(minuto);
+    segundo = zero(segundo);
+
+    // Com o textContent, iremos inserir as horas, minutos e segundos
+    // no nosso elemento HTML
+    document.getElementById('hora').textContent = hora + ':' + minuto + ':' + segundo;
+}, 1000)
+
+// A function zero concatena a string (número) 0 em frente aos números
+// mantendo o zero na frente dos números menores que 10. Exemplo:
+// 21:05:01
+// 21:05:02
+// e assim, sucessivamente
+function zero(x) {
+    if (x < 10) {
+        x = '0' + x;
+    }
+    return x;
+}
+</script>
 
 
 <script type="text/javascript">
