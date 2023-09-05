@@ -3,13 +3,13 @@ require_once("../../conexao.php");
 @session_start();
 $id_usuario = $_SESSION['id_usuario'];
 
-//RECUPERAR O NOME DO CAIXA
-$query_con = $pdo->query("SELECT * FROM caixa WHERE operador = '$id_usuario' and status = 'Aberto'");
-$res = $query_con->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 echo '<ul class="order-list">';
 
 $total_venda = 0;
+$operador = $id_usuario;
 $query_con = $pdo->query("SELECT * FROM itens_venda WHERE usuario = '$id_usuario' and venda = 0 order by id desc");
 $res = $query_con->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
@@ -42,9 +42,17 @@ if($total_reg > 0){
 
 }
 
+
 }
 
+$res = $pdo->query("SELECT * from usuarios where id = '$operador' ");
+$dados = $res->fetchAll(PDO::FETCH_ASSOC);
+$nome_operador = $dados[0]['nome'];
+
 echo '</ul>';
+echo '<div class="mt-3';
+echo '<h4 class="total mt-4">Total de Itens ('.$nome_operador.') </h4>';
+
 echo '<h4 class="total mt-4">Total de Itens ('.$total_reg.') </h4>';
 echo '<div class="row"><div class="col-md-9"><h1>R$ <span id="sub_total">'.@$total_vendaF.'</span></h1>
 <small><small>(F2) Fechar Venda / (Alt) Buscar Produto</small></small>

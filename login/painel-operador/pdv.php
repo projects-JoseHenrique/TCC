@@ -75,12 +75,6 @@ if($desconto_porcentagem == 'Sim'){
                 <div class="col-6">
                   <p class="background mt-3">QUANTIDADE</p>
                   <input type="text" class="form-control  form-control-md" id="quantidade" name="quantidade" placeholder="Quantidade"  >
-
-                  <p class="background mt-1">VALOR UNITÁRIO</p>
-                  <input type="text" class="form-control  form-control-md" id="valor_unitario" name="valor_unitario" placeholder="Valor"  >
-
-                  <p class="background mt-1">ESTOQUE</p>
-                  <input type="text" class="form-control  form-control-md" id="estoque" name="estoque" placeholder="Estoque"  >
                 </div>
 
                 <div class="col-6 mt-4">
@@ -439,7 +433,6 @@ if($desconto_porcentagem == 'Sim'){
   var pag = "<?=$pag?>";
   function buscarDados(){
 
-    var valor_prod = $('#valor_unitario').val();
     
     $.ajax({
       url: pag + "/buscar-dados.php",
@@ -500,7 +493,6 @@ if($desconto_porcentagem == 'Sim'){
 
 
 
-
         if(array.length == 2){
            var ms1 = array[0];
            var ms2 = array[1];
@@ -516,7 +508,7 @@ if($desconto_porcentagem == 'Sim'){
         var subtotalF = array[6];
         var totalVenda = array[7];
         var totalVendaF = array[8];
-        var troco = array[9];
+         var troco = array[9];
         var trocoF = array[10];
         console.log(result);
 
@@ -533,10 +525,8 @@ if($desconto_porcentagem == 'Sim'){
 
         if(nome.trim() != "Código não Cadastrado"){
 
-          document.getElementById('estoque').value = estoque;
           document.getElementById('produto').value = nome;
           document.getElementById('descricao').value = descricao;
-          document.getElementById('valor_unitario').value = valor;
 
           if(imagem.trim() === ""){
            $('#imagem').attr('src', '../img/produtos/sem-foto.jpg');
@@ -559,7 +549,6 @@ if($desconto_porcentagem == 'Sim'){
 
          document.getElementById('codigo').value = "";
         document.getElementById('quantidade').value = "1";
-        document.getElementById('valor_unitario').value = "";
         document.getElementById('codigo').focus();
 
          listarProdutos();
@@ -662,7 +651,6 @@ if($desconto_porcentagem == 'Sim'){
     
 
     var myModal = new bootstrap.Modal(document.getElementById('modalDeletar'), {
-      backdrop: 'static'
 
     })
 
@@ -692,7 +680,6 @@ if($desconto_porcentagem == 'Sim'){
 
     if(e.keyCode === 113){
       var myModal = new bootstrap.Modal(document.getElementById('modalVenda'), {
-        backdrop: 'static'
     })
     myModal.show();
     }
@@ -700,7 +687,6 @@ if($desconto_porcentagem == 'Sim'){
 
     if(e.keyCode === 18){
       var myModal = new bootstrap.Modal(document.getElementById('modalBuscarProduto'), {
-        backdrop: 'static'
     })
     myModal.show();
     }

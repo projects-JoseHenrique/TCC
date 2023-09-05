@@ -34,7 +34,9 @@ if(@count($dados) > 0){
 	$cpf_cliente = $dados[0]['cpf'];
 }
 
-
+$res = $pdo->query("SELECT * from usuarios where id = '$operador' ");
+$dados = $res->fetchAll(PDO::FETCH_ASSOC);
+$nome_operador = $dados[0]['nome'];
 
 $data2 = implode('/', array_reverse(explode('-', $data)));
 
