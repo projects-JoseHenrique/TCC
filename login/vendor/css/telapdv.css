@@ -35,8 +35,14 @@ body {
 
 .lado {
   margin-left: 185px; /* Ajuste o valor conforme necessário */
-  margin-top: -90px;
+  margin-top: -91px;
 }
+
+.lado {
+  margin-left: 185px; /* Ajuste o valor conforme necessário */
+  margin-top: -91px;
+}
+
 .lista2 {
   position: absolute; 
   margin-left: 1000px; /* Ajuste o valor conforme necessário */
