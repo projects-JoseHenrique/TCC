@@ -56,8 +56,9 @@ if($desconto_porcentagem == 'Sim'){
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                 <h7 class="fonte1 m-0 font-weight-bold text-white">CÓDIGO DE BARRAS</h7>
                             </div>
-                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
+                            <input type="text" class="form-control form-control-lg" id="codigo" name="codigo"
                                 placeholder="Código de Barras">
+
 
                         </div>
                         <div class="mt-2"></div>
@@ -66,8 +67,8 @@ if($desconto_porcentagem == 'Sim'){
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                 <h7 class="fonte1 m-0 font-weight-bold text-white">PRODUTO</h7>
                             </div>
-                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
-                                placeholder="Código de Barras">
+                            <input type="text" class="form-control  form-control-md" id="produto" name="produto"
+                                placeholder="Produto">
 
                         </div>
 
@@ -77,8 +78,8 @@ if($desconto_porcentagem == 'Sim'){
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                 <h7 class="fonte1 m-0 font-weight-bold text-white">DESCRIÇÃO</h7>
                             </div>
-                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
-                                placeholder="Código de Barras">
+                            <input type="text" class="form-control  form-control-md" id="descricao" name="descricao"
+                                placeholder="Descrição do Produto">
 
                         </div>
 
@@ -92,8 +93,8 @@ if($desconto_porcentagem == 'Sim'){
                                     QUANTIDADE
                                 </h7>
                             </div>
-                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
-                                placeholder="Código de Barras">
+                            <input type="text" class="form-control  form-control-md" id="quantidade" name="quantidade"
+                                placeholder="Quantidade">
                         </div>
                         <div class="card shadow col-md-6 lado2">
                             <div class="card-header py-1"
@@ -102,8 +103,9 @@ if($desconto_porcentagem == 'Sim'){
                                     ATUAL
                                 </h7>
                             </div>
-                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
-                                placeholder="Código de Barras">
+                            <input type="text" class="form-control  form-control-md" id="estoque" name="estoque"
+                                placeholder="Estoque">
+
                         </div>
 
 
@@ -126,11 +128,11 @@ if($desconto_porcentagem == 'Sim'){
 
                     <div class="container lista">
                         <div class="row justify-content-center">
-                            <div class="col-5" >
+                            <div class="col-5">
                                 <div class="card shadow">
                                     <div class="card-header py-2"
                                         style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                        <h5 class="m-0 font-weight-bold text-white">LISTA DE PRODUTOS</h5>
+                                        <h5 class="order py-2">LISTA DE PRODUTOS</h5>
                                     </div>
                                     <span id="listar"></span>
                                 </div>
@@ -152,8 +154,9 @@ if($desconto_porcentagem == 'Sim'){
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                             <h5 class="fonte2 m-0 font-weight-bold text-white">VALOR UNITÁRIO</h5>
                                         </div>
-                                        <input type="text" class="form-control form-control-md" id="seuInput"
-                                            name="seuInput" placeholder="Seu Input">
+                                        <input type="text" class="form-control  form-control-md" id="valor_unitario"
+                                            name="valor_unitario" placeholder="Total da Compra" required="">
+
                                     </div>
                                 </div>
 
@@ -163,8 +166,9 @@ if($desconto_porcentagem == 'Sim'){
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                             <h5 class="fonte2 m-0 font-weight-bold text-white">SUB TOTAL</h5>
                                         </div>
-                                        <input type="text" class="form-control form-control-md" id="seuInput"
-                                            name="seuInput" placeholder="Seu Input">
+                                        <input type="text" class="form-control  form-control-md" id="sub_total_item"
+                                            name="sub_total" placeholder="Sub Total">
+
                                     </div>
                                 </div>
                                 <div class="mt-4"></div>
@@ -174,8 +178,9 @@ if($desconto_porcentagem == 'Sim'){
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                             <h5 class="fonte2 m-0 font-weight-bold text-white">DESCONTO EM %</h5>
                                         </div>
-                                        <input type="text" class="form-control form-control-md" id="seuInput"
-                                            name="seuInput" placeholder="Seu Input">
+                                        <input type="text" class="form-control  form-control-md" id="desconto"
+                                            name="desconto" placeholder="Desconto em <?php echo $desc ?>">
+
                                     </div>
 
                                 </div>
@@ -186,8 +191,9 @@ if($desconto_porcentagem == 'Sim'){
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                             <h5 class="fonte2 m-0 font-weight-bold text-white">VALOR RECEBIDO</h5>
                                         </div>
-                                        <input type="text" class="form-control form-control-md" id="seuInput"
-                                            name="seuInput" placeholder="Seu Input">
+                                        <input type="text" class="form-control  form-control-md" id="valor_recebido"
+                                            name="valor_recebido" placeholder="R$ 0,00">
+
                                     </div>
                                 </div>
                                 <div class="mt-4"></div>
@@ -197,8 +203,8 @@ if($desconto_porcentagem == 'Sim'){
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                             <h5 class="fonte2 m-0 font-weight-bold text-white">TROCO</h5>
                                         </div>
-                                        <input type="text" class="form-control form-control-md" id="seuInput"
-                                            name="seuInput" placeholder="Seu Input">
+                                        <input type="text" class="form-control  form-control-md" id="valor_troco"
+                                            name="valor_troco" placeholder="Valor Troco">
                                     </div>
 
                                 </div>
@@ -209,8 +215,11 @@ if($desconto_porcentagem == 'Sim'){
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                             <h5 class="fonte2 m-0 font-weight-bold text-white">TOTAL COMPRA</h5>
                                         </div>
-                                        <input type="text" class="form-control form-control-md" id="seuInput"
-                                            name="seuInput" placeholder="Seu Input">
+                                        <input type="text" class="form-control  form-control-md" id="total_compra"
+                                            name="total_compra" placeholder="Total da Compra" required="">
+                                            <input type="hidden" name="forma_pgto_input" id="forma_pgto_input">
+                                        <input type="hidden" name="cliente_input" id="cliente_input">
+                                        <input type="hidden" name="data_pgto" id="data_pgto">
                                     </div>
                                 </div>
 
@@ -238,7 +247,8 @@ if($desconto_porcentagem == 'Sim'){
                             <div class="card-header py-2"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <p class="text-white" style="font-size: 20px; margin-top:13px;"><b>OPERADOR:</b><?php echo $nome_operador ?></p>
+                                    <p class="text-white" style="font-size: 20px; margin-top:13px;">
+                                        <b>OPERADOR:</b><?php echo $nome_operador ?></p>
                                     <p class="text-danger lista5"><b>DATA:</b> <?php echo($data_hoje); ?></p>
                                     <span class="lista6">HORAS<p id="hora"></p></span>
                                 </div>
@@ -550,39 +560,7 @@ if($desconto_porcentagem == 'Sim'){
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
-<script>
-setInterval(function() {
 
-    let novaHora = new Date();
-    // getHours trará a hora
-    // geMinutes trará os minutos
-    // getSeconds trará os segundos
-    let hora = novaHora.getHours();
-    let minuto = novaHora.getMinutes();
-    let segundo = novaHora.getSeconds();
-
-    // Chamamos a função zero para que ela retorne a concatenação
-    // com os minutos e segundos
-    minuto = zero(minuto);
-    segundo = zero(segundo);
-
-    // Com o textContent, iremos inserir as horas, minutos e segundos
-    // no nosso elemento HTML
-    document.getElementById('hora').textContent = hora + ':' + minuto + ':' + segundo;
-}, 1000)
-
-// A function zero concatena a string (número) 0 em frente aos números
-// mantendo o zero na frente dos números menores que 10. Exemplo:
-// 21:05:01
-// 21:05:02
-// e assim, sucessivamente
-function zero(x) {
-    if (x < 10) {
-        x = '0' + x;
-    }
-    return x;
-}
-</script>
 
 
 <script type="text/javascript">
@@ -662,7 +640,6 @@ function buscarDados() {
                 alert(array[0]);
                 return;
             }
-
 
 
 
@@ -830,7 +807,6 @@ function modalExcluir(id) {
 
 
     var myModal = new bootstrap.Modal(document.getElementById('modalDeletar'), {
-        backdrop: 'static'
 
     })
 
@@ -859,17 +835,13 @@ $("#valor_recebido").keyup(function() {
 $(document).keyup(function(e) {
 
     if (e.keyCode === 113) {
-        var myModal = new bootstrap.Modal(document.getElementById('modalVenda'), {
-            backdrop: 'static'
-        })
+        var myModal = new bootstrap.Modal(document.getElementById('modalVenda'), {})
         myModal.show();
     }
 
 
     if (e.keyCode === 18) {
-        var myModal = new bootstrap.Modal(document.getElementById('modalBuscarProduto'), {
-            backdrop: 'static'
-        })
+        var myModal = new bootstrap.Modal(document.getElementById('modalBuscarProduto'), {})
         myModal.show();
     }
 

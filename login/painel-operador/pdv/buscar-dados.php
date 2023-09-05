@@ -77,7 +77,7 @@ if($forma_pgto_input != ""){
 	}
 	
 
-	$res = $pdo->prepare("INSERT INTO vendas SET valor = :valor, data = curDate(), hora = curTime(),  operador = :usuario, valor_recebido = :valor_recebido, desconto = :desconto, troco = :troco, forma_pgto = :forma_pgto,status = 'Concluída', cliente = '$cliente_input' ");
+	$res = $pdo->prepare("INSERT INTO vendas SET valor = :valor, data = curDate(), hora = curTime(),  operador = :usuario, valor_recebido = :valor_recebido, desconto = :desconto, troco = :troco, forma_pgto = :forma_pgto, status = 'Concluída', cliente = '$cliente_input' ");
 	$res->bindValue(":valor_recebido", $valor_recebido);
 	$res->bindValue(":desconto", $desconto);
 	$res->bindValue(":valor", $total_compra);
@@ -172,9 +172,6 @@ if(@count($res) > 0){
 		exit();
 }
 }
-
-
-
 
 
 
