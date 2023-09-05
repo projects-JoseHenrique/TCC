@@ -54,7 +54,7 @@ if($desconto_porcentagem == 'Sim'){
                         <div class="card shadow">
                             <div class="card-header py-1"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="m-0  text-white "><b>CÓDIGO DE BARRAS</b></h7>
+                                <h7 class="fonte1 m-0 font-weight-bold text-white">CÓDIGO DE BARRAS</h7>
                             </div>
                             <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
                                 placeholder="Código de Barras">
@@ -64,7 +64,7 @@ if($desconto_porcentagem == 'Sim'){
                         <div class="card shadow">
                             <div class="card-header py-1"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="m-0 font-weight-bold text-white "><b>PRODUTO</b></h7>
+                                <h7 class="fonte1 m-0 font-weight-bold text-white">PRODUTO</h7>
                             </div>
                             <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
                                 placeholder="Código de Barras">
@@ -75,7 +75,7 @@ if($desconto_porcentagem == 'Sim'){
                         <div class="card shadow">
                             <div class="card-header py-1"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="m-0 font-weight-bold text-white "><b>DESCRIÇÃO</b></h7>
+                                <h7 class="fonte1 m-0 font-weight-bold text-white">DESCRIÇÃO</h7>
                             </div>
                             <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
                                 placeholder="Código de Barras">
@@ -88,7 +88,7 @@ if($desconto_porcentagem == 'Sim'){
                         <div class="card shadow col-md-6">
                             <div class="card-header py-1"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="m-0 font-weight-bold text-white  "><b>QUANTIDADE</b>
+                                <h7 class="fonte1 m-0 font-weight-bold text-white " style="text-align: center;">QUANTIDADE
                                 </h7>
                             </div>
                             <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
@@ -97,7 +97,7 @@ if($desconto_porcentagem == 'Sim'){
                         <div class="card shadow col-md-6 lado2">
                             <div class="card-header py-1"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="m-0 font-weight-bold text-white  "><b>EM ESTOQUE<b></b>
+                                <h7 class="fonte1 m-0 font-weight-bold text-white " style="text-align: center;">ESTOQUE ATUAL
                                 </h7>
                             </div>
                             <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
@@ -120,6 +120,7 @@ if($desconto_porcentagem == 'Sim'){
                         <br>
                         <br>
                     </div>
+
 
                     <div class="container lista">
                         <div class="row justify-content-center">
@@ -147,7 +148,7 @@ if($desconto_porcentagem == 'Sim'){
                                     <div class="card shadow">
                                         <div class="card-header py-2"
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                            <h5 class="m-0 font-weight-bold text-white ">VALOR UNITÁRIO</h5>
+                                            <h5 class="fonte2 m-0 font-weight-bold text-white">VALOR UNITÁRIO</h5>
                                         </div>
                                         <input type="text" class="form-control form-control-md" id="seuInput"
                                             name="seuInput" placeholder="Seu Input">
@@ -158,7 +159,7 @@ if($desconto_porcentagem == 'Sim'){
                                     <div class="card shadow">
                                         <div class="card-header py-2"
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                            <h5 class="m-0 font-weight-bold text-white ">SUB TOTAL</h5>
+                                            <h5 class="fonte2 m-0 font-weight-bold text-white">SUB TOTAL</h5>
                                         </div>
                                         <input type="text" class="form-control form-control-md" id="seuInput"
                                             name="seuInput" placeholder="Seu Input">
@@ -169,7 +170,7 @@ if($desconto_porcentagem == 'Sim'){
                                     <div class="card shadow">
                                         <div class="card-header py-2"
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                            <h5 class="m-0 font-weight-bold text-white ">DESCONTO EM %</h5>
+                                            <h5 class="fonte2 m-0 font-weight-bold text-white">DESCONTO EM %</h5>
                                         </div>
                                         <input type="text" class="form-control form-control-md" id="seuInput"
                                             name="seuInput" placeholder="Seu Input">
@@ -181,7 +182,7 @@ if($desconto_porcentagem == 'Sim'){
                                     <div class="card shadow">
                                         <div class="card-header py-2"
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                            <h5 class="m-0 font-weight-bold text-white ">VALOR RECEBIDO</h5>
+                                            <h5 class="fonte2 m-0 font-weight-bold text-white">VALOR RECEBIDO</h5>
                                         </div>
                                         <input type="text" class="form-control form-control-md" id="seuInput"
                                             name="seuInput" placeholder="Seu Input">
@@ -192,7 +193,7 @@ if($desconto_porcentagem == 'Sim'){
                                     <div class="card shadow">
                                         <div class="card-header py-2"
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                            <h5 class="m-0 font-weight-bold text-white ">TROCO</h5>
+                                            <h5 class="fonte2 m-0 font-weight-bold text-white">TROCO</h5>
                                         </div>
                                         <input type="text" class="form-control form-control-md" id="seuInput"
                                             name="seuInput" placeholder="Seu Input">
@@ -204,24 +205,26 @@ if($desconto_porcentagem == 'Sim'){
                                     <div class="card shadow">
                                         <div class="card-header py-2"
                                             style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                            <h5 class="m-0 font-weight-bold text-white ">VALOR COMPRA</h5>
+                                            <h5 class="fonte2 m-0 font-weight-bold text-white">TOTAL COMPRA</h5>
                                         </div>
                                         <input type="text" class="form-control form-control-md" id="seuInput"
                                             name="seuInput" placeholder="Seu Input">
                                     </div>
                                 </div>
-
-
-
 
                             </div>
+
+
+
                         </div>
+                    </div>
 
         </form>
 
 
     </div>
 </body>
+
 
 
 </html>
