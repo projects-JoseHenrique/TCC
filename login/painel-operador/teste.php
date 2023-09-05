@@ -51,106 +51,139 @@ if($desconto_porcentagem == 'Sim'){
                                 placeholder="Código de Barras">
 
                         </div>
-                        <div class="mt-4"></div>
-                        <div class="card shadow col-md-7">
-                            <div class="card-header py-1"
-                                style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="m-0 font-weight-bold text-white">PRODUTOS</h7>
-                            </div>
-                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
-                                placeholder="Código de Barras">
-
-                        </div>
-                        <div class="mt-4"></div>
-                        <div class="card shadow col-md-7">
-                            <div class="card-header py-1"
-                                style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="m-0 font-weight-bold text-white">DESCRIÇÃO</h7>
-                            </div>
-                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
-                                placeholder="Código de Barras">
-
-                        </div>
-                        <div class="mt-4"></div>
-                        <div class="card shadow col-md-7">
-                            <div class="card-header py-1"
-                                style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="m-0 font-weight-bold text-white">QUANTIDADE</h7>
-                            </div>
-                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
-                                placeholder="Código de Barras">
-                        </div>
-
-                        <div class="mt-4"></div>
-                        <div class="card shadow col-md-7">
-                            <div class="card-header py-1"
-                                style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="m-0 font-weight-bold text-white">VALOR UNITÁRIO</h7>
-                            </div>
-                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
-                                placeholder="Código de Barras">
-                        </div>
-
-
-
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                    <div class="col-lg-4 mb-3">
+                        <div class="mt-2"></div>
                         <div class="card shadow">
                             <div class="card-header py-1"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                <h7 class="m-0 font-weight-bold text-white">PRODUTO</h7>
+                                <h7 class="m-0 font-weight-bold text-white">CÓDIGO DE BARRAS</h7>
                             </div>
-                            <input type="text" class="form-control form-control-md" id="produto" name="produto"
-                                placeholder="Produto">
+                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
+                                placeholder="Código de Barras">
+
                         </div>
+                        <div class="mt-2"></div>
+                        <div class="card shadow">
+                            <div class="card-header py-1"
+                                style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                                <h7 class="m-0 font-weight-bold text-white">CÓDIGO DE BARRAS</h7>
+                            </div>
+                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
+                                placeholder="Código de Barras">
+
+                        </div>
+
+                       
+
+                        <div class="mt-3"></div>
+                        <div class="card shadow col-md-12">
+                            <div class="card-header py-1"
+                                style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                                <h7 class="m-0 font-weight-bold text-white " style="text-align: center;">TOTAL COMPRA</h7>
+                            </div>
+                            <input type="text" class="form-control form-control-md" id="codigo" name="codigo"
+                                placeholder="Código de Barras">
+                        </div>
+
+
+
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                     </div>
-                    <div class="col-lg-4 mb-3">
-    <div class="card shadow">
-        <div class="card-header py-1" style="background: linear-gradient(to right, #004480, #6a6a6a);">
-            <h7 class="m-0 font-weight-bold text-white">DESCRIÇÃO</h7>
-        </div>
-        <input type="text" class="form-control form-control-md" id="descricao" name="descricao" placeholder="Descrição do Produto">
-    </div>
-    <div class="mt-4"></div>
-    <div class="col-md-6">
-        <div class="card shadow">
-            <div class="card-header py-1 custom-title" style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                <h7 class="m-0 font-weight-bold text-white">VALOR UNITÁRIO</h7>
+                   
+                    
+                    <div class="container lista">
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <div class="card shadow">
+                <div class="card-header py-2" style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                    <h5 class="m-0 font-weight-bold text-white">LISTA DE PRODUTOS</h5>
+                </div>
+                <span id="listar"></span>
             </div>
-            <input type="text" class="form-control form-control-md" id="codigo" name="codigo" placeholder="Código de Barras">
         </div>
+        <div class="col-3  lista2">
+            <div class="card shadow">
+                <div class="card-header py-2" style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                    <h5 class="m-0 font-weight-bold text-white">SEU INPUT AQUI</h5>
+                </div>
+                <input type="text" class="form-control form-control-md" id="seuInput" name="seuInput"
+                    placeholder="Seu Input">
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow">
+                <div class="card-header py-2" style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                    <h5 class="m-0 font-weight-bold text-white">SEU INPUT AQUI</h5>
+                </div>
+                <input type="text" class="form-control form-control-md" id="seuInput" name="seuInput"
+                    placeholder="Seu Input">
+             </div>
+            </div>
+
+            <div class="col-md-6 lado">
+                <div class="card shadow">
+                <div class="card-header py-2" style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                    <h5 class="m-0 font-weight-bold text-white">SEU INPUT AQUI</h5>
+                </div>
+                <input type="text" class="form-control form-control-md" id="seuInput" name="seuInput"
+                    placeholder="Seu Input">
+             </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow">
+                <div class="card-header py-2" style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                    <h5 class="m-0 font-weight-bold text-white">SEU INPUT AQUI</h5>
+                </div>
+                <input type="text" class="form-control form-control-md" id="seuInput" name="seuInput"
+                    placeholder="Seu Input">
+             </div>
+            </div>
+            <div class="col-md-6 lado">
+                <div class="card shadow">
+                <div class="card-header py-2" style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                    <h5 class="m-0 font-weight-bold text-white">SEU INPUT AQUI</h5>
+                </div>
+                <input type="text" class="form-control form-control-md" id="seuInput" name="seuInput"
+                    placeholder="Seu Input">
+             </div>
+            </div>
+
+            <div class="col-md-6 lado">
+                <div class="card shadow">
+                <div class="card-header py-2" style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                    <h5 class="m-0 font-weight-bold text-white">SEU INPUT AQUI</h5>
+                </div>
+                <input type="text" class="form-control form-control-md" id="seuInput" name="seuInput"
+                    placeholder="Seu Input">
+             </div>
+            </div>
+
+            <div class="col-md-6 lado">
+                <div class="card shadow">
+                <div class="card-header py-2" style="background: linear-gradient(to right, #004480, #6a6a6a);">
+                    <h5 class="m-0 font-weight-bold text-white">SEU INPUT AQUI</h5>
+                </div>
+                <input type="text" class="form-control form-control-md" id="seuInput" name="seuInput"
+                    placeholder="Seu Input">
+             </div>
+            </div>
+        </div>
+        
+
+        
     </div>
 </div>
 
-
-
-                    <div class="container lista">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-7">
-                                <div class="card shadow">
-                                    <div class="card-header py-1"
-                                        style="background: linear-gradient(to right, #004480, #6a6a6a);">
-                                        <h5 class="m-0 font-weight-bold text-white">LISTA DE PRODUTOS</h5>
-                                    </div>
-                                    <span id="listar"></span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
         </form>
 
 

@@ -16,14 +16,31 @@ body {
 .lista {
   position: absolute;
   margin-top: 90px;
+  margin-left: 60px; /* Ajuste o valor conforme necessário */
+  height: 17px; /* Defina a altura desejada em pixels * Adicione uma barra de rolagem vertical caso o conteúdo exceda a altura máxima */
+  margin-top: 10px;
+
 }
 
-.custom-title {
-  margin-right: -100px; /* Ajuste a margem conforme necessário */
-  display: inline-block; /* Isso faz com que o título e o input fiquem na mesma linha */
+.card {
+  height: auto; /* Define a altura como automática para ajustar ao conteúdo */
+  padding: 10px; /* Define o preenchimento interno desejado */
+  box-sizing: border-box; /* Garante que o preenchimento não afete a altura total */
 }
 
 
+.input {
+  margin-left: 100px; /* Ajuste o valor conforme necessário */
+}
+
+.lado {
+  margin-left: 185px; /* Ajuste o valor conforme necessário */
+  margin-top: -90px;
+}
+.lista2 {
+  position: absolute; 
+  margin-left: 1000px; /* Ajuste o valor conforme necessário */
+}
 
 /*--------------------
 Text
