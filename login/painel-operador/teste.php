@@ -42,7 +42,7 @@ if($desconto_porcentagem == 'Sim'){
             <div class="order py-2">
                 <div class="row">
                     <div class="col-lg-4 mb-3">
-                        <div class="card shadow">
+                        <div class="card shadow" style="margin-top: 10px;">
                             <div class="card-header py-2"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                 <h5 class="m-0  text-white text-center " style="font-size: 20px;">INFORMAÇÕES</h5>
