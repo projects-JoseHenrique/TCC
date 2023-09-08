@@ -64,7 +64,7 @@ require_once('verificar-permissao.php')
                     <th class="text-white text-center">Senha</th>
                     <th class="text-white text-center">CPF</th>
                     <th class="text-white text-center">Endereço</th>
-                    <th class="text-white text-center">Nível</th>
+                    <th class="text-white text-center">Acesso</th>
                     <th class="text-white text-center">Ações</th>
                 </tr>
             </thead>
@@ -151,7 +151,7 @@ if(@$_GET['funcao'] == "editar"){
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><?php echo $titulo_modal ?></h5>
+                <h5 class="modal-title"><b><?php echo $titulo_modal ?></b></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="POST" id="form">
@@ -160,7 +160,7 @@ if(@$_GET['funcao'] == "editar"){
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nome</label>
+                                <label for="exampleFormControlInput1" class="form-label"><b>Nome</b></label>
                                 <input type="text" class="form-control form-control-md" id="nome" name="nome"
                                     placeholder="Nome" required="" value="<?php echo @$nome ?>">
                             </div>
@@ -169,7 +169,7 @@ if(@$_GET['funcao'] == "editar"){
                         <div class="col-md-6">
 
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                <label for="exampleFormControlInput1" class="form-label"><b>Email</b></label>
                                 <input type="email" class="form-control form-control-md" id="email" name="email"
                                     placeholder="Email" required="" value="<?php echo @$email ?>">
                             </div>
@@ -177,7 +177,7 @@ if(@$_GET['funcao'] == "editar"){
 
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Telefone</label>
+                                <label for="exampleFormControlInput1" class="form-label"><b>Telefone</b></label>
                                 <input type="text" class="form-control form-control-md" id="telefone" name="telefone"
                                     placeholder="Telefone" required="" value="<?php echo @$telefone ?>">
                             </div>
@@ -187,7 +187,7 @@ if(@$_GET['funcao'] == "editar"){
 
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">CPF</label>
+                                <label for="exampleFormControlInput1" class="form-label"><b>CPF</b></label>
                                 <input type="text" class="form-control form-control-md" id="cpf" name="cpf"
                                     placeholder="CPF" required="" value="<?php echo @$cpf ?>">
                             </div>
@@ -198,14 +198,14 @@ if(@$_GET['funcao'] == "editar"){
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Senha</label>
+                                <label for="exampleFormControlInput1" class="form-label"><b>Senha</b></label>
                                 <input type="password" class="form-control form-control-md" id="senha" name="senha"
                                     placeholder="Senha" required="" value="<?php echo @$senha ?>">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Confirmar Senha</label>
+                                <label for="exampleFormControlInput1" class="form-label"><b>Confirmar Senha</b></label>
                                 <input type="password" class="form-control form-control-md" id="conf_senha"
                                     name="conf_senha" placeholder="Confirmar Senha" required=""
                                     value="<?php echo @$conf_senha ?>">
@@ -214,13 +214,13 @@ if(@$_GET['funcao'] == "editar"){
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Endereço</label>
+                        <label for="exampleFormControlInput1" class="form-label"><b>Endereço</b></label>
                         <input type="text" class="form-control form-control-md" id="endereco" name="endereco"
                             placeholder="Endereço" required="" value="<?php echo @$endereco ?>">
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Sexo</label>
+                        <label for="exampleFormControlInput1" class="form-label"><b>Sexo</b></label>
                         <select class="form-select mt-1" aria-label="Default select example" name="genero"
                             id="gender-select">
                             <option value="masculino">Masculino</option>
@@ -231,7 +231,7 @@ if(@$_GET['funcao'] == "editar"){
 
 
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nível</label>
+                        <label for="exampleFormControlInput1" class="form-label"><b>Nível</b></label>
                         <select class="form-select mt-1" aria-label="Default select example" name="nivel">
 
                             <option <?php if(@$nivel == 'Operador'){ ?> selected <?php } ?> value="Operador">
@@ -255,9 +255,9 @@ if(@$_GET['funcao'] == "editar"){
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btn-fechar" class="btn btn-secondary"
+                    <button type="button" id="btn-fechar" class="btn btn-primary"
                         data-bs-dismiss="modal">Fechar</button>
-                    <button name="btn-salvar" id="btn-salvar" type="submit" class="btn btn-primary">Salvar</button>
+                    <button name="btn-salvar" id="btn-salvar" type="submit" class="btn btn-success">Salvar</button>
 
                     <input name="id" type="hidden" value="<?php echo @$_GET['id'] ?>">
 
@@ -271,42 +271,30 @@ if(@$_GET['funcao'] == "editar"){
 </div>
 
 
-
-
-<div class="modal fade" tabindex="-1" id="modalDados">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><span id="nome"></span></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body mb-4">
-
-                <b>Nome: </b>
-                <span id="nome-registro"></span>
-                <hr>
-
-
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
+<?php 
+if(@$_GET['funcao'] == "deletar"){
+	$titulo_modal = 'deletar Registro';
+	$query = $pdo->query("SELECT * from usuarios where id = '$_GET[id]'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	$total_reg = @count($res);
+	if($total_reg > 0){ 
+		$nome = $res[0]['nome'];
+	}
+}
+?>
 <div class="modal fade" tabindex="-1" id="modalDeletar">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Excluir Registro</h5>
+                <h5 class="modal-title"><b>Apagar Usuário</b></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="POST" id="form-excluir">
                 <div class="modal-body">
 
-                    <p>Deseja Realmente Excluir o Registro?</p>
+                
+
+                    <p>Você realmente deseja excluir o usuário(a) <b><?php echo @$nome ?>?</b></p>
 
                     <small>
                         <div align="center" class="mt-1" id="mensagem-excluir">
@@ -316,7 +304,7 @@ if(@$_GET['funcao'] == "editar"){
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btn-fechar" class="btn btn-secondary"
+                    <button type="button" id="btn-fechar" class="btn btn-success"
                         data-bs-dismiss="modal">Fechar</button>
                     <button name="btn-excluir" id="btn-excluir" type="submit" class="btn btn-danger">Excluir</button>
 

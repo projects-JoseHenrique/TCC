@@ -22,7 +22,7 @@ $menu13 = 'alertas';
 $query = $pdo->query("SELECT * from usuarios WHERE id = '$_SESSION[id_usuario]'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    $nome_usu = "$res[0]['nome'];"
+    $nome_usu = $res[0]['nome'];
     $email_usu = $res[0]['email'];
     $senha_usu = $res[0]['senha'];
     $nivel_usu = $res[0]['nivel'];
