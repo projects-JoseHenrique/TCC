@@ -10,6 +10,7 @@ $conf_senha = $_POST['conf_senha'];
 $nivel = $_POST['nivel'];
 $endereco = $_POST['endereco'];
 $genero = $_POST['genero'];
+$telefone = $_POST['telefone'];
 $id = $_POST['id'];
 
 if($senha != $conf_senha){
@@ -47,8 +48,9 @@ if($antigo != $cpf){
 
 
 if ($id == "") {
-    $res = $pdo->prepare("INSERT INTO usuarios (nome, email, cpf, senha, senha_crip, nivel, endereco, genero) VALUES (:nome, :email, :cpf, :senha, :senha_crip, :nivel, :endereco, :genero)");
+    $res = $pdo->prepare("INSERT INTO usuarios (nome, telefone, email, cpf, senha, senha_crip, nivel, endereco, genero) VALUES (:nome, :telefone, :email, :cpf, :senha, :senha_crip, :nivel, :endereco, :genero)");
     $res->bindValue(":nome", $nome);
+    $res->bindValue(":telefone", $telefone);
     $res->bindValue(":email", $email);
     $res->bindValue(":cpf", $cpf);
     $res->bindValue(":senha", $senha);
@@ -58,8 +60,9 @@ if ($id == "") {
     $res->bindValue(":genero", $genero); // Insira o gênero no banco de dados
     $res->execute();
 } else {
-    $res = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, cpf = :cpf, senha = :senha, senha_crip = :senha_crip, nivel = :nivel, endereco = :endereco, genero = :genero WHERE id = :id");
+    $res = $pdo->prepare("UPDATE usuarios SET nome = :nome, nome = :telefone, telefone = :email, cpf = :cpf, senha = :senha, senha_crip = :senha_crip, nivel = :nivel, endereco = :endereco, genero = :genero WHERE id = :id");
     $res->bindValue(":nome", $nome);
+    $res->bindValue(":telefone", $telefone);
     $res->bindValue(":email", $email);
     $res->bindValue(":cpf", $cpf);
     $res->bindValue(":senha", $senha);

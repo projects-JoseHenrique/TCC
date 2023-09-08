@@ -6,7 +6,13 @@ require_once('../conexao.php');
 require_once('verificar-permissao.php')
 
 ?>
-<style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
 #example {
     border-collapse: collapse;
     /* Mescla as bordas das células */
@@ -23,7 +29,19 @@ require_once('verificar-permissao.php')
     border: 2px solid black;
 
 }
+
 </style>
+
+
+<link rel="stylesheet" type="text/css" href="../vendor/DataTables/datatables.css"/>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+
 
 <a href="index.php?pagina=<?php echo $pag ?>&funcao=novo" type="button" class="btn btn-success mt-2">Novo Usuário</a>
 
@@ -35,12 +53,13 @@ require_once('verificar-permissao.php')
 	if($total_reg > 0){ 
 		?>
     <small>
-        <table id="example" class="table table-hover my-4" style="width:100%">
+        <table id="example" class="table table-hover my-4" style="width:100%; margin-left:10px;">
 
             <thead>
                 <tr class="bg-success">
                     <th class="text-white text-center">Foto</th>
                     <th class="text-white text-center">Nome</th>
+                    <th class="text-white text-center">Telefone</th>
                     <th class="text-white text-center">Email</th>
                     <th class="text-white text-center">Senha</th>
                     <th class="text-white text-center">CPF</th>
@@ -58,11 +77,13 @@ require_once('verificar-permissao.php')
 							?>
 
 <tr>
-<td class="text-center">
-    <img src="<?php echo ($res[$i]['genero'] === 'masculino') ? '../img/usuarios/masc-user.png' : (($res[$i]['genero'] === 'feminino') ? '../img/usuarios/fem-user.png' : '../img/usuarios/sem-foto.jpg'); ?>" alt="Ícone de Gênero" width="40px" height="40px">
-</td>
+    <td class="text-center">
+        <img src="<?php echo ($res[$i]['genero'] === 'masculino') ? '../img/usuarios/masc-user.png' : (($res[$i]['genero'] === 'feminino') ? '../img/usuarios/fem-user.png' : '../img/usuarios/sem-foto.jpg'); ?>"
+            alt="Ícone de Gênero" width="40px" height="40px">
+    </td>
 
     <td class="text-center"><b><?php echo $res[$i]['nome'] ?></b></td>
+    <td class="text-center"><b><?php echo $res[$i]['telefone'] ?></b></td>
     <td class="text-center"><b><?php echo $res[$i]['email'] ?></b></td>
     <td class="text-center"><b><?php echo $res[$i]['senha'] ?></b></td>
     <td class="text-center"><b><?php echo $res[$i]['cpf'] ?></b></td>
@@ -78,6 +99,11 @@ require_once('verificar-permissao.php')
         <a href="index.php?pagina=<?php echo $pag ?>&funcao=deletar&id=<?php echo $res[$i]['id'] ?>"
             title="Excluir Registro">
             <i class="bi bi-trash-fill text-danger mx-1"></i>
+        </a>
+
+        <a href="#" onclick="mostrarDados('<?php echo $nome ?>')"
+            title="Ver Descriçao" style="text-decoration: none">
+            <i class="bi bi-border-width text-info mx-1"></i>
         </a>
 
 
@@ -105,10 +131,14 @@ if(@$_GET['funcao'] == "editar"){
 	$total_reg = @count($res);
 	if($total_reg > 0){ 
 		$nome = $res[0]['nome'];
+        $telefone = $res[0]['telefone'];
 		$email = $res[0]['email'];
 		$cpf = $res[0]['cpf'];
+        $endereco = $res[0]['endereco'];
 		$senha = $res[0]['senha'];
 		$nivel = $res[0]['nivel'];
+
+ 
 
 	}
 }else{
@@ -152,6 +182,8 @@ if(@$_GET['funcao'] == "editar"){
                                     placeholder="Telefone" required="" value="<?php echo @$telefone ?>">
                             </div>
                         </div>
+
+                        
 
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -252,44 +284,11 @@ if(@$_GET['funcao'] == "editar"){
             <div class="modal-body mb-4">
 
                 <b>Nome: </b>
-                <span id="nome"></span>
+                <span id="nome-registro"></span>
                 <hr>
 
-                <div id="div-forn">
-                    <span class="mr-4">
-                        <b>E-mail: </b>
-                        <span id="email"></span>
-                    </span>
-
-                    <span class="mr-4">
-                        <b>CPF: </b>
-                        <span id="cpf"></span>
-                    </span>
-
-                    <span class="mr-4">
-                        <b>Seha: </b>
-                        <span id="senha"></span>
-                    </span>
-
-                    <span class="mr-4">
-                        <b>Nivel: </b>
-                        <span id="nivel"></span>
-                    </span>
-
-                    <span class="mr-4">
-                        <b>Endereço: </b>
-                        <span id="endereco"></span>
-                    </span>
-
-                    <hr>
-                </div>
 
 
-
-                <b>Usuário: </b>
-                <span id="foto"></span>
-                <hr>
-                <img id="foto" src="" class="mt-4" width="200">
             </div>
 
         </div>
@@ -371,6 +370,28 @@ myModal.show();
 
 
 
+<script type="text/javascript">
+function mostrarDados(nome) {
+    event.preventDefault();
+
+    if (nome_forn.trim() === "") {
+        document.getElementById("div-forn").style.display = 'none';
+    } else {
+        document.getElementById("div-forn").style.display = 'block';
+    }
+
+    $('#nome-registro').text(nome);
+
+
+
+    var myModal = new bootstrap.Modal(document.getElementById('modalDados'), {
+
+    })
+
+    myModal.show();
+}
+</script>
+
 
 
 
@@ -445,33 +466,6 @@ function carregarImg() {
 }
 </script>
 
-<script type="text/javascript">
-function mostrarDados(foto, nome, email, cpf, senha, nivel, endereco) {
-    event.preventDefault();
-
-    if (nome_forn.trim() === "") {
-        document.getElementById("div-forn").style.display = 'none';
-    } else {
-        document.getElementById("div-forn").style.display = 'block';
-    }
-
-    $('#nome').text(nome);
-    $('#email').text(email);
-    $('#cpf').text(cpf);
-    $('#senha').text(senha);
-    $('#nivel').text(nivel);
-    $('#endereco').text(endereco);
-
-    $('#foto').attr('src', '../img/usuarios' + foto);
-
-
-    var myModal = new bootstrap.Modal(document.getElementById('modalDados'), {
-
-    })
-
-    myModal.show();
-}
-</script>
 
 
 <!--AJAX PARA EXCLUIR DADOS -->

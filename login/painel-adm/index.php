@@ -21,13 +21,14 @@ $menu13 = 'alertas';
 // RECUPERAR DADOS DO USUÁRIO, INCLUINDO O GÊNERO
 $query = $pdo->query("SELECT * from usuarios WHERE id = '$_SESSION[id_usuario]'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
-$nome_usu = $res[0]['nome'];
-$email_usu = $res[0]['email'];
-$senha_usu = $res[0]['senha'];
-$nivel_usu = $res[0]['nivel'];
-$cpf_usu = $res[0]['cpf'];
-$id_usu = $res[0]['id'];
-$genero = $res[0]['genero'];
+
+    $nome_usu = "$res[0]['nome'];"
+    $email_usu = $res[0]['email'];
+    $senha_usu = $res[0]['senha'];
+    $nivel_usu = $res[0]['nivel'];
+    $cpf_usu = $res[0]['cpf'];
+    $id_usu = $res[0]['id'];
+    $genero = $res[0]['genero'];
 
 ?>
 

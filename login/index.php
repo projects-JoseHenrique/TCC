@@ -2,17 +2,19 @@
 require_once("conexao.php");
 
 // INSERIR UM USUÁRIO ADMINISTRADOR CASO NÃO EXISTA
-
 $senha = '123';
 $senha_crip = md5($senha);
 
-$query = $pdo->query("SELECT * from usuarios where nivel = 'Administrador'");
+$query = $pdo->query("SELECT * FROM usuarios WHERE nivel = 'Administrador'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
-if($total_reg == 0){
-	$pdo->query("INSERT INTO usuarios SET nome = 'tcc', email = '$email_sistema'
-, senha = '$senha', senha_crip = '$senha_crip', nivel = 'Administrador', data = curDate(), ativo = 'Sim', foto = 'sem-foto.jpg'");
+if ($total_reg == 0) {
+    // Substitua '$email_sistema' pelo valor desejado para o email
+    $email_sistema = 'seu@email.com';
+    
+    $pdo->query("INSERT INTO usuarios SET nome = 'tcc', email = '$email_sistema', senha = '$senha', senha_crip = '$senha_crip', nivel = 'Administrador'");
 }
+
 
 
 
