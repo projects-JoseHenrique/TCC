@@ -58,7 +58,10 @@ require_once('verificar-permissao.php')
 							?>
 
 <tr>
-    <td class="text-center"><img src="../img/usuarios<?php echo $pag ?>/<?php echo $res[$i]['foto'] ?>" width="40"></td>
+<td class="text-center">
+    <img src="<?php echo ($res[$i]['genero'] === 'masculino') ? '../img/usuarios/masc-user.png' : (($res[$i]['genero'] === 'feminino') ? '../img/usuarios/fem-user.png' : '../img/usuarios/sem-foto.jpg'); ?>" alt="Ícone de Gênero" width="40px" height="40px">
+</td>
+
     <td class="text-center"><b><?php echo $res[$i]['nome'] ?></b></td>
     <td class="text-center"><b><?php echo $res[$i]['email'] ?></b></td>
     <td class="text-center"><b><?php echo $res[$i]['senha'] ?></b></td>
@@ -77,7 +80,7 @@ require_once('verificar-permissao.php')
             <i class="bi bi-trash-fill text-danger mx-1"></i>
         </a>
 
-        
+
     </td>
 </tr>
 
@@ -183,30 +186,17 @@ if(@$_GET['funcao'] == "editar"){
                         <input type="text" class="form-control form-control-md" id="endereco" name="endereco"
                             placeholder="Endereço" required="" value="<?php echo @$endereco ?>">
                     </div>
-                    <div class="row">
 
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <div class="form-group">
-                                    <label>Foto</label>
-                                    <input type="file" value="<?php echo @$foto ?>" class="form-control-file"
-                                        id="imagem" name="imagem" onChange="carregarImg();">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-								<div id="divImgConta">
-								<?php if(@$foto != ""){ ?>
-									<img src="../img/<?php echo $pag ?>/<?php echo $foto ?>" width="40px" id="target">
-									<?php  }else{ ?>
-									<img src="../img/<?php echo $pag ?>/sem-foto.jpg" width="40px" id="target">
-									<?php } ?>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Sexo</label>
+                        <select class="form-select mt-1" aria-label="Default select example" name="genero"
+                            id="gender-select">
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                        </select>
                     </div>
+
+
 
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Nível</label>
@@ -251,59 +241,59 @@ if(@$_GET['funcao'] == "editar"){
 
 
 
-<div class="modal fade" tabindex="-1" id="modalDados" >
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title"><span id="nome"></span></h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			
-			<div class="modal-body mb-4">
+<div class="modal fade" tabindex="-1" id="modalDados">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><span id="nome"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-				<b>Nome: </b>
-				<span id="nome"></span>
-				<hr>
-				
-				<div id="div-forn">
-					<span class="mr-4">
-						<b>E-mail: </b>
-						<span id="email"></span>
-					</span>
-					
-					<span class="mr-4">
-						<b>CPF: </b>
-						<span id="cpf"></span>
-					</span>
+            <div class="modal-body mb-4">
+
+                <b>Nome: </b>
+                <span id="nome"></span>
+                <hr>
+
+                <div id="div-forn">
+                    <span class="mr-4">
+                        <b>E-mail: </b>
+                        <span id="email"></span>
+                    </span>
 
                     <span class="mr-4">
-						<b>Seha: </b>
-						<span id="senha"></span>
-					</span>
+                        <b>CPF: </b>
+                        <span id="cpf"></span>
+                    </span>
 
                     <span class="mr-4">
-						<b>Nivel: </b>
-						<span id="nivel"></span>
-					</span>
+                        <b>Seha: </b>
+                        <span id="senha"></span>
+                    </span>
 
                     <span class="mr-4">
-						<b>Endereço: </b>
-						<span id="endereco"></span>
-					</span>
+                        <b>Nivel: </b>
+                        <span id="nivel"></span>
+                    </span>
 
-					<hr>
-				</div>
+                    <span class="mr-4">
+                        <b>Endereço: </b>
+                        <span id="endereco"></span>
+                    </span>
+
+                    <hr>
+                </div>
 
 
-				
-				<b>Usuário: </b>
-				<span id="foto"></span>
-				<hr>
-				<img id="foto" src="" class="mt-4" width="200">
-			</div> 
 
-		</div>
-	</div>
+                <b>Usuário: </b>
+                <span id="foto"></span>
+                <hr>
+                <img id="foto" src="" class="mt-4" width="200">
+            </div>
+
+        </div>
+    </div>
 </div>
 
 
@@ -381,6 +371,10 @@ myModal.show();
 
 
 
+
+
+
+
 <!--AJAX PARA INSERÇÃO E EDIÇÃO DOS DADOS COM IMAGEM -->
 <script type="text/javascript">
 $("#form").submit(function() {
@@ -452,31 +446,31 @@ function carregarImg() {
 </script>
 
 <script type="text/javascript">
-	function mostrarDados(foto, nome, email, cpf, senha, nivel, endereco){
-		event.preventDefault();
+function mostrarDados(foto, nome, email, cpf, senha, nivel, endereco) {
+    event.preventDefault();
 
-		if(nome_forn.trim() === ""){
-			document.getElementById("div-forn").style.display = 'none';
-		}else{
-			document.getElementById("div-forn").style.display = 'block';
-		}
+    if (nome_forn.trim() === "") {
+        document.getElementById("div-forn").style.display = 'none';
+    } else {
+        document.getElementById("div-forn").style.display = 'block';
+    }
 
-		$('#nome').text(nome);
-		$('#email').text(email);
-		$('#cpf').text(cpf);
-		$('#senha').text(senha);
-		$('#nivel').text(nivel);
-		$('#endereco').text(endereco);
-		
-		$('#foto').attr('src', '../img/usuarios' + foto);
+    $('#nome').text(nome);
+    $('#email').text(email);
+    $('#cpf').text(cpf);
+    $('#senha').text(senha);
+    $('#nivel').text(nivel);
+    $('#endereco').text(endereco);
+
+    $('#foto').attr('src', '../img/usuarios' + foto);
 
 
-		var myModal = new bootstrap.Modal(document.getElementById('modalDados'), {
-			
-		})
+    var myModal = new bootstrap.Modal(document.getElementById('modalDados'), {
 
-		myModal.show();
-	}
+    })
+
+    myModal.show();
+}
 </script>
 
 

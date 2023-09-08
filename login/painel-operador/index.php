@@ -15,6 +15,7 @@ $senha_usu = $res[0]['senha'];
 $nivel_usu = $res[0]['nivel'];
 $cpf_usu = $res[0]['cpf'];
 $id_usu = $res[0]['id'];
+$genero = $res[0]['genero'];
 
  ?>
 <!DOCTYPE html>
@@ -54,8 +55,7 @@ $id_usu = $res[0]['id'];
         
       </ul>
       <div class="d-flex mx-3">
-        <img src="../img/icone-user.png" width="40px" height="40px">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <img src="<?php echo ($genero === 'masculino') ? '../img/usuarios/masc-user.png' : (($genero === 'feminino') ? '../img/usuarios/fem-user.png' : '../img/usuarios/sem-foto.jpg'); ?>" alt="Ícone de Gênero" width="40px" height="40px">        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">

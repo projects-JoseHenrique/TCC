@@ -42,14 +42,18 @@ if($desconto_porcentagem == 'Sim'){
             <div class="order py-2">
                 <div class="row">
                     <div class="col-lg-4 mb-3">
+
+
                         <div class="card shadow" style="margin-top: 10px;">
                             <div class="card-header py-2"
                                 style="background: linear-gradient(to right, #004480, #6a6a6a);">
                                 <h5 class="m-0  text-white text-center " style="font-size: 20px;">INFORMAÇÕES</h5>
                             </div>
-
-
                         </div>
+
+
+
+                        
                         <div class="mt-2"></div>
                         <div class="card shadow">
                             <div class="card-header py-1"
@@ -58,7 +62,6 @@ if($desconto_porcentagem == 'Sim'){
                             </div>
                             <input type="text" class="form-control form-control-lg" id="codigo" name="codigo"
                                 placeholder="Código de Barras">
-
 
                         </div>
                         <div class="mt-2"></div>
@@ -263,9 +266,7 @@ if($desconto_porcentagem == 'Sim'){
 </body>
 
 
-
 </html>
-
 
 
 
@@ -584,7 +585,6 @@ var pag = "<?=$pag?>";
 
 function buscarDados() {
 
-    var valor_prod = $('#valor_unitario').val();
 
     $.ajax({
         url: pag + "/buscar-dados.php",
@@ -677,10 +677,8 @@ function buscarDados() {
 
                 if (nome.trim() != "Código não Cadastrado") {
 
-                    document.getElementById('estoque').value = estoque;
                     document.getElementById('produto').value = nome;
                     document.getElementById('descricao').value = descricao;
-                    document.getElementById('valor_unitario').value = valor;
 
                     if (imagem.trim() === "") {
                         $('#imagem').attr('src', '../img/produtos/sem-foto.jpg');
@@ -703,7 +701,6 @@ function buscarDados() {
 
                     document.getElementById('codigo').value = "";
                     document.getElementById('quantidade').value = "1";
-                    document.getElementById('valor_unitario').value = "";
                     document.getElementById('codigo').focus();
 
                     listarProdutos();

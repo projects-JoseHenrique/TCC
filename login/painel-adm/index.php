@@ -18,7 +18,7 @@ $menu11 = 'estoque';
 $menu12 = 'clientes';
 $menu13 = 'alertas';
 
-//RECUPERAR DADOS DO USUÁRIO
+// RECUPERAR DADOS DO USUÁRIO, INCLUINDO O GÊNERO
 $query = $pdo->query("SELECT * from usuarios WHERE id = '$_SESSION[id_usuario]'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $nome_usu = $res[0]['nome'];
@@ -27,8 +27,13 @@ $senha_usu = $res[0]['senha'];
 $nivel_usu = $res[0]['nivel'];
 $cpf_usu = $res[0]['cpf'];
 $id_usu = $res[0]['id'];
+$genero = $res[0]['genero'];
 
- ?>
+?>
+
+ 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,7 +149,9 @@ $id_usu = $res[0]['id'];
         
       </ul>
       <div class="d-flex mx-3">
-        <img src="../img/usuarios/icone-user.png" width="40px" height="40px">
+      <img src="<?php echo ($genero === 'masculino') ? '../img/usuarios/masc-user.png' : (($genero === 'feminino') ? '../img/usuarios/fem-user.png' : '../img/usuarios/sem-foto.jpg'); ?>" alt="Ícone de Gênero" width="40px" height="40px">
+
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
