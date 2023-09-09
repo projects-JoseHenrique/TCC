@@ -225,6 +225,7 @@ if(@$_GET['funcao'] == "editar"){
                             id="gender-select">
                             <option value="masculino">Masculino</option>
                             <option value="feminino">Feminino</option>
+                            <option value="">Nehum</option>
                         </select>
                     </div>
 
@@ -263,6 +264,7 @@ if(@$_GET['funcao'] == "editar"){
 
                     <input name="antigo" type="hidden" value="<?php echo @$cpf ?>">
                     <input name="antigo2" type="hidden" value="<?php echo @$email ?>">
+                    <input name="antigo3" type="hidden" value="<?php echo @$telefone ?>">
 
                 </div>
             </form>

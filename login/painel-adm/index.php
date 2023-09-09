@@ -4,7 +4,6 @@
 require_once('../conexao.php');
 require_once('verificar-permissao.php');
 
-
 //VARIAVEIS DO MENU ADMINISTRATIVO
 $menu1 = 'home';
 $menu2 = 'usuarios';
@@ -21,18 +20,10 @@ $menu13 = 'alertas';
 // RECUPERAR DADOS DO USUÁRIO, INCLUINDO O GÊNERO
 $query = $pdo->query("SELECT * from usuarios WHERE id = '$_SESSION[id_usuario]'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    $nome_usu = $res[0]['nome'];
-    $email_usu = $res[0]['email'];
-    $senha_usu = $res[0]['senha'];
-    $nivel_usu = $res[0]['nivel'];
-    $cpf_usu = $res[0]['cpf'];
-    $id_usu = $res[0]['id'];
-    $genero = $res[0]['genero'];
+$genero = $res[0]['genero'];
+$nome_usu = $res[0]['nome'];
 
 ?>
-
- 
 
 
 <!DOCTYPE html>
@@ -149,6 +140,8 @@ $res = $query->fetchAll(PDO::FETCH_ASSOC);
         </li>
         
       </ul>
+
+ 
       <div class="d-flex mx-3">
       <img src="<?php echo ($genero === 'masculino') ? '../img/usuarios/masc-user.png' : (($genero === 'feminino') ? '../img/usuarios/fem-user.png' : '../img/usuarios/sem-foto.jpg'); ?>" alt="Ícone de Gênero" width="40px" height="40px">
 

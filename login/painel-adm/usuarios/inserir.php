@@ -20,6 +20,20 @@ if($senha != $conf_senha){
 
 $antigo = $_POST['antigo'];
 $antigo2 = $_POST['antigo2'];
+$antigo3 = $_POST['antigo3'];
+
+
+if($antigo != $cpf){
+    // EVITAR DUPLICIDADE NO CPF
+        $query_con = $pdo->prepare("SELECT * from usuarios WHERE cpf = :cpf");
+        $query_con->bindValue(":cpf", $cpf);
+        $query_con->execute();
+        $res_con = $query_con->fetchAll(PDO::FETCH_ASSOC);
+        if(@count($res_con) > 0){
+            echo 'O CPF do usuário já está cadastrado!';
+            exit();
+        }
+    }
 
 // EVITAR DUPLICIDADE NO EMAIL
 if($antigo2 != $email){
@@ -33,22 +47,21 @@ if($antigo2 != $email){
 	}
 }
 
-if($antigo != $cpf){
-// EVITAR DUPLICIDADE NO CPF
-	$query_con = $pdo->prepare("SELECT * from usuarios WHERE cpf = :cpf");
-	$query_con->bindValue(":cpf", $cpf);
-	$query_con->execute();
-	$res_con = $query_con->fetchAll(PDO::FETCH_ASSOC);
-	if(@count($res_con) > 0){
-		echo 'O CPF do usuário já está cadastrado!';
-		exit();
-	}
-}
-
+ // EVITAR DUPLICIDADE DE TELEFONE
+if($antigo3 != $telefone){
+        $query_con = $pdo->prepare("SELECT * from usuarios WHERE telefone = :telefone");
+        $query_con->bindValue(":telefone", $telefone);
+        $query_con->execute();
+        $res_con = $query_con->fetchAll(PDO::FETCH_ASSOC);
+        if(@count($res_con) > 0){
+            echo 'O telefone do usuário já está cadastrado!';
+            exit();
+        }
+    }
 
 
 if ($id == "") {
-    $res = $pdo->prepare("INSERT INTO usuarios (nome, telefone, email, cpf, senha, senha_crip, nivel, endereco, genero) VALUES (:nome, :telefone, :email, :cpf, :senha, :senha_crip, :nivel, :endereco, :genero)");
+    $res = $pdo->prepare("INSERT INTO usuarios (nome, telefone, email, cpf, senha, senha_crip, nivel, genero, endereco) VALUES (:nome, :telefone, :email, :cpf, :senha, :senha_crip, :nivel, :genero, :endereco)");
     $res->bindValue(":nome", $nome);
     $res->bindValue(":telefone", $telefone);
     $res->bindValue(":email", $email);
@@ -60,7 +73,7 @@ if ($id == "") {
     $res->bindValue(":genero", $genero); // Insira o gênero no banco de dados
     $res->execute();
 } else {
-    $res = $pdo->prepare("UPDATE usuarios SET nome = :nome, nome = :telefone, telefone = :email, cpf = :cpf, senha = :senha, senha_crip = :senha_crip, nivel = :nivel, endereco = :endereco, genero = :genero WHERE id = :id");
+    $res = $pdo->prepare("UPDATE usuarios SET nome = :nome, telefone = :telefone, email = :email, cpf = :cpf, senha = :senha, senha_crip = :senha_crip, nivel = :nivel, genero = :genero, endereco = :endereco WHERE id = :id");
     $res->bindValue(":nome", $nome);
     $res->bindValue(":telefone", $telefone);
     $res->bindValue(":email", $email);
@@ -68,14 +81,12 @@ if ($id == "") {
     $res->bindValue(":senha", $senha);
     $res->bindValue(":senha_crip", $senha_crip);
     $res->bindValue(":nivel", $nivel);
-    $res->bindValue(":endereco", $endereco);
     $res->bindValue(":genero", $genero); // Atualize o gênero no banco de dados
+    $res->bindValue(":endereco", $endereco);
     $res->bindValue(":id", $id);
     $res->execute();
 }
 
-
-
-
 echo 'Salvo com Sucesso!';
+
 ?>
