@@ -225,7 +225,7 @@ if(@$_GET['funcao'] == "editar"){
                             id="gender-select">
                             <option value="masculino">Masculino</option>
                             <option value="feminino">Feminino</option>
-                            <option value="">Nehum</option>
+                            <option value="">Nenhum</option>
                         </select>
                     </div>
 
