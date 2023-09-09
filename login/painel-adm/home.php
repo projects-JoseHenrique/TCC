@@ -645,6 +645,110 @@ $totalVenM = 0;
 </section>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+
+<div class="container">
+        <h2>Vendas por Mês do ano de <?php echo $ano_atual?></h2>
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+
+
+		<?php
+        // Ano atual (substitua pelo ano desejado)
+        $ano_atual = date("Y");
+
+        // Inicialize variáveis
+        $total_vendas = 0;
+        $total_valor_arrecadado = 0;
+        ?>
+
+     
+
+        <script>
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myChart = new Chart(ctx, {
+                type: "bar", // Gráfico de barras
+                data: {
+                    labels: [
+                        "Jan",
+                        "Fev",
+                        "Mar",
+                        "Abr",
+                        "Mai",
+                        "Jun",
+                        "Jul",
+                        "Ago",
+                        "Set",
+                        "Out",
+                        "Nov",
+                        "Dez"
+                    ],
+                    datasets: [{
+                        label: "Vendas por Mês",
+                        data: [
+                            <?php
+                            for ($i = 1; $i <= 12; $i++) {
+                                $dataMesInicio = $ano_atual . "-" . $i . "-01";
+                                $dataMesFinal = $ano_atual . "-" . $i . "-31";
+
+                                $query = $pdo->query("SELECT * from vendas where data >= '$dataMesInicio' and data <= '$dataMesFinal' and status = 'Concluída'");
+                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                                $total_vendas_mes = @count($res);
+
+                                $totalValor = 0;
+
+                                for ($i2 = 0; $i2 < $total_vendas_mes; $i2++) {
+                                    $totalValor += $res[$i2]['valor'];
+                                }
+
+                                echo $totalValor;
+
+                                if ($i != 12) {
+                                    echo ",";
+                                }
+
+                                // Atualize o total de vendas e o valor arrecadado
+                                $total_vendas += $total_vendas_mes;
+                                $total_valor_arrecadado += $totalValor;
+                            }
+							echo $total_vendas_mes
+                            ?>
+                        ],
+                        backgroundColor: [
+                            "rgba(255, 0, 0, 0.6)",
+                            "rgba(0, 0, 255, 0.6)",
+                            "rgba(255, 102, 0, 0.6)",
+                            "rgba(0, 153, 51, 0.6)",
+                            "rgba(255, 0, 0, 0.6)",
+                            "rgba(0, 0, 255, 0.6)",
+                            "rgba(255, 102, 0, 0.6)",
+                            "rgba(0, 153, 51, 0.6)",
+                            "rgba(255, 0, 0, 0.6)",
+                            "rgba(0, 0, 255, 0.6)",
+                            "rgba(255, 102, 0, 0.6)",
+                            "rgba(0, 153, 51, 0.6)"
+                        ]
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+		<div>
+    <p>Total de Vendas do ano de <?php echo $ano_atual ?>: <?php echo $total_vendas; ?></p>
+    <p>Total do Valor Arrecadado do ano de <?php echo $ano_atual ?>: R$ <?php echo number_format($total_valor_arrecadado, 2, ',', '.'); ?></p>
 </div>
 
+    </div>
 
+</body>
+</html>
