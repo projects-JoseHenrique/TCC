@@ -6,18 +6,18 @@ require_once('../conexao.php');
 $menu1 = 'home';
 
 
-//RECUPERAR DADOS DO USUÁRIO
+// RECUPERAR DADOS DO USUÁRIO, INCLUINDO O GÊNERO
 $query = $pdo->query("SELECT * from usuarios WHERE id = '$_SESSION[id_usuario]'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $nome_usu = $res[0]['nome'];
 $email_usu = $res[0]['email'];
 $senha_usu = $res[0]['senha'];
 $nivel_usu = $res[0]['nivel'];
-$cpf_usu = $res[0]['cpf'];
+$telefone_usu = $res[0]['telefone'];
 $id_usu = $res[0]['id'];
 $genero = $res[0]['genero'];
 
- ?>
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,8 +119,8 @@ else{
 						</div>
 						<div class="col-md-6">
 							<div class="mb-3">
-								<label for="exampleFormControlInput1" class="form-label">CPF</label>
-								<input type="text" class="form-control" id="cpf-perfil" name="cpf-perfil" placeholder="CPF" required="" value="<?php echo @$cpf_usu ?>">
+								<label for="exampleFormControlInput1" class="form-label">Telefone</label>
+								<input type="text" class="form-control" id="telefone-perfil" name="telefone-perfil" placeholder="(00) 00000-0000" required="" value="<?php echo @$telefone_usu ?>">
 							</div>  
 						</div>
 					</div>
@@ -134,32 +134,56 @@ else{
 						<input type="email" class="form-control" id="email-perfil" name="email-perfil" placeholder="Email" required="" value="<?php echo @$email_usu ?>">
 					</div>  
 
-					<div class="mb-3">
-						<label for="exampleFormControlInput1" class="form-label">Senha</label>
-						<input type="text" class="form-control" id="senha-perfil" name="senha-perfil" placeholder="Senha" required="" value="<?php echo @$senha_usu ?>">
-					</div>  
+          <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label"><b>Senha</b></label>
+                                <input type="password" class="form-control form-control-md" id="senha-perfil" name="senha-perfil"
+                                    placeholder="Senha" required="" value="<?php echo @$senha_usu ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label"><b>Confirmar Senha</b></label>
+                                <input type="password" class="form-control form-control-md" id="conf-senha-perfil"
+                                    name="conf-senha-perfil" placeholder="Confirmar Senha" required=""
+                                    value="">
+                            </div>
+                        </div>
+                    </div> 
+ 
 
 					
 
-					<small><div align="center" class="mt-1" id="mensagem-perfil">
+          <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label"><b>Sexo</b></label>
+                        <select class="form-select mt-1" aria-label="Default select example" name="genero-perfil"
+                            id="gender-select">
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="">Nenhum</option>
+                        </select>
+                    </div>
+                    <small><div align="center" class="mt-1" id="mensagem-perfil">
 						
-					</div> </small>
-
+            </div> </small>
 				</div>
 				<div class="modal-footer">
-					<button type="button" id="btn-fechar-perfil" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-					<button name="btn-salvar-perfil" id="btn-salvar-perfil" type="submit" class="btn btn-primary">Salvar</button>
+					<button type="button" id="btn-fechar-perfil" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
+					<button name="btn-salvar-perfil" id="btn-salvar-perfil" type="submit" class="btn btn-success">Salvar</button>
 
 					<input name="id-perfil" type="hidden" value="<?php echo @$id_usu ?>">
 
-					<input name="antigo-perfil" type="hidden" value="<?php echo @$cpf_usu ?>">
+					
 					<input name="antigo2-perfil" type="hidden" value="<?php echo @$email_usu ?>">
+          <input name="antigo-perfil" type="hidden" value="<?php echo @$telefone_usu ?>">
 
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+
 
 
 
