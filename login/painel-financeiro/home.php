@@ -589,6 +589,8 @@ $totalVenM = 0;
         // Inicialize variáveis
         $total_vendas = 0;
         $total_valor_arrecadado = 0;
+
+		
         ?>
 
      
@@ -599,50 +601,52 @@ $totalVenM = 0;
                 type: "bar", // Gráfico de barras
                 data: {
                     labels: [
-                        "Jan",
-                        "Fev",
-                        "Mar",
-                        "Abr",
-                        "Mai",
-                        "Jun",
-                        "Jul",
-                        "Ago",
-                        "Set",
-                        "Out",
-                        "Nov",
-                        "Dez"
+                        "Janeiro",
+                        "Fevereiro",
+                        "Março",
+                        "Abril",
+                        "Maio",
+                        "Junho",
+                        "Julho",
+                        "Agosto",
+                        "Setembro",
+                        "Outubro",
+                        "Novembro",
+                        "Dezembro"
                     ],
                     datasets: [{
-                        label: "Vendas por Mês",
-                        data: [
-                            <?php
-                            for ($i = 1; $i <= 12; $i++) {
-                                $dataMesInicio = $ano_atual . "-" . $i . "-01";
-                                $dataMesFinal = $ano_atual . "-" . $i . "-31";
+                label: "Vendas em Reais",
+                data: [
+                    <?php
+                    for ($i = 1; $i <= 12; $i++) {
+                        $dataMesInicio = $ano_atual . "-" . $i . "-01";
+                        $dataMesFinal = $ano_atual . "-" . $i . "-31";
 
-                                $query = $pdo->query("SELECT * from vendas where data >= '$dataMesInicio' and data <= '$dataMesFinal' and status = 'Concluída'");
-                                $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                                $total_vendas_mes = @count($res);
+                        $query = $pdo->query("SELECT * from vendas where data >= '$dataMesInicio' and data <= '$dataMesFinal' and status = 'Concluída'");
+                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                        $total_vendas_mes = @count($res);
+						
 
-                                $totalValor = 0;
+                        $totalValor = 0;
 
-                                for ($i2 = 0; $i2 < $total_vendas_mes; $i2++) {
-                                    $totalValor += $res[$i2]['valor'];
-                                }
+                        for ($i2 = 0; $i2 < $total_vendas_mes; $i2++) {
+                            $totalValor += $res[$i2]['valor'];
+                        }
 
-                                echo $totalValor;
+                        echo $totalValor;
 
-                                if ($i != 12) {
-                                    echo ",";
-                                }
+                        if ($i != 12) {
+                            echo ",";
+                        }
 
-                                // Atualize o total de vendas e o valor arrecadado
-                                $total_vendas += $total_vendas_mes;
-                                $total_valor_arrecadado += $totalValor;
-                            }
-							echo $total_vendas_mes
-                            ?>
-                        ],
+                        // Atualize o total de vendas e o valor arrecadado
+                        $total_vendas += $total_vendas_mes;
+                        $total_valor_arrecadado += $totalValor;
+
+						
+                    }
+                    ?>
+                ],
                         backgroundColor: [
                             "rgba(255, 0, 0, 0.6)",
                             "rgba(0, 0, 255, 0.6)",
@@ -669,8 +673,28 @@ $totalVenM = 0;
             });
         </script>
 		<div>
-    <p>Total de Vendas do ano de <?php echo $ano_atual ?>: <?php echo $total_vendas; ?></p>
-    <p>Total do Valor Arrecadado do ano de <?php echo $ano_atual ?>: R$ <?php echo number_format($total_valor_arrecadado, 2, ',', '.'); ?></p>
+
+<style>
+	.rodape{
+		margin-left: 48px;
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 18px;
+	}
+
+	.info{
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	.dinheiro{
+		font-weight: bold;
+		color: #009933;
+	}
+</style>
+
+
+<div class="mt-4"></div>
+    <p class="rodape"><span class="info">Total de Vendas do ano de <?php echo $ano_atual ?></span>: <span class="dinheiro">R$ <?php echo number_format($total_valor_arrecadado, 2, ',', '.'); ?></span></p>
 </div>
 
     </div>

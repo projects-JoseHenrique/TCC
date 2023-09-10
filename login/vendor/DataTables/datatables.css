@@ -293,6 +293,7 @@ table.dataTable td {
   padding: 5px;
   background-color: transparent;
   padding: 4px;
+  position: absolute;
 }
 .dataTables_wrapper .dataTables_filter {
   float: right;

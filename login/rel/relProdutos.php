@@ -23,6 +23,8 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
 
 		}
 
+		
+
 		.footer {
 			margin-top:20px;
 			width:100%;
@@ -147,7 +149,7 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
 			margin:0;
 			font-size:25px;
 			font-family:Arial, Helvetica, sans-serif;
-			color:#6e6d6d;
+			color:green;
 
 		}
 
@@ -226,7 +228,7 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
 
 		
 		<div align="center" class="">	
-			<span class="titulorel">Catálogo de Produtos </span>
+			<span class="titulorel"><b>Catálogo de Produtos</b></span>
 		</div>
 		
 
@@ -236,15 +238,15 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
 		<div class="mx-2" style="padding-top:15px ">
 
 			<small><small>
-				<section class="area-tab" style="background-color: #f5f5f5;">
+				<section class="area-tab" style="background-color: green; height:25px;">
 					
 					<div class="linha-cab" style="padding-top: 5px;">
-						<div class="coluna" style="width:30%">NOME</div>
-						<div class="coluna" style="width:15%">ESTOQUE</div>
-						<div class="coluna" style="width:15%">ESTOQUE MÍNIMO</div>
-						<div class="coluna" style="width:15%">VALOR VENDA</div>
-						<div class="coluna" style="width:15%">VALOR COMPRA</div>
-						<div class="coluna" style="width:10%">FOTO</div>
+						<div class="coluna" style="width:30%; margin-left:5px; color:white;"><b>NOME</b></div>
+						<div class="coluna" style="width:15%; color:white;"><b>ESTOQUE</b></div>
+						<div class="coluna" style="width:15%; color:white;"><b>ESTOQUE MÍNIMO</b></div>
+						<div class="coluna" style="width:15%; color:white;"><b>VALOR COMPRA</b></div>
+						<div class="coluna" style="width:15%; color:white;"><b>VALOR VENDA</b></div>
+						<div class="coluna" style="width:10%; color:white;"><b>IMAGEM</b></div>
 
 					</div>
 					
@@ -283,11 +285,11 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
 
 				<section class="area-tab" style="padding-top:5px">					
 					<div class="linha-cab">				
-						<div class="coluna" style="width:30%"><?php echo $nome ?> </div>
-						<div class="coluna" style="width:15%"><?php echo $estoque ?></div>
-						<div class="coluna" style="width:15%"><?php echo $estoque_min ?></div>				
-						<div class="coluna" style="width:15%">R$ <?php echo $valor_venda ?></div>
-						<div class="coluna" style="width:15%">R$ <?php echo $valor_compra ?></div>				
+						<div class="coluna" style="width:30%"><b><?php echo $nome ?></b></div>
+						<div class="coluna" style="width:15%"><b><?php echo $estoque ?></b></div>
+						<div class="coluna" style="width:15%"><b><?php echo $estoque_min ?></b></div>	
+						<div class="coluna" style="width:15%"><b>R$ <?php echo $valor_compra ?></b></div>			
+						<div class="coluna" style="width:15%"><b>R$ <?php echo $valor_venda ?></b></div>				
 						<div class="coluna" style="width:10%"><img src="<?php echo $url_sistema ?>img/produtos/<?php echo $foto ?>" width="28px"> </div>				
 
 					</div>
@@ -317,7 +319,7 @@ $data_hoje = utf8_encode(strftime('%A, %d de %B de %Y', strtotime('today')));
 		<div class="col-md-12">
 			<div class="" align="right">
 				
-				<span class=""> <b> Total de Produtos :  <?php echo $totalItens ?> </b> </span>
+				<span class=""> <b> TOTAL DE PRODUTOS:  <?php echo $totalItens ?> </b> </span>
 			</div>
 
 		</div>

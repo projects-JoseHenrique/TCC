@@ -34,16 +34,12 @@ require_once('verificar-permissao.php')
 
 
 <link rel="stylesheet" type="text/css" href="../vendor/DataTables/datatables.css"/>
-</head>
-<body>
-    
-</body>
-</html>
 
 
 
 
-<a href="index.php?pagina=<?php echo $pag ?>&funcao=novo" type="button" class="btn btn-success mt-2">Novo Usuário</a>
+
+<a href="index.php?pagina=<?php echo $pag ?>&funcao=novo" type="button" class="btn btn-success mt-2" style="margin-left:10px;">Novo Usuário</a>
 
 <div class="mt-5" style="margin-right:25px">
     <?php 

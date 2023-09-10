@@ -5,12 +5,20 @@ $nome_sistema = "Dacor Tintas Automotivas";
 $email_adm = 'admin@hotmail.com';
 
  //é preciso configurar essa url para gerar os relatorios, ela deve apontar para a raiz do seu dominio (https://www.google.com/) com a barra no final e o protocolo http ou https de acordo com seu dominio no inicio.
-$url_sistema = "http://$_SERVER[HTTP_HOST]/";
-$url = explode("//", $url_sistema);
-if($url[1] == 'localhost/'){
-	$url_sistema = "http://$_SERVER[HTTP_HOST]/pdv/";
-}
-
+ $url_sistema = "http://$_SERVER[HTTP_HOST]/";
+ $url = explode("//", $url_sistema);
+ if($url[1] == 'localhost:8080/'){
+	 $url_sistema = "http://$_SERVER[HTTP_HOST]/dacorweb/login/";
+ }
+ 
+ //$url_sistema = "http://$_SERVER[HTTP_HOST]/";
+ //$url = explode("//", $url_sistema);
+ //if($url[1] == 'localhost:8080/'){
+	// $url_sistema = "http://$_SERVER[HTTP_HOST]/dacorweb/login/";
+ //}
+ 
+ 
+ 
 
 
 $telefone_sistema = "(48) 3533-4956";

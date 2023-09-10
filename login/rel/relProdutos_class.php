@@ -1,39 +1,34 @@
-<?php 
-
+<?php
 require_once('../config.php');
 
-//ALIMENTAR OS DADOS NO RELATÓRIO
-$html = file_get_contents($url_sistema."rel/relProdutos.php");
-
-if($relatorio_pdf != 'Sim'){
-	echo $html;
-	exit();
+// Verificar se o relatório em PDF está desativado
+if ($relatorio_pdf != 'Sim') {
+    // Neste caso, apenas exiba o conteúdo HTML no navegador
+    $html = file_get_contents($url_sistema . "rel/relProdutos.php");
+    echo $html;
+    exit();
 }
 
-//CARREGAR DOMPDF
+// Carregar a biblioteca DOMPDF
 require_once '../dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
-//INICIALIZAR A CLASSE DO DOMPDF
+// Inicializar a classe DOMPDF
 $options = new Options();
 $options->set('isRemoteEnabled', true);
 
-$pdf = new DOMPDF($options);
+$pdf = new Dompdf($options);
 
-//Definir o tamanho do papel e orientação da página
-$pdf->set_paper('A4', 'portrait'); //caso queira a folha em paisagem use landscape em vez de portrait
+// Definir o tamanho do papel e orientação da página
+$pdf->setPaper('A4', 'portrait'); // Para paisagem, use 'landscape' em vez de 'portrait'
 
-//CARREGAR O CONTEÚDO HTML
-$pdf->load_html($html);
+// Carregar o conteúdo HTML
+$html = file_get_contents($url_sistema . "rel/relProdutos.php");
+$pdf->loadHtml($html);
 
-//RENDERIZAR O PDF
+// Renderizar o PDF
 $pdf->render();
 
-//NOMEAR O PDF GERADO
-$pdf->stream(
-'produtos.pdf',
-array("Attachment" => false)
-);
-
-
+// Nomear o PDF gerado e enviá-lo para o navegador
+$pdf->stream('produtos.pdf', array("Attachment" => false));

@@ -24,46 +24,48 @@ require_once('verificar-permissao.php');
 
 }
 </style>
+<link rel="stylesheet" type="text/css" href="../vendor/DataTables/datatables.css" />
+
 
 <div class="mt-4" style="margin-right:25px">
-	<?php 
+    <?php 
 	$query = $pdo->query("SELECT * from compras order by id desc");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	$total_reg = @count($res);
 	if($total_reg > 0){ 
 		?>
-		<small>
-        	<table id="example" class="table table-hover my-4" style="width:100%">
-				<thead>
-					<tr class="bg-success">
-						<th class="text-white text-center">Pago</th>
-						<th class="text-white text-center">Produto</th>
-						<th class="text-white text-center">Total</th>
-						<th class="text-white text-center">Data</th>
-						<th class="text-white text-center">Gerente</th>
-						<th class="text-white text-center">Fornecedor</th>
-						<th class="text-white text-center">Tel Fornecedor</th>
-						<th class="text-white text-center">Lote</th>
-						<th class="text-white text-center">Validade</th>
-						<th class="text-white text-center">Arquivo</th>
-						<th class="text-white text-center">Excluir</th>
-					</tr>
-				</thead>
-				<tbody>
+    <small>
+        <table id="example" class="table table-hover my-4" style="width:100%;  margin-left:10px;">
+            <thead>
+                <tr class="bg-success">
+                    <th class="text-white text-center">Pago</th>
+                    <th class="text-white text-center">Produto</th>
+                    <th class="text-white text-center">Total</th>
+                    <th class="text-white text-center">Data</th>
+                    <th class="text-white text-center">Gerente</th>
+                    <th class="text-white text-center">Fornecedor</th>
+                    <th class="text-white text-center">Tel Fornecedor</th>
+                    <th class="text-white text-center">Lote</th>
+                    <th class="text-white text-center">Validade</th>
+                    <th class="text-white text-center">Arquivo</th>
+                    <th class="text-white text-center">Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
 
-					<?php 
+                <?php 
 					for($i=0; $i < $total_reg; $i++){
 						foreach ($res[$i] as $key => $value){	}
 
 							$arquivo = $res[$i]['arquivo'];
 
 							//BUSCAR OS DADOS DO USUARIO
-							$id_usu = $res[$i]['usuario'];
+						$id_usu = $res[$i]['usuario'];
 						$query_f = $pdo->query("SELECT * from usuarios where id = '$id_usu'");
 						$res_f = $query_f->fetchAll(PDO::FETCH_ASSOC);
 						$total_reg_f = @count($res_f);
 						if($total_reg_f > 0){ 
-							$nome_usuario = $res_f[0]['nome'];
+							$nome_usu = $res_f[0]['nome'];
 							
 						}
 
@@ -120,75 +122,82 @@ if($arquivo == ""){
 
 						?>
 
-						<tr>
-							<td class="text-center"><i class="bi bi-square-fill <?php echo $classe ?>"></i>
-								</td>
-									<td><?php echo $nome_prod ?></td>
-							<td class="text-center"><b>R$ <?php echo number_format($res[$i]['total'], 2, ',', '.'); ?></b></td>
+                <tr>
+                    <td class="text-center"><i class="bi bi-square-fill <?php echo $classe ?>"></i>
+                    </td>
+                    <td class="text-center"><b><?php echo $nome_prod ?></b></td>
+                    <td class="text-center"><b>R$ <?php echo number_format($res[$i]['total'], 2, ',', '.'); ?></b></td>
 
-							<td class="text-center"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['data']))); ?></td>
+                    <td class="text-center">
+                        <b><?php echo implode('/', array_reverse(explode('-', $res[$i]['data']))); ?></td>
 
-							<td class="text-center"><b><?php echo $nome_usuario ?></td>
+                    <td class="text-center"><b><?php echo $nome_usu ?></td>
 
-							<td class="text-center"><b><?php echo $nome_forn ?></td>
-							
-							<td class="text-center"><b><?php echo $tel_forn ?></td>
-							<td class="text-center"><b><?php echo $res[$i]['lote'] ?></td>
-							<td class="text-center"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['validade']))); ?></td>
+                    <td class="text-center"><b><?php echo $nome_forn ?></td>
 
-							<td class="text-center"><a target="_blank" href="../img/arquivos/<?php echo $arquivo ?>"><img src="../img/arquivos/<?php echo $tumb_arquivo ?>" width="40px"></a></td>
+                    <td class="text-center"><b><?php echo $tel_forn ?></td>
+                    <td class="text-center"><b><?php echo $res[$i]['lote'] ?></td>
+                    <td class="text-center">
+                        <b><?php echo implode('/', array_reverse(explode('-', $res[$i]['validade']))); ?></td>
 
-							<td class="text-center">
-								<?php if($res[$i]['pago'] != 'Sim'){ ?>
+                    <td class="text-center"><a target="_blank" href="../img/arquivos/<?php echo $arquivo ?>"><img
+                                src="../img/arquivos/<?php echo $tumb_arquivo ?>" width="40px"></a></td>
 
-								<a href="index.php?pagina=<?php echo $pag ?>&funcao=deletar&id=<?php echo $res[$i]['id'] ?>" title="Excluir Registro" style="text-decoration: none">
-									<i class="bi bi-trash-fill text-danger mx-1"></i>
-								</a>
-							<?php } ?>
-							</td>
-							
-						</tr>
+                    <td class="text-center">
+                        <?php if($res[$i]['pago'] != 'Sim'){ ?>
 
-					<?php } ?>
+                        <a href="index.php?pagina=<?php echo $pag ?>&funcao=deletar&id=<?php echo $res[$i]['id'] ?>"
+                            title="Excluir Registro" style="text-decoration: none">
+                            <i class="bi bi-trash-fill text-danger mx-1"></i>
+                        </a>
+                        <?php } ?>
+                    </td>
 
-				</tbody>
+                </tr>
 
-			</table>
-		</small>
-	<?php }else{
+                <?php } ?>
+
+            </tbody>
+
+        </table>
+    </small>
+    <?php }else{
 		echo '<p>Não existem dados para serem exibidos!!';
 	} ?>
 </div>
 
 
 
-<div class="modal fade" tabindex="-1" id="modalDeletar" >
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title">Excluir Registro</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<form method="POST" id="form-excluir">
-				<div class="modal-body">
+<div class="modal fade" tabindex="-1" id="modalDeletar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir Registro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" id="form-excluir">
+                <div class="modal-body">
 
-					<p>Deseja Realmente Excluir o Registro?</p>
+                    <p>Deseja Realmente Excluir o Registro?</p>
 
-					<small><div align="center" class="mt-1" id="mensagem-excluir">
-						
-					</div> </small>
+                    <small>
+                        <div align="center" class="mt-1" id="mensagem-excluir">
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" id="btn-fechar" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-					<button name="btn-excluir" id="btn-excluir" type="submit" class="btn btn-danger">Excluir</button>
+                        </div>
+                    </small>
 
-					<input name="id" type="hidden" value="<?php echo @$_GET['id'] ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-fechar" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Fechar</button>
+                    <button name="btn-excluir" id="btn-excluir" type="submit" class="btn btn-danger">Excluir</button>
 
-				</div>
-			</form>
-		</div>
-	</div>
+                    <input name="id" type="hidden" value="<?php echo @$_GET['id'] ?>">
+
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 
@@ -196,13 +205,13 @@ if($arquivo == ""){
 
 <?php 
 if(@$_GET['funcao'] == "deletar"){ ?>
-	<script type="text/javascript">
-		var myModal = new bootstrap.Modal(document.getElementById('modalDeletar'), {
-			
-		})
+<script type="text/javascript">
+var myModal = new bootstrap.Modal(document.getElementById('modalDeletar'), {
 
-		myModal.show();
-	</script>
+})
+
+myModal.show();
+</script>
 <?php } ?>
 
 
@@ -210,42 +219,42 @@ if(@$_GET['funcao'] == "deletar"){ ?>
 
 <!--AJAX PARA EXCLUIR DADOS -->
 <script type="text/javascript">
-	$("#form-excluir").submit(function () {
-		var pag = "<?=$pag?>";
-		event.preventDefault();
-		var formData = new FormData(this);
+$("#form-excluir").submit(function() {
+    var pag = "<?=$pag?>";
+    event.preventDefault();
+    var formData = new FormData(this);
 
-		$.ajax({
-			url: pag + "/excluir.php",
-			type: 'POST',
-			data: formData,
+    $.ajax({
+        url: pag + "/excluir.php",
+        type: 'POST',
+        data: formData,
 
-			success: function (mensagem) {
+        success: function(mensagem) {
 
-				$('#mensagem').removeClass()
+            $('#mensagem').removeClass()
 
-				if (mensagem.trim() == "Excluído com Sucesso!") {
+            if (mensagem.trim() == "Excluído com Sucesso!") {
 
-					$('#mensagem-excluir').addClass('text-success')
+                $('#mensagem-excluir').addClass('text-success')
 
-					$('#btn-fechar').click();
-					window.location = "index.php?pagina="+pag;
+                $('#btn-fechar').click();
+                window.location = "index.php?pagina=" + pag;
 
-				} else {
+            } else {
 
-					$('#mensagem-excluir').addClass('text-danger')
-				}
+                $('#mensagem-excluir').addClass('text-danger')
+            }
 
-				$('#mensagem-excluir').text(mensagem)
+            $('#mensagem-excluir').text(mensagem)
 
-			},
+        },
 
-			cache: false,
-			contentType: false,
-			processData: false,
+        cache: false,
+        contentType: false,
+        processData: false,
 
-		});
-	});
+    });
+});
 </script>
 
 
@@ -254,13 +263,9 @@ if(@$_GET['funcao'] == "deletar"){ ?>
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#example').DataTable({
-			"ordering": false
-		});
-	} );
+$(document).ready(function() {
+    $('#example').DataTable({
+        "ordering": false
+    });
+});
 </script>
-
-
-
-

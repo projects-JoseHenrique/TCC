@@ -21,8 +21,10 @@ require_once('verificar-permissao.php')
 
   }
 </style>
+<link rel="stylesheet" type="text/css" href="../vendor/DataTables/datatables.css"/>
 
-<a href="index.php?pagina=<?php echo $pag ?>&funcao=novo" type="button" class="btn btn-success mt-2">Adicionar Forma</a>
+
+<a href="index.php?pagina=<?php echo $pag ?>&funcao=novo" type="button" class="btn btn-success mt-2" style="margin-left:10px;">Adicionar Forma</a>
 
 <div class="mt-4" style="margin-right:25px">
 	<?php 
@@ -32,7 +34,7 @@ require_once('verificar-permissao.php')
 	if($total_reg > 0){ 
 		?>
 		<small>
-			<table id="example" class="table table-hover my-4" style="width:100%">
+			<table id="example" class="table table-hover my-4" style="width:100%;  margin-left:10px;">
 				<thead>
 					<tr class="bg-success">
 						<th class="text-white text-center">Código</th>

@@ -25,6 +25,7 @@ require_once('verificar-permissao.php')
 
 }
 </style>
+<link rel="stylesheet" type="text/css" href="../vendor/DataTables/datatables.css"/>
 
 
 <div class="mt-4" style="margin-right:25px">
@@ -35,7 +36,7 @@ require_once('verificar-permissao.php')
 	if($total_reg > 0){ 
 		?>
 		<small>
-       	 <table id="example" class="table table-hover my-4" style="width:100%">				
+       	 <table id="example" class="table table-hover my-4" style="width:100%; margin-left:10px;">				
 				<thead>
 					<tr class="bg-success">
 						<th class="text-white text-center">Status</th>
@@ -53,7 +54,7 @@ require_once('verificar-permissao.php')
 					for($i=0; $i < $total_reg; $i++){
 						foreach ($res[$i] as $key => $value){	}
 
-							$id_operador = $res[$i]['operador'];
+						$id_operador = $res[$i]['operador'];
 						$tipo_pgto = $res[$i]['forma_pgto'];
 
 						$data2 = implode('/', array_reverse(explode('-', $res[$i]['data'])));
@@ -66,10 +67,14 @@ require_once('verificar-permissao.php')
 
 						$res_2 = $pdo->query("SELECT * from usuarios where id = '$id_operador'");
 						$dados = $res_2->fetchAll(PDO::FETCH_ASSOC);
-						
+
 						if (!empty($dados)) {
-							$nome_operador = $dados[0]['nome'];
-						} 
+    						$nome_operador = $dados[0]['operador'];
+						} else {
+    						$nome_operador = 'Operador não encontrado'; // Ou outra mensagem personalizada
+						}
+
+
 						
 
 						if($res[$i]['status'] == 'Concluída'){
