@@ -26,46 +26,36 @@ require_once('verificar-permissao.php');
 </style>
 
 <div class="mt-4" style="margin-right:25px">
-	<?php 
+    <?php 
 	$query = $pdo->query("SELECT * from compras order by id desc");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	$total_reg = @count($res);
 	if($total_reg > 0){ 
 		?>
-		<small>
-			<table id="example" class="table table-hover my-4" style="width:100%">
-				<thead>
-					<tr class="bg-success">
-						<th class="text-white text-center">Pago</th>
-						<th class="text-white text-center">Produto</th>
-						<th class="text-white text-center">Total</th>
-						<th class="text-white text-center">Data</th>
-						<th class="text-white text-center">Gerente</th>
-						<th class="text-white text-center">Fornecedor</th>
-						<th class="text-white text-center">Tel Fornecedor</th>
-						<th class="text-white text-center">Lote</th>
-						<th class="text-white text-center">Validade</th>
-						<th class="text-white text-center">Arquivo</th>
-						
-					</tr>
-				</thead>
-				<tbody>
+    <small>
+        <table id="example" class="table table-hover my-4" style="width:100%">
+            <thead>
+                <tr class="bg-success">
+                    <th class="text-white text-center">Pago</th>
+                    <th class="text-white text-center">Produto</th>
+                    <th class="text-white text-center">Total</th>
+                    <th class="text-white text-center">Data</th>
+                    <th class="text-white text-center">Gerente</th>
+                    <th class="text-white text-center">Fornecedor</th>
+                    <th class="text-white text-center">Tel Fornecedor</th>
+                    <th class="text-white text-center">Lote</th>
+                    <th class="text-white text-center">Validade</th>
+                    <th class="text-white text-center">Arquivo</th>
 
-					<?php 
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php 
 					for($i=0; $i < $total_reg; $i++){
 						foreach ($res[$i] as $key => $value){	}
 
 							$arquivo = $res[$i]['arquivo'];
-
-							//BUSCAR OS DADOS DO USUARIO
-							$id_usu = $res[$i]['usuario'];
-						$query_f = $pdo->query("SELECT * from usuarios where id = '$id_usu'");
-						$res_f = $query_f->fetchAll(PDO::FETCH_ASSOC);
-						$total_reg_f = @count($res_f);
-						if($total_reg_f > 0){ 
-							$nome_usuario = $res_f[0]['nome'];
-							
-						}
 
 
 						//BUSCAR OS DADOS DO FORNECEDOR
@@ -77,6 +67,19 @@ require_once('verificar-permissao.php');
 							$nome_forn = $res_f[0]['nome'];
 							$tel_forn = $res_f[0]['telefone'];
 						}
+
+						//BUSCAR OS DADOS DO FORNECEDOR
+						$id_usu = $res[$i]['usuario'];
+						$query_f = $pdo->query("SELECT * from usuarios where id = '$id_usu'");
+						$res_f = $query_f->fetchAll(PDO::FETCH_ASSOC);
+						$total_reg_f = @count($res_f);
+						if($total_reg_f > 0){ 
+							$nome_usu = $res_f[0]['nome'];
+
+						}
+
+		
+
 
 
 						//BUSCAR NOME PRODUTO
@@ -120,35 +123,38 @@ require_once('verificar-permissao.php');
 
 						?>
 
-						<tr>
-							<td class="text-center">								<i class="bi bi-square-fill <?php echo $classe ?>"></i>
-								</td>
-									<td class="text-center"><b><?php echo $nome_prod ?></b></td>
-							<td class="text-center"><b>R$ <?php echo number_format($res[$i]['total'], 2, ',', '.'); ?></b></td>
+                <tr>
+                    <td class="text-center"> <i class="bi bi-square-fill <?php echo $classe ?>"></i>
+                    </td>
+                    <td class="text-center"><b><?php echo $nome_prod ?></b></td>
+                    <td class="text-center"><b>R$ <?php echo number_format($res[$i]['total'], 2, ',', '.'); ?></b></td>
 
-							<td class="text-center"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['data']))); ?></b></td>
+                    <td class="text-center">
+                        <b><?php echo implode('/', array_reverse(explode('-', $res[$i]['data']))); ?></b></td>
 
-							<td class="text-center"><b><?php echo $nome_usuario ?></b></td>
+                    <td class="text-center"><b><?php echo $nome_usu?></b></td>
 
-							<td class="text-center"><b><?php echo $nome_forn ?></b></td>
-							
-							<td class="text-center"><b><?php echo $tel_forn ?></b></td>
-							<td class="text-center"><b><?php echo $res[$i]['lote'] ?></b></td>
-							<td class="text-center"><b><?php echo implode('/', array_reverse(explode('-', $res[$i]['validade']))); ?></b></td>
+                    <td class="text-center"><b><?php echo $nome_forn ?></b></td>
+
+                    <td class="text-center"><b><?php echo $tel_forn ?></b></td>
+                    <td class="text-center"><b><?php echo $res[$i]['lote'] ?></b></td>
+                    <td class="text-center">
+                        <b><?php echo implode('/', array_reverse(explode('-', $res[$i]['validade']))); ?></b></td>
 
 
-							<td class="text-center"><a target="_blank" href="../img/arquivos/<?php echo $arquivo ?>"><img src="../img/arquivos/<?php echo $tumb_arquivo ?>" width="40px"></a></td>
-							
-							
-						</tr>
+                    <td class="text-center"><a target="_blank" href="../img/arquivos/<?php echo $arquivo ?>"><img
+                                src="../img/arquivos/<?php echo $tumb_arquivo ?>" width="40px"></a></td>
 
-					<?php } ?>
 
-				</tbody>
+                </tr>
 
-			</table>
-		</small>
-	<?php }else{
+                <?php } ?>
+
+            </tbody>
+
+        </table>
+    </small>
+    <?php }else{
 		echo '<p>Não existem dados para serem exibidos!!';
 	} ?>
 </div>
@@ -160,13 +166,9 @@ require_once('verificar-permissao.php');
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#example').DataTable({
-			"ordering": false
-		});
-	} );
+$(document).ready(function() {
+    $('#example').DataTable({
+        "ordering": false
+    });
+});
 </script>
-
-
-
-

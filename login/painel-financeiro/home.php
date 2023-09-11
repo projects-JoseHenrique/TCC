@@ -66,22 +66,30 @@ if($total_reg > 0){
 
 
 	$query = $pdo->query("SELECT * from movimentacoes order by id desc limit 1");
-	$res = $query->fetchAll(PDO::FETCH_ASSOC);
-	$valorMov = $res[0]['valor'];
-	$descricaoMov = $res[0]['descricao'];
-	$tipoMov = $res[0]['tipo'];
-	$valorMov = number_format($valorMov, 2, ',', '.');
-	if($tipoMov == 'Entrada'){	
-		$classeMov = 'text-success';
-	}else{
-		$classeMov = 'text-danger';
-	}
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
 
-	if($tipoMov == 'Entrada'){	
-		$classeMov2 = 'success';
-	}else{
-		$classeMov2 = 'danger';
-	}
+// Verifica se o array $res está vazio (sem resultados no banco de dados)
+if (empty($res)) {
+    echo ''; // Retorna um echo vazio
+} else {
+    $valorMov = $res[0]['valor'];
+    $descricaoMov = $res[0]['descricao'];
+    $tipoMov = $res[0]['tipo'];
+    $valorMov = number_format($valorMov, 2, ',', '.');
+
+    if ($tipoMov == 'Entrada') {
+        $classeMov = 'text-success';
+    } else {
+        $classeMov = 'text-danger';
+    }
+
+    if ($tipoMov == 'Entrada') {
+        $classeMov2 = 'success';
+    } else {
+        $classeMov2 = 'danger';
+    }
+}
+
 
 
 	$query = $pdo->query("SELECT * from contas_receber where vencimento < curDate() and pago != 'Sim'");

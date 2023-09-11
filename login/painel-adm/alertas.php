@@ -69,17 +69,19 @@ $data_hoje = date('Y-m-d');
 						}
 
 
-							//BUSCAR DADOS COMPRA
-						$id_compra = $res[$i]['compra'];						
-						$query_f = $pdo->query("SELECT * from compras where id = '$id_compra'");
-						$res_f = $query_f->fetchAll(PDO::FETCH_ASSOC);
-						$total_reg_f = @count($res_f);
-						if($total_reg_f > 0){ 
-							$data = $res_f[0]['data'];		
-							$quantidade = $res_f[0]['quantidade'];		
-							$lote = $res_f[0]['lote'];	
+						//BUSCAR DADOS COMPRA
+$id_compra = $res[$i]['compra'];						
+$query_f = $pdo->query("SELECT * from compras where id = '$id_compra'");
+$res_f = $query_f->fetch(PDO::FETCH_ASSOC); // Use fetch em vez de fetchAll, pois você está buscando apenas um registro
 
-						}
+if (!empty($res_f)) { 
+    $data = $res_f['data'];        
+    $quantidade = $res_f['quantidade'];        
+    $lote = $res_f['lote'];
+} else {
+    // Lide com o caso em que não há resultados encontrados, se necessário
+}
+
 						
 
 						if($res[$i]['status'] == 'Conferido'){

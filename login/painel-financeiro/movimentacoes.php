@@ -129,7 +129,7 @@ if($total_reg > 0){
 
 			$saldo = $entradas - $saidas;
 
-			$entradasF = number_format($entradas, 2, ',', '.');
+			$entradasF = number_format($entradas, 2, ',', '.'); 
 			$saidasF = number_format($saidas, 2, ',', '.');
 			$saldoF = number_format($saldo, 2, ',', '.');
 

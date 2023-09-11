@@ -67,12 +67,8 @@ require_once('verificar-permissao.php')
 
 						$res_2 = $pdo->query("SELECT * from usuarios where id = '$id_operador'");
 						$dados = $res_2->fetchAll(PDO::FETCH_ASSOC);
-
-						if (!empty($dados)) {
-    						$nome_operador = $dados[0]['operador'];
-						} else {
-    						$nome_operador = 'Operador não encontrado'; // Ou outra mensagem personalizada
-						}
+    					$nome_operador = $dados[0]['nome'];
+						
 
 
 						
