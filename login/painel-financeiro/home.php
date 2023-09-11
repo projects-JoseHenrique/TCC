@@ -659,14 +659,14 @@ if($total_reg > 0){
                             <div class="card-body cleartfix ">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="font-weight-bold text-primary text-uppercase h7">
+                                        <div class="font-weight-bold text-warning text-uppercase h7">
                                             Contas à Pagar</div>
                                             
-                                        <div class="h5 mb-0 font-weight-bold text-primary">R$ <?php echo @$pagarMesF?></div>
+                                        <div class="h5 mb-0 font-weight-bold text-warning">R$ <?php echo @$pagarMesF?></div>
                                     </div>
                                     <div class="col-auto">
-                                    <span class="text-primary font-weight-bold text-uppercase">Total de <?php echo $pagarMes ?> Contas no Mês</span>
-                                        <i class="bi bi-calendar2-check text-primary h1"></i>
+                                    <span class="text-warning font-weight-bold text-uppercase">Total de <?php echo $pagarMes ?> Contas no Mês</span>
+                                        <i class="bi bi-calendar2-check text-warning h1"></i>
                                     </div>
                                 </div>
                             </div>
@@ -674,11 +674,36 @@ if($total_reg > 0){
                     </div>
                 
                 </div>
+
+                
                 
             </div>
 
+            
+
             <div class="row mb-4">
 
+            <div class="col-xl-6 col-md-12">
+                    <div class="card overflow-hidden">
+                        <div class="card-content">
+                            <div class="card-body cleartfix ">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-warning text-uppercase h7">
+                                            Contas à Pagar</div>
+                                            
+                                        <div class="h5 mb-0 font-weight-bold text-warning">R$ <?php echo @$pagarMesF?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                    <span class="text-warning font-weight-bold text-uppercase">Total de <?php echo $pagarMes ?> Contas no Mês</span>
+                                        <i class="bi bi-calendar2-check text-warning h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
             
 <div class="col-xl-6 col-md-12">
     <div class="card overflow-hidden">
@@ -686,13 +711,14 @@ if($total_reg > 0){
             <div class="card-body cleartfix ">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="font-weight-bold <?php echo $classeSaldoM ?> text-uppercase h7">
-                            Saldo Total</div>
-                        <div class="h5 mb-0 font-weight-bold <?php echo $classeSaldoM ?>">R$ <?php echo @$saldoMesF?></div>
+                        <div class="font-weight-bold text-info text-uppercase h7">
+                        Contas à Receber</div>
+                        <div class="h5 mb-0 font-weight-bold text-info">R$ <?php echo @$totalVendasMF?></div>
                     </div>
                     <div class="col-auto">
-                    <span  class="font-weight-bold text-uppercase <?php echo $classeSaldoM ?> ">Total Arrecado este Mês</span>
-                        <i class="bi bi-archive-fill <?php echo $classeSaldoM ?> h1"></i>
+                    <span  class="font-weight-bold text-uppercase text-info ">Total de vendas  no Mês</span>
+
+                        <i class="bi bi-archive-fill text-info h1"></i>
                         
 
                     </div>
@@ -706,77 +732,8 @@ if($total_reg > 0){
 
 
 
-<div class="col-xl-6 col-md-12">
-    <div class="card overflow-hidden">
-        <div class="card-content">
-            <div class="card-body cleartfix ">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="font-weight-bold text-primary text-uppercase h7">
-                            Contas à Receber</div>
-                            
-                        <div class="h5 mb-0 font-weight-bold text-primary">R$ <?php echo @$pagarMesF?></div>
-                    </div>
-                    <div class="col-auto">
-                    <span class="text-primary font-weight-bold text-uppercase">Total de <?php echo $pagarMes ?> Contas no Mês</span>
-                        <i class="bi bi-calendar2-check text-primary h1"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
-</div>
-
-            <div class="row mb-4">
-
-                <div class="col-xl-6 col-md-12">
-                    <div class="card overflow-hidden">
-                        <div class="card-content">
-                            <div class="card-body cleartfix">
-                                <div class="row media align-items-stretch">
-                                    <div class="align-self-center col-1">
-                                        <i class="bi bi-calendar-week-fill text-success fs-1 mr-2"></i>
-                                    </div>
-                                    <div class="media-body col-6">
-                                        <h4>Contas à Receber</h4>
-                                        <span>Total de <?php echo $receberMes ?> Contas no Mês</span>
-                                    </div>
-                                    <div class="text-end col-5">
-                                        <h2>R$ <?php echo @$receberMesF ?></h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-6 col-md-12">
-                    <div class="card overflow-hidden">
-                        <div class="card-content">
-                            <div class="card-body cleartfix">
-                                <div class="row media align-items-stretch">
-                                    <div class="align-self-center col-1">
-                                        <i class="bi bi-calendar2-plus-fill text-success fs-1 mr-2"></i>
-                                    </div>
-                                    <div class="media-body col-6">
-                                        <h4>Total de Vendas</h4>
-                                        <span>Vendas do Mês em R$</span>
-                                    </div>
-                                    <div class="text-end col-5">
-                                        <h2>R$ <?php echo $totalVendasMF ?></h2>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
 
 
         </section>
@@ -928,138 +885,144 @@ $totalVenM = 0;
 
         </section>
 
+        <!DOCTYPE html>
+<html>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+</head>
 
-        <div class="container">
-            <h2>Vendas por Mês do ano de <?php echo $ano_atual?></h2>
-            <div>
-                <canvas id="myChart"></canvas>
-            </div>
+<body>
+    <div class="container">
+        <h2>Vendas por Mês do ano de <?php echo $ano_atual ?></h2>
 
+        <div>
+            <canvas id="valorChart"></canvas>
+        </div>
 
-            <?php
+        <div>
+            <canvas id="quantidadeChart"></canvas>
+        </div>
+
+        <?php
         // Ano atual (substitua pelo ano desejado)
         $ano_atual = date("Y");
 
         // Inicialize variáveis
         $total_vendas = 0;
         $total_valor_arrecadado = 0;
-
-		
         ?>
 
+        <script>
+            var ctxValor = document.getElementById("valorChart").getContext("2d");
+            var ctxQuantidade = document.getElementById("quantidadeChart").getContext("2d");
 
+            var valorChart = new Chart(ctxValor, {
+    type: "bar", // Gráfico de barras
+    data: {
+        labels: [
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembro"
+        ],
+        datasets: [{
+            label: "Vendas em Reais",
+            data: [
+                <?php
+                for ($i = 1; $i <= 12; $i++) {
+                    $dataMesInicio = $ano_atual . "-" . $i . "-01";
+                    $dataMesFinal = $ano_atual . "-" . $i . "-31";
 
-            <script>
-            var ctx = document.getElementById("myChart").getContext("2d");
-            var myChart = new Chart(ctx, {
-                type: "bar", // Gráfico de barras
-                data: {
-                    labels: [
-                        "Janeiro",
-                        "Fevereiro",
-                        "Março",
-                        "Abril",
-                        "Maio",
-                        "Junho",
-                        "Julho",
-                        "Agosto",
-                        "Setembro",
-                        "Outubro",
-                        "Novembro",
-                        "Dezembro"
-                    ],
-                    datasets: [{
-                        label: "Vendas em Reais",
-                        data: [
-                            <?php
-                    for ($i = 1; $i <= 12; $i++) {
-                        $dataMesInicio = $ano_atual . "-" . $i . "-01";
-                        $dataMesFinal = $ano_atual . "-" . $i . "-31";
+                    $query = $pdo->query("SELECT * from vendas where data >= '$dataMesInicio' and data <= '$dataMesFinal' and status = 'Concluída'");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    $total_vendas_mes = @count($res);
 
-                        $query = $pdo->query("SELECT * from vendas where data >= '$dataMesInicio' and data <= '$dataMesFinal' and status = 'Concluída'");
-                        $res = $query->fetchAll(PDO::FETCH_ASSOC);
-                        $total_vendas_mes = @count($res);
-						
+                    $totalValor = 0;
 
-                        $totalValor = 0;
-
-                        for ($i2 = 0; $i2 < $total_vendas_mes; $i2++) {
-                            $totalValor += $res[$i2]['valor'];
-                        }
-
-                        echo $totalValor;
-
-                        if ($i != 12) {
-                            echo ",";
-                        }
-
-                        // Atualize o total de vendas e o valor arrecadado
-                        $total_vendas += $total_vendas_mes;
-                        $total_valor_arrecadado += $totalValor;
-
-						
+                    for ($i2 = 0; $i2 < $total_vendas_mes; $i2++) {
+                        $totalValor += $res[$i2]['valor'];
                     }
-                    ?>
-                        ],
-                        backgroundColor: [
-                            "rgba(255, 0, 0, 0.6)",
-                            "rgba(0, 0, 255, 0.6)",
-                            "rgba(255, 102, 0, 0.6)",
-                            "rgba(0, 153, 51, 0.6)",
-                            "rgba(255, 0, 0, 0.6)",
-                            "rgba(0, 0, 255, 0.6)",
-                            "rgba(255, 102, 0, 0.6)",
-                            "rgba(0, 153, 51, 0.6)",
-                            "rgba(255, 0, 0, 0.6)",
-                            "rgba(0, 0, 255, 0.6)",
-                            "rgba(255, 102, 0, 0.6)",
-                            "rgba(0, 153, 51, 0.6)"
-                        ]
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+
+                    echo $totalValor;
+
+                    if ($i != 12) {
+                        echo ",";
                     }
+
+                    // Atualize o total de vendas e o valor arrecadado
+                    $total_vendas += $total_vendas_mes;
+                    $totalValorF = number_format($totalValor, 2, ',', '.');
                 }
-            });
-            </script>
-            <div>
+                ?>
+            ],
+            backgroundColor: [
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
+                "rgba(0, 255, 0, 0.6)",
 
-                <style>
-                .rodape {
-                    margin-left: 48px;
-                    font-family: 'Courier New', Courier, monospace;
-                    font-size: 18px;
-                }
+            ]
+        }]
+    },
+    options: {
+        scales: {
+            x: {
+                min: 0, // Defina o valor mínimo do eixo x
+                max: 11, // Defina o valor máximo do eixo x (0 a 11 representa os meses de janeiro a dezembro)
+            },
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+    
+});
 
-                .info {
-                    font-weight: bold;
-                    text-transform: uppercase;
-                }
 
-                .dinheiro {
-                    font-weight: bold;
-                    color: #009933;
-                }
-                </style>
+</script>
 
+<p class="rodape"><span class="info">Total de Vendas do ano de <?php echo $ano_atual ?></span>: <span class="dinheiro">R$ <?php echo $total_vendas ?></span></p>
+        <style>
+            .rodape {
+                margin-left: 48px;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 18px;
+                position: absolute;
+                margin-bottom: 20px;
+            }
 
-                <div class="mt-4"></div>
-                <p class="rodape"><span class="info">Total de Vendas do ano de
-                        <?php echo $ano_atual ?></span>: <span class="dinheiro">R$
-                        <?php echo number_format($total_valor_arrecadado, 2, ',', '.'); ?></span></p>
-            </div>
+            .info {
+                font-weight: bold;
+                text-transform: uppercase;
+            }
 
-        </div>
+            .dinheiro {
+                font-weight: bold;
+                color: #0000FF;
+            }
+        </style>
+        
 
 </body>
 
 </html>
+
