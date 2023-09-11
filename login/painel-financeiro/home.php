@@ -516,8 +516,8 @@ if($total_reg > 0){
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="font-weight-bold text-success text-uppercase h7">
-                                            R$ Vendas Hoje</div>
-                                        <div class="h5 mb-0 font-weight-bold text-success"><?php echo @$vendas_rs?>
+                                            Vendas Hoje</div>
+                                        <div class="h5 mb-0 font-weight-bold text-success">R$ <?php echo @$vendas_rs?>
                                         </div>
                                     </div>
                                     <div class="col-auto">
@@ -591,8 +591,8 @@ if($total_reg > 0){
                                             Movimentações</div>
                                         <div><span class="  font-weight-bold <?php echo $classeMov ?>">R$
                                                 <?php echo @$valorMov ?></span></div>
-                                        <div><span class=" font-weight-bold <?php echo $classeMov ?>">
-                                                Obs: <?php echo @$descricaoMov ?></span></div>
+                                        <div><span class="font-weight-bold <?php echo $classeMov ?>">
+                                                OBS:<?php echo @$descricaoMov ?></span></div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="bi bi-cash <?php echo $classeMov ?> fs-1 float-start"></i>
@@ -624,97 +624,111 @@ if($total_reg > 0){
                 </div>
             </div>
 
-            <div class="row mb-4 bg">
+            <div class="row mb-4">
 
-                <div class="col-xl-6 col-md-12">
-                    <div class="card overflow-hidden">
-                        <div class="card-content">
-                            <div class="card-body cleartfix ">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="font-weight-bold text-success text-uppercase h7">
-                                            Saldo Total</div>
-                                        <div class="h5 mb-0 font-weight-bold text-success"><?php echo @$saidasF?></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="bi bi-archive-fill text-success h1"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            
 				<div class="col-xl-6 col-md-12">
                     <div class="card overflow-hidden">
                         <div class="card-content">
                             <div class="card-body cleartfix ">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="font-weight-bold text-success text-uppercase h7">
-                                            Saídas do Dia</div>
-                                        <div class="h5 mb-0 font-weight-bold text-success"><?php echo @$saidasF?></div>
+                                        <div class="font-weight-bold <?php echo $classeSaldoM ?> text-uppercase h7">
+                                            Saldo Total</div>
+                                        <div class="h5 mb-0 font-weight-bold <?php echo $classeSaldoM ?>">R$ <?php echo @$saldoMesF?></div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="bi bi-archive-fill text-success h1"></i>
+                                    <span  class="font-weight-bold text-uppercase <?php echo $classeSaldoM ?> ">Total Arrecado este Mês</span>
+                                        <i class="bi bi-archive-fill <?php echo $classeSaldoM ?> h1"></i>
+                                        
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                
+
 
 				
                 <div class="col-xl-6 col-md-12">
                     <div class="card overflow-hidden">
                         <div class="card-content">
                             <div class="card-body cleartfix ">
-                                <div class="row media align-items-stretch ">
-                                    <div class="align-self-center col-1">
-                                        <i class="bi-calendar2-date text-primary fs-1 mr-2"></i>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-primary text-uppercase h7">
+                                            Contas à Pagar</div>
+                                            
+                                        <div class="h5 mb-0 font-weight-bold text-primary">R$ <?php echo @$pagarMesF?></div>
                                     </div>
-                                    <div class="media-body col-6">
-                                        <h4>Saldo Total</h4>
-                                        <span>Total Arrecado este Mês</span>
-                                    </div>
-                                    <div class="text-end col-5">
-                                        <h2><span class="<?php echo $classeSaldoM ?>">R$
-                                                <?php echo $saldoMesF ?></h2></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-3"></div>
-
-
-
-                <div class="col-xl-6 col-md-12">
-                    <div class="card overflow-hidden">
-                        <div class="card-content">
-                            <div class="card-body cleartfix">
-                                <div class="row media align-items-stretch">
-                                    <div class="align-self-center col-1">
-                                        <i class="bi bi-calendar-week-fill text-danger fs-1 mr-2"></i>
-                                    </div>
-                                    <div class="media-body col-6">
-                                        <h4>Contas à Pagar</h4>
-                                        <span>Total de <?php echo $pagarMes ?> Contas no Mês</span>
-                                    </div>
-                                    <div class="text-end col-5">
-                                        <h2>R$ <?php echo @$pagarMesF ?></h2>
+                                    <div class="col-auto">
+                                    <span class="text-primary font-weight-bold text-uppercase">Total de <?php echo $pagarMes ?> Contas no Mês</span>
+                                        <i class="bi bi-calendar2-check text-primary h1"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                
                 </div>
-
-
-
+                
             </div>
 
+            <div class="row mb-4">
+
+            
+<div class="col-xl-6 col-md-12">
+    <div class="card overflow-hidden">
+        <div class="card-content">
+            <div class="card-body cleartfix ">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="font-weight-bold <?php echo $classeSaldoM ?> text-uppercase h7">
+                            Saldo Total</div>
+                        <div class="h5 mb-0 font-weight-bold <?php echo $classeSaldoM ?>">R$ <?php echo @$saldoMesF?></div>
+                    </div>
+                    <div class="col-auto">
+                    <span  class="font-weight-bold text-uppercase <?php echo $classeSaldoM ?> ">Total Arrecado este Mês</span>
+                        <i class="bi bi-archive-fill <?php echo $classeSaldoM ?> h1"></i>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="col-xl-6 col-md-12">
+    <div class="card overflow-hidden">
+        <div class="card-content">
+            <div class="card-body cleartfix ">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="font-weight-bold text-primary text-uppercase h7">
+                            Contas à Receber</div>
+                            
+                        <div class="h5 mb-0 font-weight-bold text-primary">R$ <?php echo @$pagarMesF?></div>
+                    </div>
+                    <div class="col-auto">
+                    <span class="text-primary font-weight-bold text-uppercase">Total de <?php echo $pagarMes ?> Contas no Mês</span>
+                        <i class="bi bi-calendar2-check text-primary h1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
 
             <div class="row mb-4">
 
