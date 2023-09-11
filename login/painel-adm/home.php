@@ -13,7 +13,7 @@ $mes_atual = Date('m');
 $ano_atual = Date('Y');
 $dataInicioMes = $ano_atual."-".$mes_atual."-01";
 
-$query = $pdo->query("SELECT * from produtos");
+	$query = $pdo->query("SELECT * from produtos");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	$totalProdutos = @count($res);
 

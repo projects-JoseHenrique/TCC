@@ -50,6 +50,12 @@ if($total_reg > 0){
 				$classeSaldo = 'text-success';
 			}
 
+			if($saldo < 0){
+				$classeSaldo2 = 'danger';
+			}else{
+				$classeSaldo2 = 'success';
+			}
+
 		}
 
 	}
@@ -66,6 +72,12 @@ if($total_reg > 0){
 		$classeMov = 'text-success';
 	}else{
 		$classeMov = 'text-danger';
+	}
+
+	if($tipoMov == 'Entrada'){	
+		$classeMov2 = 'success';
+	}else{
+		$classeMov2 = 'danger';
 	}
 
 
@@ -85,6 +97,37 @@ if($total_reg > 0){
 	$query = $pdo->query("SELECT * from alerta_vencimentos where data_alerta <= curDate() ");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	$alerta_produtos = @count($res);
+
+	$query = $pdo->query("SELECT * from fornecedores");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	$totalFornecedores = @count($res);
+
+	$contas_receber_vencidas_rs = 0;
+	$query = $pdo->query("SELECT * from contas_receber where vencimento < curDate() and pago != 'Sim'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	$contas_receber_vencidas = @count($res);
+	if($contas_receber_vencidas > 0){ 
+		for($i=0; $i < $contas_receber_vencidas; $i++){
+			$contas_receber_vencidas_rs += $res[$i]['valor'];
+		}
+		$contas_receber_vencidas_rs = number_format($contas_receber_vencidas_rs, 2, ',', '.');
+	}
+
+	
+	$query = $pdo->query("SELECT * from contas_receber where vencimento = curDate() and pago != 'Sim'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	$contas_receber_hoje = @count($res);
+
+	$contas_pagar_vencidas_rs = 0;
+	$query = $pdo->query("SELECT * from contas_pagar where vencimento < curDate() and pago != 'Sim'");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	$contas_pagar_vencidas = @count($res);
+	if($contas_pagar_vencidas > 0){ 
+		for($i=0; $i < $contas_pagar_vencidas; $i++){
+			$contas_pagar_vencidas_rs += $res[$i]['valor'];
+		}
+		$contas_pagar_vencidas_rs = number_format($contas_pagar_vencidas_rs, 2, ',', '.');
+	}
 	
 
 	$query = $pdo->query("SELECT * from contas_receber where vencimento = curDate() and pago != 'Sim'");
@@ -139,6 +182,17 @@ if($total_reg > 0){
 
 			}
 
+		}
+
+		$vendas_rs = 0;
+		$query = $pdo->query("SELECT * from vendas where data = curDate()");
+		$res = $query->fetchAll(PDO::FETCH_ASSOC);
+		$totalVendasDia = @count($res);
+		if($totalVendasDia > 0){ 
+			for($i=0; $i < $totalVendasDia; $i++){
+				$vendas_rs += $res[$i]['valor'];
+			}
+			$vendas_rs = number_format($vendas_rs, 2, ',', '.');
 		}
 
 
@@ -267,6 +321,8 @@ if($total_reg > 0){
                             </div>
                         </div>
                     </div>
+
+
 
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-warning shadow h-100 py-2">
@@ -508,37 +564,17 @@ if($total_reg > 0){
                     </div>
 
                     <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card border-left-<?php echo $classeSaldo2 ?> shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="align-self-center col-3">
-                                            <i class="bi bi-cash <?php echo $classeSaldo ?> fs-1 float-start"></i>
-                                        </div>
-                                        <div class="col-9 text-end">
-                                            <h3> <span class="<?php echo $classeSaldo ?>">R$
-                                                    <?php echo @$saldoF ?></span></h3>
-                                            <span>Saldo do Dia</span>
-                                        </div>
+                                        <div class="font-weight-bold <?php echo $classeSaldo ?> text-uppercase h7">
+                                            Saldo do dia</div>
+                                        <div><span class="<?php echo $classeSaldo ?>">R$
+                                                <?php echo @$saldoF ?></span></div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="align-self-center col-3">
-                                            <i
-                                                class="bi bi-exclamation-triangle-fill <?php echo $classeMov ?> fs-1 float-start"></i>
-                                        </div>
-                                        <div class="col-9 text-end">
-                                            <h3>R$ <?php echo @$valorMov ?></h3>
-                                            <span><?php echo $descricaoMov ?></span>
-                                        </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-cash <?php echo $classeSaldo ?> fs-1 float-start"></i>
                                     </div>
                                 </div>
                             </div>
@@ -546,8 +582,28 @@ if($total_reg > 0){
                     </div>
 
 
+					<div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-<?php echo $classeMov2 ?> shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold <?php echo $classeMov ?> text-uppercase h7">
+                                            Movimentações</div>
+                                        <div><span class="<?php echo $classeMov ?>">R$
+                                                <?php echo @$valorMov ?></span></div>
+												<div><span class="<?php echo $classeMov ?>">
+                                               Obs: <?php echo @$descricaoMov ?></span></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-cash <?php echo $classeMov ?> fs-1 float-start"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
+                   
                     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
                     <div class="container-fluid">
@@ -561,42 +617,8 @@ if($total_reg > 0){
 
                             <div class="row mb-4">
 
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                    <div class="card">
-                                        <div class="card-content">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="align-self-center col-3">
-                                                        <i class="bi bi-cash text-success fs-1 float-start"></i>
-                                                    </div>
-                                                    <div class="col-9 text-end">
-                                                        <h3> <span class="text-success">R$
-                                                                <?php echo @$entradasF ?></span></h3>
-                                                        <span>Entradas do Dia</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-xl-3 col-sm-6 col-12">
-                                    <div class="card">
-                                        <div class="card-content">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="align-self-center col-3">
-                                                        <i class="bi bi-cash text-danger fs-1 float-start"></i>
-                                                    </div>
-                                                    <div class="col-9 text-end">
-                                                        <h3> <span class="">R$ <?php echo @$saidasF ?></span></h3>
-                                                        <span>Saídas do Dia</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
 
 
                                 <div class="col-xl-3 col-sm-6 col-12">
