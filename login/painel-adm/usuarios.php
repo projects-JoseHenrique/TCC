@@ -74,7 +74,7 @@ require_once('verificar-permissao.php')
 
 <tr>
     <td class="text-center">
-        <img src="<?php echo ($res[$i]['genero'] === 'masculino') ? '../img/usuarios/masc-user.png' : (($res[$i]['genero'] === 'feminino') ? '../img/usuarios/fem-user.png' : '../img/usuarios/sem-foto.jpg'); ?>"
+        <img src="<?php echo ($res[$i]['genero'] === 'masculino') ? '../img/usuarios/masc-user.png' : (($res[$i]['genero'] === 'feminino') ? '../img/usuarios/fem-user.png' : '../img/usuarios/sem-foto.png'); ?>"
             alt="Ícone de Gênero" width="40px" height="40px">
     </td>
 
