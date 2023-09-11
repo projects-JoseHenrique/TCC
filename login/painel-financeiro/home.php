@@ -45,9 +45,12 @@ if($total_reg > 0){
 			$saldoF = number_format($saldo, 2, ',', '.');
 
 			if($saldo < 0){
-				$classeSaldo = 'text-danger';
+				$classeSaldo = 'text-danger ' ;
+                $iconeSaldo = 'bi bi-hand-thumbs-down-fill';
 			}else{
 				$classeSaldo = 'text-success';
+                $iconeSaldo = 'bi bi-hand-thumbs-up-fill';
+
 			}
 
 			if($saldo < 0){
@@ -176,8 +179,12 @@ if($total_reg > 0){
 
 				if($saldoMesF < 0){
 					$classeSaldoM = 'text-danger';
+					$iconeSaldoM = 'bi bi-hand-thumbs-down-fill';
+
 				}else{
 					$classeSaldoM = 'text-success';
+					$iconeSaldoM = 'bi bi-hand-thumbs-up-fill';
+
 				}
 
 			}
@@ -574,7 +581,7 @@ if($total_reg > 0){
                                                 <?php echo @$saldoF ?></span></div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="bi bi-cash <?php echo $classeSaldo ?> fs-1 float-start"></i>
+                                        <i class="<?php echo @$iconeSaldo?> <?php echo $classeSaldo ?> fs-1 float-start"></i>
                                     </div>
                                 </div>
                             </div>
@@ -619,7 +626,7 @@ if($total_reg > 0){
         <section id="stats-subtitle">
             <div class="row mb-2">
                 <div class="col-12 mt-3 mb-1">
-                    <h4 class="text-uppercase">Estatísticas Mensais</h4>
+                    <h4 class="text-uppercase text-center font-weight-bold">Estatísticas do Sistema</h4>
 
                 </div>
             </div>
@@ -639,7 +646,7 @@ if($total_reg > 0){
                                     </div>
                                     <div class="col-auto">
                                     <span  class="font-weight-bold text-uppercase <?php echo $classeSaldoM ?> ">Total Arrecado este Mês</span>
-                                        <i class="bi bi-bar-chart-fill <?php echo $classeSaldoM ?> h1"></i>
+                                        <i class="<?php echo $iconeSaldoM ?>  <?php echo $classeSaldoM ?> h1"></i>
                                         
 
                                     </div>
@@ -739,12 +746,7 @@ if($total_reg > 0){
         </section>
 
         <section id="stats-subtitle">
-            <div class="row mb-2">
-                <div class="col-12 mt-3 mb-1">
-                    <h4 class="text-uppercase">Modelo de Gráficos</h4>
-
-                </div>
-            </div>
+            
 
 
 
@@ -833,7 +835,7 @@ if($total_reg > 0){
             </style>
 
             <div id="principal">
-                <p>Vendas no Ano de <?php echo $ano_atual ?></p>
+                
                 <?php
 // definindo porcentagem
 //BUSCAR O TOTAL DE VENDAS POR MES NO ANO
@@ -885,15 +887,110 @@ $totalVenM = 0;
 
         </section>
 
-        <!DOCTYPE html>
-<html>
 
+
+
+        <!DOCTYPE html>
+<html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Vendas por Mês</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
-    <style>
+</head>
+<body>
+    <?php
+    // Ano atual (substitua pelo ano desejado)
+    $ano_atual = date("Y");
+
+    // Inicialize variáveis
+    $total_vendas = 0;
+    $totalValor = 0;
+
+    // Conexão com o banco de dados (substitua pelas suas informações)
+   
+    
+    ?>
+    
+    <div class="container">
+        <h2>Vendas por Mês do ano de <?php echo $ano_atual ?></h2>
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+        
+        <script>
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var myChart = new Chart(ctx, {
+            type: "bar", // Gráfico de barras
+            data: {
+                labels: [
+                    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+                ],
+                datasets: [{
+                    label: "Vendas em Reais",
+                    data: [
+                        <?php
+                        for ($i = 1; $i <= 12; $i++) {
+                            $dataMesInicio = $ano_atual . "-" . $i . "-01";
+                            $dataMesFinal = $ano_atual . "-" . $i . "-31";
+                            
+                            $query = $pdo->query("SELECT * FROM vendas WHERE data >= '$dataMesInicio' AND data <= '$dataMesFinal' AND status = 'Concluída'");
+                            $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                            $total_vendas_mes = @count($res);
+                            
+                            $totalValorMes = 0;
+                            
+                            foreach ($res as $venda) {
+                                $totalValorMes += $venda['valor'];
+                            }
+                            
+                            echo $totalValorMes;
+                            
+                            if ($i != 12) {
+                                echo ",";
+                            }
+                            
+                            // Atualize o total de vendas e o valor arrecadado
+                            $total_vendas += $total_vendas_mes;
+                            $totalValor += $totalValorMes;
+                        }
+                        ?>
+                    ],
+                    backgroundColor: [
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+                        "rgba(0, 255, 0, 0.6)", 
+
+                        
+
+                        
+                    ]
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        </script>
+        
+        <style>
         .rodape {
             margin-left: 48px;
             font-family: 'Courier New', Courier, monospace;
@@ -909,140 +1006,11 @@ $totalVenM = 0;
             font-weight: bold;
             color: #009933;
         }
-    </style>
-</head>
+        </style>
 
-<body>
-    <div class="container">
-        <?php
-        // Ano atual (substitua pelo ano desejado)
-        $ano_atual = date("Y");
-
-        // Inicialize variáveis
-        $totalValorReais = array();
-        $totalVendas = array();
-
-        for ($i = 1; $i <= 12; $i++) {
-            $dataMesInicio = $ano_atual . "-" . $i . "-01";
-            $dataMesFinal = $ano_atual . "-" . $i . "-31";
-
-            $query = $pdo->query("SELECT * from vendas where data >= '$dataMesInicio' and data <= '$dataMesFinal' and status = 'Concluída'");
-            $res = $query->fetchAll(PDO::FETCH_ASSOC);
-
-            $totalVendasReais = 0;
-            $totalVendasQuantidade = 0;
-
-            foreach ($res as $venda) {
-                $totalVendasReais += $venda['valor'];
-                $totalVendasQuantidade += $venda['total_venda'];
-            }
-
-            $totalValorReais[] = $totalVendasReais;
-            $totalVendas[] = $totalVendasQuantidade;
-        }
-        ?>
-
-        <h2>Total de Vendas em Reais por Mês do ano de <?php echo $ano_atual ?></h2>
-
-        <!-- Primeiro Gráfico: Total de Vendas em Reais -->
-        <div>
-            <canvas id="valorChart1"></canvas>
-        </div>
-
-        <!-- Informação para o primeiro gráfico -->
         <div class="mt-4"></div>
-        <p class="rodape"><span class="info">Total de Vendas em Reais do ano de <?php echo $ano_atual ?></span>: <span class="dinheiro">R$ <?php echo array_sum($totalValorReais) ?></span></p>
-
-        <h2>Total de Vendas por Quantidade por Mês do ano de <?php echo $ano_atual ?></h2>
-
-        <!-- Segundo Gráfico: Total de Vendas por Quantidade -->
-        <div>
-            <canvas id="valorChart2"></canvas>
-        </div>
-
-        <!-- Informação para o segundo gráfico -->
-        <div class="mt-4"></div>
-        <p class="rodape"><span class="info">Total de Vendas por Quantidade do ano de <?php echo $ano_atual ?></span>: <?php echo array_sum($totalVendas) ?></p>
-
-        <script>
-            var ctxValor1 = document.getElementById("valorChart1").getContext("2d");
-
-            var valorChart1 = new Chart(ctxValor1, {
-                type: "bar", // Gráfico de barras
-                data: {
-                    labels: [
-                        "Janeiro",
-                        "Fevereiro",
-                        "Março",
-                        "Abril",
-                        "Maio",
-                        "Junho",
-                        "Julho",
-                        "Agosto",
-                        "Setembro",
-                        "Outubro",
-                        "Novembro",
-                        "Dezembro"
-                    ],
-                    datasets: [{
-                        label: "Total de Vendas em Reais",
-                        data: <?php echo json_encode($totalValorReais) ?>,
-                        backgroundColor: "rgba(255, 0, 0, 0.6)"
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            min: 0, // Defina o valor mínimo do eixo x
-                            max: 11, // Defina o valor máximo do eixo x (0 a 11 representa os meses de janeiro a dezembro)
-                        },
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            // Segundo Gráfico
-            var ctxValor2 = document.getElementById("valorChart2").getContext("2d");
-
-            var valorChart2 = new Chart(ctxValor2, {
-                type: "bar", // Gráfico de barras
-                data: {
-                    labels: [
-                        "Janeiro",
-                        "Fevereiro",
-                        "Março",
-                        "Abril",
-                        "Maio",
-                        "Junho",
-                        "Julho",
-                        "Agosto",
-                        "Setembro",
-                        "Outubro",
-                        "Novembro",
-                        "Dezembro"
-                    ],
-                    datasets: [{
-                        label: "Total de Vendas por Quantidade",
-                        data: <?php echo json_encode($totalVendas) ?>,
-                        backgroundColor: "rgba(0, 0, 255, 0.6)"
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            min: 0, // Defina o valor mínimo do eixo x
-                            max: 11, // Defina o valor máximo do eixo x (0 a 11 representa os meses de janeiro a dezembro)
-                        },
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        </script>
+        <p class="rodape"><span class="info">Total de Vendas do ano de <?php echo $ano_atual ?></span>: <span class="dinheiro">R$ <?php echo number_format($totalValor, 2, ',', '.') ?></span></p>
+        <p class="rodape">Total de Vendas do ano de <?php echo $ano_atual ?>: <?php echo $total_vendas ?></p>
     </div>
 </body>
-
 </html>
