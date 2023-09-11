@@ -237,16 +237,33 @@ $query = $pdo->query("SELECT * from produtos");
                     </div>
 
 					<div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-warning text-uppercase h7">
+                                            Estoque Baixo</div>
+                                        <div class="h5 mb-0 font-weight-bold text-warning" ><?php echo @$totalEstoqueBaixo?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-exclamation-octagon-fill text-warning h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-danger shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="font-weight-bold text-danger text-uppercase h7">
-                                            Estoque Baixo</div>
-                                        <div class="h5 mb-0 font-weight-bold text-danger" ><?php echo @$totalEstoqueBaixo?></div>
+                                            Produtos Vencendo </div>
+                                        <div class="h5 mb-0 font-weight-bold text-danger" ><?php echo @$alerta_produtos?></div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="bi bi-exclamation-octagon-fill text-danger h1"></i>
+                                        <i class="bi bi-exclamation-triangle-fill text-danger h1"></i>
                                     </div>
                                 </div>
                             </div>
@@ -270,22 +287,7 @@ $query = $pdo->query("SELECT * from produtos");
                         </div>
                     </div>
 
-					<div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="font-weight-bold text-success text-uppercase h7">
-                                            Total Vendas Dia</div>
-                                        <div class="h5 mb-0 font-weight-bold text-success" ><?php echo @$totalVendasDia?></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="bi bi-basket2-fill text-success h1"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+					
 
 					<div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-warning shadow h-100 py-2">
@@ -355,22 +357,26 @@ $query = $pdo->query("SELECT * from produtos");
                         </div>
                     </div>
 
-					<div class="col-xl-3 col-md-6 mb-4">
+
+
+										<div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-danger shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="font-weight-bold text-danger text-uppercase h7">
-                                            Produtos Vencendo </div>
-                                        <div class="h5 mb-0 font-weight-bold text-danger" ><?php echo @$alerta_produtos?></div>
+										R$ Receber Vencidas</div>
+                                        <div class="h5 mb-0 font-weight-bold text-danger" ><?php echo @$contas_receber_vencidas_rs?></div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="bi bi-exclamation-triangle-fill text-danger h1"></i>
+                                        <i class="bi bi-cash-stack text-danger h1"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+					
 
 					<div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-danger shadow h-100 py-2">
@@ -388,23 +394,23 @@ $query = $pdo->query("SELECT * from produtos");
                             </div>
                         </div>
                     </div>
-
 					<div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-danger shadow h-100 py-2">
+                        <div class="card border-left-success shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="font-weight-bold text-danger text-uppercase h7">
-										R$ Receber Vencidas</div>
-                                        <div class="h5 mb-0 font-weight-bold text-danger" ><?php echo @$contas_receber_vencidas_rs?></div>
+                                        <div class="font-weight-bold text-success text-uppercase h7">
+                                            Total Vendas Dia</div>
+                                        <div class="h5 mb-0 font-weight-bold text-success" ><?php echo @$totalVendasDia?></div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="bi bi-cash-stack text-danger h1"></i>
+                                        <i class="bi bi-basket2-fill text-success h1"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
 
 					<div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-success shadow h-100 py-2">
