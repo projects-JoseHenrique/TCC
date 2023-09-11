@@ -19,10 +19,7 @@ if($pago == 'Sim'){
 	exit();
 }
 
-if($descricao == 'Compra de Produtos'){
-	echo 'Essa conta foi lançada pelo Gerente / Administrador, você não pode editá-la!';
-	exit();
-}
+
 }
 
 

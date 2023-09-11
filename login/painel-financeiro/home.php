@@ -73,6 +73,19 @@ if($total_reg > 0){
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
 	$contas_receber_vencidas = @count($res);
 
+	$query = $pdo->query("SELECT * from produtos");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	$totalProdutos = @count($res);
+
+	$query = $pdo->query("SELECT * from produtos where estoque < estoque_min");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	$totalEstoqueBaixo = @count($res);
+
+	//produtos vencendo
+	$query = $pdo->query("SELECT * from alerta_vencimentos where data_alerta <= curDate() ");
+	$res = $query->fetchAll(PDO::FETCH_ASSOC);
+	$alerta_produtos = @count($res);
+	
 
 	$query = $pdo->query("SELECT * from contas_receber where vencimento = curDate() and pago != 'Sim'");
 	$res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -185,341 +198,663 @@ if($total_reg > 0){
 		?>
 
 
-		
-
-
-		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-
-		<div class="container-fluid">
-			<section id="minimal-statistics">
-				<div class="row mb-2">
-					<div class="col-12 mt-3 mb-1">
-						<h4 class="text-uppercase">Estatísticas Financeiras</h4>
-
-					</div>
-				</div>
-
-				<div class="row mb-4">
-
-					<div class="col-xl-3 col-sm-6 col-12"> 
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<div class="row">
-										<div class="align-self-center col-3">
-											<i class="bi bi-cash text-success fs-1 float-start"></i>
-										</div>
-										<div class="col-9 text-end">
-											<h3> <span class="text-success">R$ <?php echo @$entradasF ?></span></h3>
-											<span>Entradas do Dia</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-xl-3 col-sm-6 col-12"> 
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<div class="row">
-										<div class="align-self-center col-3">
-											<i class="bi bi-cash text-danger fs-1 float-start"></i>
-										</div>
-										<div class="col-9 text-end">
-											<h3> <span class="">R$ <?php echo @$saidasF ?></span></h3>
-											<span>Saídas do Dia</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="col-xl-3 col-sm-6 col-12"> 
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<div class="row">
-										<div class="align-self-center col-3">
-											<i class="bi bi-cash <?php echo $classeSaldo ?> fs-1 float-start"></i>
-										</div>
-										<div class="col-9 text-end">
-											<h3> <span class="<?php echo $classeSaldo ?>">R$ <?php echo @$saldoF ?></span></h3>
-											<span>Saldo do Dia</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="col-xl-3 col-sm-6 col-12"> 
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<div class="row">
-										<div class="align-self-center col-3">
-											<i class="bi bi-exclamation-triangle-fill <?php echo $classeMov ?> fs-1 float-start"></i>
-										</div>
-										<div class="col-9 text-end">
-											<h3>R$ <?php echo @$valorMov ?></h3>
-											<span><?php echo $descricaoMov ?></span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
 
 
 
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
+    <div class="container-fluid">
+        <section id="minimal-statistics">
+            <div class="row mb-2">
+                <div class="col-12 mt-4 mb-1">
+                    <h4 class="text-uppercase text-center font-weight-bold">Estatísticas do Sistema</h4>
+                    <div class="mt-3"></div>
+
+                </div>
+            </div>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
 
 
 
-				<div class="row mb-4">
+                <!-- Content Row -->
+                <div class="row">
 
-					<div class="col-xl-3 col-sm-6 col-12"> 
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<div class="row">
-										<div class="align-self-center col-3">
-											<i class="bi bi-calendar2-check-fill text-warning fs-1 float-start"></i>
-										</div>
-										<div class="col-9 text-end">
-											<h3> <span class=""><?php echo @$contas_pagar_hoje ?></span></h3>
-											<span>Contas à Pagar (Hoje)</span>
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-primary text-uppercase h7">
+                                            Total de Produtos</div>
+                                        <div class="h5 mb-0 font-weight-bold text-primary"><?php echo @$totalProdutos?>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-archive-fill text-primary h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-warning text-uppercase h7">
+                                            Estoque Baixo</div>
+                                        <div class="h5 mb-0 font-weight-bold text-warning">
+                                            <?php echo @$totalEstoqueBaixo?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-exclamation-octagon-fill text-warning h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-					<div class="col-xl-3 col-sm-6 col-12"> 
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<div class="row">
-										<div class="align-self-center col-3">
-											<i class="bi bi-calendar-x-fill text-danger fs-1 float-start"></i>
-										</div>
-										<div class="col-9 text-end">
-											<h3> <span class="">
-												<?php echo @$contas_pagar_vencidas ?></span></h3>
-												<span>Contas à Pagar Vencidas</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-danger shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-danger text-uppercase h7">
+                                            Produtos Vencendo </div>
+                                        <div class="h5 mb-0 font-weight-bold text-danger"><?php echo @$alerta_produtos?>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-exclamation-triangle-fill text-danger h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-
-						<div class="col-xl-3 col-sm-6 col-12"> 
-							<div class="card">
-								<div class="card-content">
-									<div class="card-body">
-										<div class="row">
-											<div class="align-self-center col-3">
-												<i class="bi bi-calendar2-check-fill text-warning fs-1 float-start"></i>
-											</div>
-											<div class="col-9 text-end">
-												<h3> <span class=""><?php echo @$contas_receber_hoje ?></span></h3>
-												<span>Contas Receber (Hoje)</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-xl-3 col-sm-6 col-12"> 
-							<div class="card">
-								<div class="card-content">
-									<div class="card-body">
-										<div class="row">
-											<div class="align-self-center col-3">
-												<i class="bi bi-calendar-x-fill text-danger fs-1 float-start"></i>
-											</div>
-											<div class="col-9 text-end">
-												<h3><?php echo @$contas_receber_vencidas ?></h3>
-												<span>Contas à Receber Vencidas</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-info text-uppercase h7">
+                                            Total Fornecedores</div>
+                                        <div class="h5 mb-0 font-weight-bold text-info"><?php echo @$totalFornecedores?>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-person-check-fill text-info h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
-				</section>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-warning text-uppercase h7">
+                                            Contas à Pagar (Hoje)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-warning">
+                                            <?php echo @$contas_pagar_hoje?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-calendar-minus text-warning h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-				<section id="stats-subtitle">
-					<div class="row mb-2">
-						<div class="col-12 mt-3 mb-1">
-							<h4 class="text-uppercase">Estatísticas Mensais</h4>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-danger shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-danger text-uppercase h7">
+                                            Contas à Pagar Vencidas</div>
+                                        <div class="h5 mb-0 font-weight-bold text-danger">
+                                            <?php echo @$contas_pagar_vencidas?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-calendar-x-fill text-danger h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-						</div>
-					</div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-warning text-uppercase h7">
+                                            Contas Receber (Hoje)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-warning">
+                                            <?php echo @$contas_receber_hoje?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-calendar-check-fill text-warning h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-					<div class="row mb-4">
-
-						<div class="col-xl-6 col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-content">
-									<div class="card-body cleartfix">
-										<div class="row media align-items-stretch">
-											<div class="align-self-center col-1">
-												<i class="bi-calendar2-date text-primary fs-1 mr-2"></i>
-											</div>
-											<div class="media-body col-6">
-												<h4>Saldo Total</h4>
-												<span>Total Arrecado este Mês</span>
-											</div>
-											<div class="text-end col-5">
-												<h2><span class="<?php echo $classeSaldoM ?>">R$ <?php echo $saldoMesF ?></h2></span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xl-6 col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-content">
-									<div class="card-body cleartfix">
-										<div class="row media align-items-stretch">
-											<div class="align-self-center col-1">
-												<i class="bi bi-calendar-week-fill text-danger fs-1 mr-2"></i>
-											</div>
-											<div class="media-body col-6">
-												<h4>Contas à Pagar</h4>
-												<span>Total de <?php echo $pagarMes ?> Contas no Mês</span>
-											</div>
-											<div class="text-end col-5">
-												<h2>R$ <?php echo @$pagarMesF ?></h2>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-
-					<div class="row mb-4">
-
-						<div class="col-xl-6 col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-content">
-									<div class="card-body cleartfix">
-										<div class="row media align-items-stretch">
-											<div class="align-self-center col-1">
-												<i class="bi bi-calendar-week-fill text-success fs-1 mr-2"></i>
-											</div>
-											<div class="media-body col-6">
-												<h4>Contas à Receber</h4>
-												<span>Total de <?php echo $receberMes ?> Contas no Mês</span>
-											</div>
-											<div class="text-end col-5">
-												<h2>R$ <?php echo @$receberMesF ?></h2>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-xl-6 col-md-12">
-							<div class="card overflow-hidden">
-								<div class="card-content">
-									<div class="card-body cleartfix">
-										<div class="row media align-items-stretch">
-											<div class="align-self-center col-1">
-												<i class="bi bi-calendar2-plus-fill text-success fs-1 mr-2"></i>
-											</div>
-											<div class="media-body col-6">
-												<h4>Total de Vendas</h4>
-												<span>Vendas do Mês em R$</span>
-											</div>
-											<div class="text-end col-5">
-												<h2>R$ <?php echo $totalVendasMF ?></h2>
-											</div>
-										</div>
-
-
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-
-				</section>
-
-				<section id="stats-subtitle">
-					<div class="row mb-2">
-						<div class="col-12 mt-3 mb-1">
-							<h4 class="text-uppercase">Modelo de Gráficos</h4>
-
-						</div>
-					</div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-danger shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-danger text-uppercase h7">
+                                            Contas à Receber Vencidas</div>
+                                        <div class="h5 mb-0 font-weight-bold text-danger">
+                                            <?php echo @$contas_receber_vencidas?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-calendar-x-fill text-danger h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
-<style type="text/css">
-			#principal{
-    width:100%;
-    height: 100%;
-    margin-left:10px;
-    font-family:Verdana, Helvetica, sans-serif;
-    font-size:14px;
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-danger shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-danger text-uppercase h7">
+                                            R$ Receber Vencidas</div>
+                                        <div class="h5 mb-0 font-weight-bold text-danger">
+                                            <?php echo @$contas_receber_vencidas_rs?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-cash-stack text-danger h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-}
-#barra{
-    margin: 0 2px;
-    vertical-align: bottom;
-    display: inline-block;
-    padding:5px;
-    text-align:center;
 
-}
-.cor1, .cor2, .cor3, .cor4, .cor5, .cor6, .cor7, .cor8, .cor9, .cor10, .cor11, .cor12{
-    color:#FFF;
-    padding: 5px;
-}
-.cor1{ background-color: #FF0000; }
-.cor2{ background-color: #0000FF; }
-.cor3{ background-color: #FF6600; }
-.cor4{ background-color: #009933; }
-.cor5{ background-color: #FF0000; }
-.cor6{ background-color: #0000FF; }
-.cor7{ background-color: #FF6600; }
-.cor8{ background-color: #009933; }
-.cor9{ background-color: #FF0000; }
-.cor10{ background-color: #0000FF; }
-.cor11{ background-color: #FF6600; }
-.cor12{ background-color: #009933; }
-		</style>
 
-<div id="principal">
-    <p>Vendas no Ano de <?php echo $ano_atual ?></p>
-<?php
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-danger shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-danger text-uppercase h7">
+                                            R$ Pagar Vencidas</div>
+                                        <div class="h5 mb-0 font-weight-bold text-danger">
+                                            <?php echo @$contas_pagar_vencidas_rs?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-exclamation-triangle-fill text-danger h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-success text-uppercase h7">
+                                            Total Vendas Dia</div>
+                                        <div class="h5 mb-0 font-weight-bold text-success"><?php echo @$totalVendasDia?>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-basket2-fill text-success h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-success text-uppercase h7">
+                                            R$ Vendas Hoje</div>
+                                        <div class="h5 mb-0 font-weight-bold text-success"><?php echo @$vendas_rs?>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-archive-fill text-success h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-success text-uppercase h7">
+                                            Entradas do Dia</div>
+                                        <div class="h5 mb-0 font-weight-bold text-success">R$ <?php echo @$entradasF?>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-archive-fill text-success h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="font-weight-bold text-success text-uppercase h7">
+                                            Saídas do Dia</div>
+                                        <div class="h5 mb-0 font-weight-bold text-success"><?php echo @$saidasF?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-archive-fill text-success h1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="align-self-center col-3">
+                                            <i class="bi bi-cash <?php echo $classeSaldo ?> fs-1 float-start"></i>
+                                        </div>
+                                        <div class="col-9 text-end">
+                                            <h3> <span class="<?php echo $classeSaldo ?>">R$
+                                                    <?php echo @$saldoF ?></span></h3>
+                                            <span>Saldo do Dia</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="align-self-center col-3">
+                                            <i
+                                                class="bi bi-exclamation-triangle-fill <?php echo $classeMov ?> fs-1 float-start"></i>
+                                        </div>
+                                        <div class="col-9 text-end">
+                                            <h3>R$ <?php echo @$valorMov ?></h3>
+                                            <span><?php echo $descricaoMov ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+                    <div class="container-fluid">
+                        <section id="minimal-statistics">
+                            <div class="row mb-2">
+                                <div class="col-12 mt-3 mb-1">
+                                    <h4 class="text-uppercase">Estatísticas Financeiras</h4>
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+
+                                <div class="col-xl-3 col-sm-6 col-12">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="align-self-center col-3">
+                                                        <i class="bi bi-cash text-success fs-1 float-start"></i>
+                                                    </div>
+                                                    <div class="col-9 text-end">
+                                                        <h3> <span class="text-success">R$
+                                                                <?php echo @$entradasF ?></span></h3>
+                                                        <span>Entradas do Dia</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-3 col-sm-6 col-12">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="align-self-center col-3">
+                                                        <i class="bi bi-cash text-danger fs-1 float-start"></i>
+                                                    </div>
+                                                    <div class="col-9 text-end">
+                                                        <h3> <span class="">R$ <?php echo @$saidasF ?></span></h3>
+                                                        <span>Saídas do Dia</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xl-3 col-sm-6 col-12">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="align-self-center col-3">
+                                                        <i
+                                                            class="bi bi-cash <?php echo $classeSaldo ?> fs-1 float-start"></i>
+                                                    </div>
+                                                    <div class="col-9 text-end">
+                                                        <h3> <span class="<?php echo $classeSaldo ?>">R$
+                                                                <?php echo @$saldoF ?></span></h3>
+                                                        <span>Saldo do Dia</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xl-3 col-sm-6 col-12">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="align-self-center col-3">
+                                                        <i
+                                                            class="bi bi-exclamation-triangle-fill <?php echo $classeMov ?> fs-1 float-start"></i>
+                                                    </div>
+                                                    <div class="col-9 text-end">
+                                                        <h3>R$ <?php echo @$valorMov ?></h3>
+                                                        <span><?php echo $descricaoMov ?></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                        </section>
+
+                        <section id="stats-subtitle">
+                            <div class="row mb-2">
+                                <div class="col-12 mt-3 mb-1">
+                                    <h4 class="text-uppercase">Estatísticas Mensais</h4>
+
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+
+                                <div class="col-xl-6 col-md-12">
+                                    <div class="card overflow-hidden">
+                                        <div class="card-content">
+                                            <div class="card-body cleartfix">
+                                                <div class="row media align-items-stretch">
+                                                    <div class="align-self-center col-1">
+                                                        <i class="bi-calendar2-date text-primary fs-1 mr-2"></i>
+                                                    </div>
+                                                    <div class="media-body col-6">
+                                                        <h4>Saldo Total</h4>
+                                                        <span>Total Arrecado este Mês</span>
+                                                    </div>
+                                                    <div class="text-end col-5">
+                                                        <h2><span class="<?php echo $classeSaldoM ?>">R$
+                                                                <?php echo $saldoMesF ?></h2></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-md-12">
+                                    <div class="card overflow-hidden">
+                                        <div class="card-content">
+                                            <div class="card-body cleartfix">
+                                                <div class="row media align-items-stretch">
+                                                    <div class="align-self-center col-1">
+                                                        <i class="bi bi-calendar-week-fill text-danger fs-1 mr-2"></i>
+                                                    </div>
+                                                    <div class="media-body col-6">
+                                                        <h4>Contas à Pagar</h4>
+                                                        <span>Total de <?php echo $pagarMes ?> Contas no Mês</span>
+                                                    </div>
+                                                    <div class="text-end col-5">
+                                                        <h2>R$ <?php echo @$pagarMesF ?></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row mb-4">
+
+                                <div class="col-xl-6 col-md-12">
+                                    <div class="card overflow-hidden">
+                                        <div class="card-content">
+                                            <div class="card-body cleartfix">
+                                                <div class="row media align-items-stretch">
+                                                    <div class="align-self-center col-1">
+                                                        <i class="bi bi-calendar-week-fill text-success fs-1 mr-2"></i>
+                                                    </div>
+                                                    <div class="media-body col-6">
+                                                        <h4>Contas à Receber</h4>
+                                                        <span>Total de <?php echo $receberMes ?> Contas no Mês</span>
+                                                    </div>
+                                                    <div class="text-end col-5">
+                                                        <h2>R$ <?php echo @$receberMesF ?></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-md-12">
+                                    <div class="card overflow-hidden">
+                                        <div class="card-content">
+                                            <div class="card-body cleartfix">
+                                                <div class="row media align-items-stretch">
+                                                    <div class="align-self-center col-1">
+                                                        <i class="bi bi-calendar2-plus-fill text-success fs-1 mr-2"></i>
+                                                    </div>
+                                                    <div class="media-body col-6">
+                                                        <h4>Total de Vendas</h4>
+                                                        <span>Vendas do Mês em R$</span>
+                                                    </div>
+                                                    <div class="text-end col-5">
+                                                        <h2>R$ <?php echo $totalVendasMF ?></h2>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </section>
+
+                        <section id="stats-subtitle">
+                            <div class="row mb-2">
+                                <div class="col-12 mt-3 mb-1">
+                                    <h4 class="text-uppercase">Modelo de Gráficos</h4>
+
+                                </div>
+                            </div>
+
+
+
+                            <style type="text/css">
+                            #principal {
+                                width: 100%;
+                                height: 100%;
+                                margin-left: 10px;
+                                font-family: Verdana, Helvetica, sans-serif;
+                                font-size: 14px;
+
+                            }
+
+                            #barra {
+                                margin: 0 2px;
+                                vertical-align: bottom;
+                                display: inline-block;
+                                padding: 5px;
+                                text-align: center;
+
+                            }
+
+                            .cor1,
+                            .cor2,
+                            .cor3,
+                            .cor4,
+                            .cor5,
+                            .cor6,
+                            .cor7,
+                            .cor8,
+                            .cor9,
+                            .cor10,
+                            .cor11,
+                            .cor12 {
+                                color: #FFF;
+                                padding: 5px;
+                            }
+
+                            .cor1 {
+                                background-color: #FF0000;
+                            }
+
+                            .cor2 {
+                                background-color: #0000FF;
+                            }
+
+                            .cor3 {
+                                background-color: #FF6600;
+                            }
+
+                            .cor4 {
+                                background-color: #009933;
+                            }
+
+                            .cor5 {
+                                background-color: #FF0000;
+                            }
+
+                            .cor6 {
+                                background-color: #0000FF;
+                            }
+
+                            .cor7 {
+                                background-color: #FF6600;
+                            }
+
+                            .cor8 {
+                                background-color: #009933;
+                            }
+
+                            .cor9 {
+                                background-color: #FF0000;
+                            }
+
+                            .cor10 {
+                                background-color: #0000FF;
+                            }
+
+                            .cor11 {
+                                background-color: #FF6600;
+                            }
+
+                            .cor12 {
+                                background-color: #009933;
+                            }
+                            </style>
+
+                            <div id="principal">
+                                <p>Vendas no Ano de <?php echo $ano_atual ?></p>
+                                <?php
 // definindo porcentagem
 //BUSCAR O TOTAL DE VENDAS POR MES NO ANO
 $total  = 12; // total de barras
@@ -556,33 +891,34 @@ $totalVenM = 0;
 		?>
 
 
-     <div id="barra">
-            <div class="cor<?php echo $i ?>" style="height:<?php echo $altura_barra + 25 ?>px"> <?php echo $totalValorF ?> </div>
-            <div><?php echo $texto ?></div>
-        </div>
-		
-<?php }?>
+                                <div id="barra">
+                                    <div class="cor<?php echo $i ?>" style="height:<?php echo $altura_barra + 25 ?>px">
+                                        <?php echo $totalValorF ?> </div>
+                                    <div><?php echo $texto ?></div>
+                                </div>
 
-</div>
+                                <?php }?>
 
-
-
-</section>
+                            </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
 
-<div class="container">
-        <h2>Vendas por Mês do ano de <?php echo $ano_atual?></h2>
-        <div>
-            <canvas id="myChart"></canvas>
-        </div>
+                        </section>
 
 
-		<?php
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+
+                        <div class="container">
+                            <h2>Vendas por Mês do ano de <?php echo $ano_atual?></h2>
+                            <div>
+                                <canvas id="myChart"></canvas>
+                            </div>
+
+
+                            <?php
         // Ano atual (substitua pelo ano desejado)
         $ano_atual = date("Y");
 
@@ -593,31 +929,31 @@ $totalVenM = 0;
 		
         ?>
 
-     
 
-        <script>
-            var ctx = document.getElementById("myChart").getContext("2d");
-            var myChart = new Chart(ctx, {
-                type: "bar", // Gráfico de barras
-                data: {
-                    labels: [
-                        "Janeiro",
-                        "Fevereiro",
-                        "Março",
-                        "Abril",
-                        "Maio",
-                        "Junho",
-                        "Julho",
-                        "Agosto",
-                        "Setembro",
-                        "Outubro",
-                        "Novembro",
-                        "Dezembro"
-                    ],
-                    datasets: [{
-                label: "Vendas em Reais",
-                data: [
-                    <?php
+
+                            <script>
+                            var ctx = document.getElementById("myChart").getContext("2d");
+                            var myChart = new Chart(ctx, {
+                                type: "bar", // Gráfico de barras
+                                data: {
+                                    labels: [
+                                        "Janeiro",
+                                        "Fevereiro",
+                                        "Março",
+                                        "Abril",
+                                        "Maio",
+                                        "Junho",
+                                        "Julho",
+                                        "Agosto",
+                                        "Setembro",
+                                        "Outubro",
+                                        "Novembro",
+                                        "Dezembro"
+                                    ],
+                                    datasets: [{
+                                        label: "Vendas em Reais",
+                                        data: [
+                                            <?php
                     for ($i = 1; $i <= 12; $i++) {
                         $dataMesInicio = $ano_atual . "-" . $i . "-01";
                         $dataMesFinal = $ano_atual . "-" . $i . "-31";
@@ -646,60 +982,61 @@ $totalVenM = 0;
 						
                     }
                     ?>
-                ],
-                        backgroundColor: [
-                            "rgba(255, 0, 0, 0.6)",
-                            "rgba(0, 0, 255, 0.6)",
-                            "rgba(255, 102, 0, 0.6)",
-                            "rgba(0, 153, 51, 0.6)",
-                            "rgba(255, 0, 0, 0.6)",
-                            "rgba(0, 0, 255, 0.6)",
-                            "rgba(255, 102, 0, 0.6)",
-                            "rgba(0, 153, 51, 0.6)",
-                            "rgba(255, 0, 0, 0.6)",
-                            "rgba(0, 0, 255, 0.6)",
-                            "rgba(255, 102, 0, 0.6)",
-                            "rgba(0, 153, 51, 0.6)"
-                        ]
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        </script>
-		<div>
+                                        ],
+                                        backgroundColor: [
+                                            "rgba(255, 0, 0, 0.6)",
+                                            "rgba(0, 0, 255, 0.6)",
+                                            "rgba(255, 102, 0, 0.6)",
+                                            "rgba(0, 153, 51, 0.6)",
+                                            "rgba(255, 0, 0, 0.6)",
+                                            "rgba(0, 0, 255, 0.6)",
+                                            "rgba(255, 102, 0, 0.6)",
+                                            "rgba(0, 153, 51, 0.6)",
+                                            "rgba(255, 0, 0, 0.6)",
+                                            "rgba(0, 0, 255, 0.6)",
+                                            "rgba(255, 102, 0, 0.6)",
+                                            "rgba(0, 153, 51, 0.6)"
+                                        ]
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                            </script>
+                            <div>
 
-<style>
-	.rodape{
-		margin-left: 48px;
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 18px;
-	}
+                                <style>
+                                .rodape {
+                                    margin-left: 48px;
+                                    font-family: 'Courier New', Courier, monospace;
+                                    font-size: 18px;
+                                }
 
-	.info{
-		font-weight: bold;
-		text-transform: uppercase;
-	}
+                                .info {
+                                    font-weight: bold;
+                                    text-transform: uppercase;
+                                }
 
-	.dinheiro{
-		font-weight: bold;
-		color: #009933;
-	}
-</style>
+                                .dinheiro {
+                                    font-weight: bold;
+                                    color: #009933;
+                                }
+                                </style>
 
 
-<div class="mt-4"></div>
-    <p class="rodape"><span class="info">Total de Vendas do ano de <?php echo $ano_atual ?></span>: <span class="dinheiro">R$ <?php echo number_format($total_valor_arrecadado, 2, ',', '.'); ?></span></p>
-</div>
+                                <div class="mt-4"></div>
+                                <p class="rodape"><span class="info">Total de Vendas do ano de
+                                        <?php echo $ano_atual ?></span>: <span class="dinheiro">R$
+                                        <?php echo number_format($total_valor_arrecadado, 2, ',', '.'); ?></span></p>
+                            </div>
 
-    </div>
+                        </div>
 
 </body>
+
 </html>
-
-
