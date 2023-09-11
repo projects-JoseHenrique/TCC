@@ -997,17 +997,87 @@ $totalVenM = 0;
     
 });
 
-
 </script>
 
-<p class="rodape"><span class="info">Total de Vendas do ano de <?php echo $ano_atual ?></span>: <span class="dinheiro">R$ <?php echo $total_vendas ?></span></p>
+
+<script>
+
+var quantidadeChart = new Chart(ctxQuantidade, {
+    type: "bar", // Gráfico de barras
+    data: {
+        labels: [
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembro"
+        ],
+        datasets: [{
+            label: "Quantidade de Vendas",
+            data: [
+                <?php
+                for ($i = 1; $i <= 12; $i++) {
+                    $dataMesInicio = $ano_atual . "-" . $i . "-01";
+                    $dataMesFinal = $ano_atual . "-" . $i . "-31";
+
+                    $query = $pdo->query("SELECT * from vendas where data >= '$dataMesInicio' and data <= '$dataMesFinal' and status = 'Concluída'");
+                    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+                    $total_vendas_mes = @count($res);
+
+                    echo $total_vendas_mes;
+
+                    if ($i != 12) {
+                        echo ",";
+                    }
+                }
+                ?>
+            ],
+            backgroundColor: [
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                "rgba(0, 0, 255, 0.6)",
+                
+                
+            ]
+        }]
+    },
+    options: {
+        scales: {
+            x: {
+                min: 0, // Defina o valor mínimo do eixo x
+                max: 11, // Defina o valor máximo do eixo x (0 a 11 representa os meses de janeiro a dezembro)
+            },
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+
+
         <style>
             .rodape {
                 margin-left: 48px;
                 font-family: 'Courier New', Courier, monospace;
                 font-size: 18px;
-                position: absolute;
-                margin-bottom: 20px;
             }
 
             .info {
@@ -1020,8 +1090,10 @@ $totalVenM = 0;
                 color: #0000FF;
             }
         </style>
-        
 
+        <div class="mt-4"></div>
+        <p class="rodape"><span class="info">Total de Vendas do ano de <?php echo $ano_atual ?></span>: <span class="dinheiro">R$ <?php echo $total_vendas ?></span></p>
+    </div>
 </body>
 
 </html>
