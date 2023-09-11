@@ -365,8 +365,8 @@ $dataInicioMes = $ano_atual."-".$mes_atual."-01";
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="font-weight-bold text-danger text-uppercase h7">
-										R$ Receber Vencidas</div>
-                                        <div class="h5 mb-0 font-weight-bold text-danger" ><?php echo @$contas_receber_vencidas_rs?></div>
+										Receber Vencidas</div>
+                                        <div class="h5 mb-0 font-weight-bold text-danger" >R$ <?php echo @$contas_receber_vencidas_rs?></div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="bi bi-cash-stack text-danger h1"></i>
@@ -384,8 +384,8 @@ $dataInicioMes = $ano_atual."-".$mes_atual."-01";
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="font-weight-bold text-danger text-uppercase h7">
-										R$ Pagar Vencidas</div>
-                                        <div class="h5 mb-0 font-weight-bold text-danger" ><?php echo @$contas_pagar_vencidas_rs?></div>
+										Pagar Vencidas</div>
+                                        <div class="h5 mb-0 font-weight-bold text-danger" >R$ <?php echo @$contas_pagar_vencidas_rs?></div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="bi bi-exclamation-triangle-fill text-danger h1"></i>
@@ -418,8 +418,8 @@ $dataInicioMes = $ano_atual."-".$mes_atual."-01";
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="font-weight-bold text-success text-uppercase h7">
-										R$ Vendas Hoje</div>
-                                        <div class="h5 mb-0 font-weight-bold text-success" ><?php echo @$vendas_rs?></div>
+										Vendas Hoje</div>
+                                        <div class="h5 mb-0 font-weight-bold text-success" >R$ <?php echo @$vendas_rs?></div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="bi bi-archive-fill text-success h1"></i>
